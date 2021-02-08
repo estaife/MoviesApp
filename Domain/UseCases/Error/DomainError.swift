@@ -8,6 +8,25 @@
 import Foundation
 
 public enum DomainError: Error {
+    case unauthorized
+    case forbidden
+    case badRequest
+    case serverError
+    case noConnectivity
     case unknown
-    case parse
+    case noData
+    case parseError
+    
+    public var description: String {
+        switch self {
+        case .unknown: return "Holve um erro desconhecido"
+        case .noData: return "Holve um erro na resposta do servidor"
+        case .parseError: return "Holve um erro interno"
+        case .unauthorized: return "Não autorizado"
+        case .forbidden: return "Requisição proibida"
+        case .badRequest: return "Requisição não permitido"
+        case .serverError: return "Holve um erro no servidor"
+        case .noConnectivity: return "Sem Conexão"
+        }
+    }
 }
