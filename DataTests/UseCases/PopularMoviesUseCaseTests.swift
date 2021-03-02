@@ -72,6 +72,22 @@ class PopularMoviesUseCaseTests: XCTestCase {
         //Then
         wait(for: [expect], timeout: 1)
     }
+    
+    func testGetAllPopularMoviesShouldNotSutHasDeallocated() {
+        
+        //Given
+        let httpGetClientSpy = HTTPGetClientSpy()
+        var sut: PopularMoviesUseCase? = PopularMoviesUseCase(httpGetClient: httpGetClientSpy, url: url)
+        var result: Result<MovieResults, DomainError>?
+        
+        //When
+        sut?.getAllPopularMovies(page: page) { result = $0 }
+        sut = nil
+        httpGetClientSpy.completeWith(error: .unknown)
+        
+        //Then
+        XCTAssertNil(result)
+    }
 }
 
 extension PopularMoviesUseCaseTests {
