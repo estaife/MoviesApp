@@ -6,8 +6,7 @@
 //
 
 import Foundation
-import Combine
 
 public protocol PopularMoviesUseCaseProtocol {
-    func getAllPopularMovies(page: String) -> Future<MovieResults, DomainError>
+    func getAllPopularMovies(page: String, completion: @escaping (Result<MovieResults, DomainError>) -> Void)
 }

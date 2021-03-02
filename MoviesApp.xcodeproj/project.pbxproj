@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4357532B25EDCA75002312F2 /* Domain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43AA5B92250F36B6002D8517 /* Domain.framework */; };
+		4357532C25EDCA75002312F2 /* Domain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43AA5B92250F36B6002D8517 /* Domain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43AA5B96250F36B6002D8517 /* Domain.h in Headers */ = {isa = PBXBuildFile; fileRef = 43AA5B94250F36B6002D8517 /* Domain.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43AA5BA8250F373B002D8517 /* Data.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43AA5B9F250F373B002D8517 /* Data.framework */; };
 		43AA5BAD250F373B002D8517 /* DataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AA5BAC250F373B002D8517 /* DataTests.swift */; };
@@ -19,6 +21,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		4357532D25EDCA75002312F2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 81DB523224FB6E2A0022FBD0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 43AA5B91250F36B6002D8517;
+			remoteInfo = Domain;
+		};
 		43AA5BA9250F373B002D8517 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 81DB523224FB6E2A0022FBD0 /* Project object */;
@@ -34,6 +43,20 @@
 			remoteInfo = Domain;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4357532F25EDCA75002312F2 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				4357532C25EDCA75002312F2 /* Domain.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		43AA5B92250F36B6002D8517 /* Domain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Domain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4357532B25EDCA75002312F2 /* Domain.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +102,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4357532A25EDCA75002312F2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4357533225EDCB00002312F2 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				43AA5BAE250F373B002D8517 /* Info.plist */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
 		43AA5B93250F36B6002D8517 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
@@ -99,8 +138,8 @@
 		43AA5BAB250F373B002D8517 /* DataTests */ = {
 			isa = PBXGroup;
 			children = (
+				4357533225EDCB00002312F2 /* SupportingFiles */,
 				43AA5BAC250F373B002D8517 /* DataTests.swift */,
-				43AA5BAE250F373B002D8517 /* Info.plist */,
 			);
 			path = DataTests;
 			sourceTree = "<group>";
@@ -175,6 +214,7 @@
 				43AA5BA0250F373B002D8517 /* Data */,
 				43AA5BA7250F373B002D8517 /* DataTests.xctest */,
 				43AA5BAB250F373B002D8517 /* DataTests */,
+				4357532A25EDCA75002312F2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -226,11 +266,13 @@
 				43AA5B9B250F373B002D8517 /* Sources */,
 				43AA5B9C250F373B002D8517 /* Frameworks */,
 				43AA5B9D250F373B002D8517 /* Resources */,
+				4357532F25EDCA75002312F2 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				43AA5BB7250F3752002D8517 /* PBXTargetDependency */,
+				4357532E25EDCA75002312F2 /* PBXTargetDependency */,
 			);
 			name = Data;
 			productName = Data;
@@ -352,6 +394,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		4357532E25EDCA75002312F2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 43AA5B91250F36B6002D8517 /* Domain */;
+			targetProxy = 4357532D25EDCA75002312F2 /* PBXContainerItemProxy */;
+		};
 		43AA5BAA250F373B002D8517 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 43AA5B9E250F373B002D8517 /* Data */;

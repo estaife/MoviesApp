@@ -6,16 +6,13 @@
 //
 
 import Domain
-import Combine
 
 public final class PopularMoviesUseCase {
     public init() { }
 }
 
 extension PopularMoviesUseCase: PopularMoviesUseCaseProtocol {
-    public func getAllPopularMovies(page: String) -> Future<MovieResults, DomainError> {
-        Future { promise in
-            //TODO: - Handle promise
-        }
+    public func getAllPopularMovies(page: String, completion: @escaping (Result<MovieResults, DomainError>) -> Void) {
+        //TODO: - Handle promise
     }
 }
