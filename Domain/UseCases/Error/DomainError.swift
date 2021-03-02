@@ -16,6 +16,7 @@ public enum DomainError: Error {
     case unknown
     case noData
     case parseError
+    case convert
     
     public var description: String {
         switch self {
@@ -27,6 +28,7 @@ public enum DomainError: Error {
         case .badRequest: return "Requisição não permitido"
         case .serverError: return "Holve um erro no servidor"
         case .noConnectivity: return "Sem Conexão"
+        case .convert: return "Holve um erro ao converter os dados"
         }
     }
 }
