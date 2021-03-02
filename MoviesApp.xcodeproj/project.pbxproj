@@ -13,7 +13,6 @@
 		4357534625EDCDC2002312F2 /* NetworkingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4357534525EDCDC2002312F2 /* NetworkingTests.swift */; };
 		4357534825EDCDC2002312F2 /* Networking.h in Headers */ = {isa = PBXBuildFile; fileRef = 4357533A25EDCDC2002312F2 /* Networking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4357536225EDD346002312F2 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4357536125EDD346002312F2 /* HTTPClient.swift */; };
-		4357536825EDD388002312F2 /* HTTPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4357536725EDD388002312F2 /* HTTPError.swift */; };
 		4357537D25EDD649002312F2 /* HTTPGetClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4357537C25EDD649002312F2 /* HTTPGetClientSpy.swift */; };
 		4357538F25EDD98F002312F2 /* ModelToData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4357538E25EDD98F002312F2 /* ModelToData.swift */; };
 		4357539925EDDD57002312F2 /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4357539825EDDD57002312F2 /* BaseModel.swift */; };
@@ -81,7 +80,6 @@
 		4357534525EDCDC2002312F2 /* NetworkingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingTests.swift; sourceTree = "<group>"; };
 		4357534725EDCDC2002312F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4357536125EDD346002312F2 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
-		4357536725EDD388002312F2 /* HTTPError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPError.swift; sourceTree = "<group>"; };
 		4357537C25EDD649002312F2 /* HTTPGetClientSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPGetClientSpy.swift; sourceTree = "<group>"; };
 		4357538E25EDD98F002312F2 /* ModelToData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelToData.swift; sourceTree = "<group>"; };
 		4357539825EDDD57002312F2 /* BaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
@@ -188,7 +186,6 @@
 			isa = PBXGroup;
 			children = (
 				4357536125EDD346002312F2 /* HTTPClient.swift */,
-				4357536725EDD388002312F2 /* HTTPError.swift */,
 			);
 			path = ClientHTTP;
 			sourceTree = "<group>";
@@ -563,7 +560,6 @@
 			files = (
 				4357538F25EDD98F002312F2 /* ModelToData.swift in Sources */,
 				4357536225EDD346002312F2 /* HTTPClient.swift in Sources */,
-				4357536825EDD388002312F2 /* HTTPError.swift in Sources */,
 				43AA5BCB250F3FEC002D8517 /* PopularMoviesUseCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

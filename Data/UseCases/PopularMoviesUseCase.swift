@@ -31,8 +31,8 @@ extension PopularMoviesUseCase: PopularMoviesUseCaseProtocol {
                 switch result {
                 case .success(let data):
                     completion(self.handleSuccess(data))
-                case .failure(_):
-                    completion(.failure(.unknown))
+                case .failure(let error):
+                    completion(.failure(error))
                 }
             }
         }
