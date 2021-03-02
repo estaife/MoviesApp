@@ -201,6 +201,14 @@
 			path = HTTPClientsSpys;
 			sourceTree = "<group>";
 		};
+		435753A225EDEF99002312F2 /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				43AA5BAC250F373B002D8517 /* PopularMoviesUseCaseTests.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
 		43AA5B93250F36B6002D8517 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,7 +233,7 @@
 			children = (
 				4357533225EDCB00002312F2 /* SupportingFiles */,
 				4357537B25EDD640002312F2 /* HTTPClientsSpys */,
-				43AA5BAC250F373B002D8517 /* PopularMoviesUseCaseTests.swift */,
+				435753A225EDEF99002312F2 /* UseCases */,
 			);
 			path = DataTests;
 			sourceTree = "<group>";

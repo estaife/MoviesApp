@@ -89,9 +89,12 @@ extension PopularMoviesUseCaseTests {
         "0"
     }
     
-    func createSut(url: URL) -> (sut: PopularMoviesUseCase, httpGetClientSpy: HTTPGetClientSpy) {
+    func createSut(url: URL, file: StaticString = #file, line: UInt = #line) -> (sut: PopularMoviesUseCase, httpGetClientSpy: HTTPGetClientSpy) {
         let httpGetClientSpy = HTTPGetClientSpy()
         let sut = PopularMoviesUseCase(httpGetClient: httpGetClientSpy, url: url)
+        addTeardownBlock { [weak sut] in
+            XCTAssertNil(sut, file: file, line: line)
+        }
         return (sut, httpGetClientSpy)
     }
 }
