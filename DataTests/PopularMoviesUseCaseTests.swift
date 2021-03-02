@@ -50,6 +50,28 @@ class PopularMoviesUseCaseTests: XCTestCase {
         //Then
         wait(for: [expect], timeout: 1)
     }
+    
+    func testGetAllPopularMoviesWithError() {
+        
+        //Given
+        let (sut, httpClientSpy) = createSut(url: url)
+        let expectedResult: Result<MovieResults, DomainError> = .failure(.unknown)
+        
+        //When
+        let expect = expectation(description: "Wainting for error")
+        sut.getAllPopularMovies(page: page) { receivedResult in
+            switch (expectedResult, receivedResult) {
+            case (.failure(let expectedError), .failure(let receivedError)):
+                XCTAssertEqual(expectedError, receivedError)
+            default: XCTFail("Fail, because expected and received not equal")
+            }
+            expect.fulfill()
+        }
+        httpClientSpy.completeWith(error: .unknown)
+        
+        //Then
+        wait(for: [expect], timeout: 1)
+    }
 }
 
 extension PopularMoviesUseCaseTests {
