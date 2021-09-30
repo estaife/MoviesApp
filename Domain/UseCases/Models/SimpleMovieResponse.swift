@@ -14,7 +14,7 @@ public struct SimpleMovieResponse: BaseModel {
     public let title: String
     public let popularity: Double
     
-    var releaseYear: String {
+    public var releaseYear: String {
         return String(releaseDate.prefix(4))
     }
     
