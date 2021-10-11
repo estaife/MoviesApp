@@ -17,17 +17,17 @@ public final class AlamofireAdapter {
         self.session = session
     }
     
-    private func handleSuccssesWith(statusCode: Int, and data: Data?) -> Result<Data?, DomainError> {
+    private func handleSuccessWith(statusCode: Int, and data: Data?) -> Result<Data?, DomainError> {
         switch statusCode {
         case 204: return .success(nil)
         case 200...299: return .success(data)
-        case 401: return .failure(.unauthorized)
-        case 403: return .failure(.forbidden)
-        case 300...399: return .failure(.noConnectivity)
-        case 404: return .failure(.noData)
-        case 400...499: return .failure(.badRequest)
-        case 500...599: return .failure(.serverError)
-        default: return .failure(.unknown)
+        case 401: return .failure(.init(internalError: .unauthorized))
+        case 403: return .failure(.init(internalError: .forbidden))
+        case 300...399: return .failure(.init(internalError: .noConnectivity))
+        case 404: return .failure(.init(internalError: .noData))
+        case 400...499: return .failure(.init(internalError: .badRequest))
+        case 500...599: return .failure(.init(internalError: .serverError))
+        default: return .failure(.init(internalError: .unknown))
         }
     }
 }
@@ -38,8 +38,8 @@ extension AlamofireAdapter: HTTPPostClient {
             if let self = self, let statusCode = response.response?.statusCode {
                 switch response.result {
                 case .success(let data):
-                    completion(self.handleSuccssesWith(statusCode: statusCode, and: data))
-                case .failure: completion(.failure(.unknown))
+                    completion(self.handleSuccessWith(statusCode: statusCode, and: data))
+                case .failure: completion(.failure(.init(internalError: .unknown)))
                 }
             }
         }
@@ -48,15 +48,23 @@ extension AlamofireAdapter: HTTPPostClient {
 
 extension AlamofireAdapter: HTTPGetClient {
     public func get(from url: URL, completion: @escaping (Result<Data?, DomainError>) -> Void) {
-        session.request(url, method: .get).responseData { [weak self] response in
-            if let self = self, let statusCode = response.response?.statusCode {
-                switch response.result {
-                case .success(let data):
-                    completion(self.handleSuccssesWith(statusCode: statusCode, and: data))
-                case .failure: completion(.failure(.unknown))
+        session.request(url, method: .get)
+            .responseData { [weak self] response in
+            if let self = self {
+                if let statusCode = response.response?.statusCode {
+                    switch response.result {
+                    case .success(let data):
+                        completion(self.handleSuccessWith(statusCode: statusCode, and: data))
+                    case .failure(let error):
+                        completion(.failure(.init(rawError: error)))
+                    }
+                } else if let data = response.data {
+                    completion(self.handleSuccessWith(statusCode: 204, and: data))
+                } else {
+                    return completion(.failure(.init(internalError: .unknown)))
                 }
             } else {
-                return completion(.failure(.unknown))
+                print("ddd")
             }
         }
     }

@@ -19,8 +19,10 @@ public final class PopularMoviesUseCase {
     private func handleSuccess(_ data: Data?) -> Result<MovieResults, DomainError> {
         if let model: MovieResults = data?.convertToModel() {
             return .success(model)
+        } else if let error: SerializedError = data?.convertToModel() {
+            return .failure(DomainError(statusCode: -1, serializedError: error))
         }
-        return .failure(.convert)
+        return .failure(DomainError(internalError: .unknown))
     }
 }
 
