@@ -19,15 +19,24 @@ public final class AlamofireAdapter {
     
     private func handleSuccessWith(statusCode: Int, and data: Data?) -> Result<Data?, DomainError> {
         switch statusCode {
-        case 204: return .success(nil)
-        case 200...299: return .success(data)
-        case 401: return .failure(.init(internalError: .unauthorized))
-        case 403: return .failure(.init(internalError: .forbidden))
-        case 300...399: return .failure(.init(internalError: .noConnectivity))
-        case 404: return .failure(.init(internalError: .noData))
-        case 400...499: return .failure(.init(internalError: .badRequest))
-        case 500...599: return .failure(.init(internalError: .serverError))
-        default: return .failure(.init(internalError: .unknown))
+        case 204:
+            return .success(nil)
+        case 200...299:
+            return .success(data)
+        case 401:
+            return .failure(.init(internalError: .unauthorized))
+        case 403:
+            return .failure(.init(internalError: .forbidden))
+        case 300...399:
+            return .failure(.init(internalError: .noConnectivity))
+        case 404:
+            return .failure(.init(internalError: .noData))
+        case 400...499:
+            return .failure(.init(internalError: .badRequest))
+        case 500...599:
+            return .failure(.init(internalError: .serverError))
+        default:
+            return .failure(.init(internalError: .unknown))
         }
     }
 }
@@ -39,7 +48,8 @@ extension AlamofireAdapter: HTTPPostClient {
                 switch response.result {
                 case .success(let data):
                     completion(self.handleSuccessWith(statusCode: statusCode, and: data))
-                case .failure: completion(.failure(.init(internalError: .unknown)))
+                case .failure:
+                    completion(.failure(.init(internalError: .unknown)))
                 }
             }
         }
@@ -48,7 +58,7 @@ extension AlamofireAdapter: HTTPPostClient {
 
 extension AlamofireAdapter: HTTPGetClient {
     public func get(from url: URL, completion: @escaping (Result<Data?, DomainError>) -> Void) {
-        session.request(url, method: .get)
+        session.request(url, method: .get, parameters: .init(dictionaryLiteral: ("api_key", "8b743bf189292c45c19e1645ad0b4be7"))) // TODO: - Remove mocekd parameters values
             .responseData { [weak self] response in
             if let self = self {
                 if let statusCode = response.response?.statusCode {
