@@ -25,8 +25,8 @@ public final class Coordinator: BaseCoordinator {
     }
     
     public func start() {
-        let alamofireAdapter = AlamofireAdapter()
-        let popularMoviesUseCase = PopularMoviesUseCase(httpGetClient: alamofireAdapter, url: URL(string: "https://api.themoviedb.org/3/movie/popular")!) // TODO: - Fixing url mocked
+        let requesterHTTP = RequesterHTTP()
+        let popularMoviesUseCase = PopularMoviesUseCase(requesterHTTP: requesterHTTP)
         let presenter = PopularMoviesPresenter(popularMoviesUseCase: popularMoviesUseCase)
         let popularMoviesViewController = PopularMoviesViewController(presenter: presenter)
         navigationController.pushViewController(popularMoviesViewController, animated: true)

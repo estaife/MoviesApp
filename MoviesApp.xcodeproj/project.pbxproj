@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		430A940125EEDE8F00AC3852 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 430A940025EEDE8F00AC3852 /* Alamofire */; };
-		430A940725EEDEA600AC3852 /* AlamofireAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430A940625EEDEA600AC3852 /* AlamofireAdapter.swift */; };
+		430A940725EEDEA600AC3852 /* RequesterHTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430A940625EEDEA600AC3852 /* RequesterHTTP.swift */; };
 		430A941425EEDEFB00AC3852 /* Data.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43AA5B9F250F373B002D8517 /* Data.framework */; };
 		430A941525EEDEFB00AC3852 /* Data.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43AA5B9F250F373B002D8517 /* Data.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		430A942325EEE0FC00AC3852 /* NetworkingGetProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430A941F25EEE0FC00AC3852 /* NetworkingGetProtocolTests.swift */; };
@@ -17,7 +17,7 @@
 		430A943B25EEE29800AC3852 /* XCTestCase+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430A943025EEE1CC00AC3852 /* XCTestCase+Extension.swift */; };
 		4357534125EDCDC2002312F2 /* Networking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4357533825EDCDC1002312F2 /* Networking.framework */; };
 		4357534825EDCDC2002312F2 /* Networking.h in Headers */ = {isa = PBXBuildFile; fileRef = 4357533A25EDCDC2002312F2 /* Networking.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4357536225EDD346002312F2 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4357536125EDD346002312F2 /* HTTPClient.swift */; };
+		4357536225EDD346002312F2 /* RequesterHTTPProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4357536125EDD346002312F2 /* RequesterHTTPProtocol.swift */; };
 		4357537D25EDD649002312F2 /* HTTPGetClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4357537C25EDD649002312F2 /* HTTPGetClientSpy.swift */; };
 		4357538F25EDD98F002312F2 /* ModelToData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4357538E25EDD98F002312F2 /* ModelToData.swift */; };
 		4357539925EDDD57002312F2 /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4357539825EDDD57002312F2 /* BaseModel.swift */; };
@@ -30,6 +30,9 @@
 		43AA5BC0250F3A96002D8517 /* SimpleMovieResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AA5BBF250F3A96002D8517 /* SimpleMovieResponse.swift */; };
 		43AA5BC4250F3C31002D8517 /* DomainError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AA5BC3250F3C31002D8517 /* DomainError.swift */; };
 		43AA5BCB250F3FEC002D8517 /* PopularMoviesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AA5BCA250F3FEC002D8517 /* PopularMoviesUseCase.swift */; };
+		812B3D0927167F59000A9648 /* RequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812B3D0727167579000A9648 /* RequestProtocol.swift */; };
+		812B3D12271689F5000A9648 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812B3D11271689F5000A9648 /* Environment.swift */; };
+		812B3D15271694BD000A9648 /* PopularMoviesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812B3D14271694BD000A9648 /* PopularMoviesRequest.swift */; };
 		812CC6DB2714AEBC0064AE76 /* Presenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 812CC6D32714AEBC0064AE76 /* Presenter.framework */; };
 		812CC6E02714AEBC0064AE76 /* PresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812CC6DF2714AEBC0064AE76 /* PresenterTests.swift */; };
 		812CC6E12714AEBC0064AE76 /* Presenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 812CC6D52714AEBC0064AE76 /* Presenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -240,7 +243,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		430A940625EEDEA600AC3852 /* AlamofireAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireAdapter.swift; sourceTree = "<group>"; };
+		430A940625EEDEA600AC3852 /* RequesterHTTP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequesterHTTP.swift; sourceTree = "<group>"; };
 		430A941F25EEE0FC00AC3852 /* NetworkingGetProtocolTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingGetProtocolTests.swift; sourceTree = "<group>"; };
 		430A942225EEE0FC00AC3852 /* URLProtocolStub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLProtocolStub.swift; sourceTree = "<group>"; };
 		430A943025EEE1CC00AC3852 /* XCTestCase+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Extension.swift"; sourceTree = "<group>"; };
@@ -249,8 +252,7 @@
 		4357533A25EDCDC2002312F2 /* Networking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Networking.h; sourceTree = "<group>"; };
 		4357533B25EDCDC2002312F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4357534025EDCDC2002312F2 /* NetworkingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4357534725EDCDC2002312F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4357536125EDD346002312F2 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
+		4357536125EDD346002312F2 /* RequesterHTTPProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequesterHTTPProtocol.swift; sourceTree = "<group>"; };
 		4357537C25EDD649002312F2 /* HTTPGetClientSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPGetClientSpy.swift; sourceTree = "<group>"; };
 		4357538E25EDD98F002312F2 /* ModelToData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelToData.swift; sourceTree = "<group>"; };
 		4357539825EDDD57002312F2 /* BaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
@@ -258,7 +260,6 @@
 		43AA5B95250F36B6002D8517 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		43AA5B9F250F373B002D8517 /* Data.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Data.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43AA5BA1250F373B002D8517 /* Data.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Data.h; sourceTree = "<group>"; };
-		43AA5BA2250F373B002D8517 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		43AA5BA7250F373B002D8517 /* DataTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DataTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		43AA5BAC250F373B002D8517 /* PopularMoviesUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularMoviesUseCaseTests.swift; sourceTree = "<group>"; };
 		43AA5BAE250F373B002D8517 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -267,6 +268,9 @@
 		43AA5BBF250F3A96002D8517 /* SimpleMovieResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleMovieResponse.swift; sourceTree = "<group>"; };
 		43AA5BC3250F3C31002D8517 /* DomainError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainError.swift; sourceTree = "<group>"; };
 		43AA5BCA250F3FEC002D8517 /* PopularMoviesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularMoviesUseCase.swift; sourceTree = "<group>"; };
+		812B3D0727167579000A9648 /* RequestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestProtocol.swift; sourceTree = "<group>"; };
+		812B3D11271689F5000A9648 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		812B3D14271694BD000A9648 /* PopularMoviesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularMoviesRequest.swift; sourceTree = "<group>"; };
 		812CC6D32714AEBC0064AE76 /* Presenter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Presenter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		812CC6D52714AEBC0064AE76 /* Presenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Presenter.h; sourceTree = "<group>"; };
 		812CC6DA2714AEBC0064AE76 /* PresenterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PresenterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -381,12 +385,12 @@
 			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
-		430A93FE25EEDD7A00AC3852 /* ClientHTTPs */ = {
+		430A93FE25EEDD7A00AC3852 /* Requester */ = {
 			isa = PBXGroup;
 			children = (
-				430A940625EEDEA600AC3852 /* AlamofireAdapter.swift */,
+				430A940625EEDEA600AC3852 /* RequesterHTTP.swift */,
 			);
-			path = ClientHTTPs;
+			path = Requester;
 			sourceTree = "<group>";
 		};
 		430A941E25EEE0FC00AC3852 /* ClientHTTPs */ = {
@@ -426,7 +430,7 @@
 			isa = PBXGroup;
 			children = (
 				4357535325EDCE44002312F2 /* SupportingFiles */,
-				430A93FE25EEDD7A00AC3852 /* ClientHTTPs */,
+				430A93FE25EEDD7A00AC3852 /* Requester */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -450,12 +454,15 @@
 			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
-		4357536025EDD2C0002312F2 /* ClientHTTP */ = {
+		4357536025EDD2C0002312F2 /* Requester */ = {
 			isa = PBXGroup;
 			children = (
-				4357536125EDD346002312F2 /* HTTPClient.swift */,
+				812B3D13271694A8000A9648 /* Requests */,
+				812B3D0A27168475000A9648 /* Environment */,
+				812B3D0727167579000A9648 /* RequestProtocol.swift */,
+				4357536125EDD346002312F2 /* RequesterHTTPProtocol.swift */,
 			);
-			path = ClientHTTP;
+			path = Requester;
 			sourceTree = "<group>";
 		};
 		4357537B25EDD640002312F2 /* HTTPClientsSpys */ = {
@@ -487,7 +494,7 @@
 			isa = PBXGroup;
 			children = (
 				43AA5BC8250F3E8F002D8517 /* SupportingFiles */,
-				4357536025EDD2C0002312F2 /* ClientHTTP */,
+				4357536025EDD2C0002312F2 /* Requester */,
 				43AA5BC9250F3FB4002D8517 /* UseCases */,
 			);
 			path = Data;
@@ -564,6 +571,22 @@
 				43AA5BCA250F3FEC002D8517 /* PopularMoviesUseCase.swift */,
 			);
 			path = UseCases;
+			sourceTree = "<group>";
+		};
+		812B3D0A27168475000A9648 /* Environment */ = {
+			isa = PBXGroup;
+			children = (
+				812B3D11271689F5000A9648 /* Environment.swift */,
+			);
+			path = Environment;
+			sourceTree = "<group>";
+		};
+		812B3D13271694A8000A9648 /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				812B3D14271694BD000A9648 /* PopularMoviesRequest.swift */,
+			);
+			path = Requests;
 			sourceTree = "<group>";
 		};
 		812CC6D42714AEBC0064AE76 /* Presenter */ = {
@@ -1066,7 +1089,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				430A940725EEDEA600AC3852 /* AlamofireAdapter.swift in Sources */,
+				430A940725EEDEA600AC3852 /* RequesterHTTP.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1098,8 +1121,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				4357538F25EDD98F002312F2 /* ModelToData.swift in Sources */,
-				4357536225EDD346002312F2 /* HTTPClient.swift in Sources */,
+				4357536225EDD346002312F2 /* RequesterHTTPProtocol.swift in Sources */,
+				812B3D15271694BD000A9648 /* PopularMoviesRequest.swift in Sources */,
 				43AA5BCB250F3FEC002D8517 /* PopularMoviesUseCase.swift in Sources */,
+				812B3D0927167F59000A9648 /* RequestProtocol.swift in Sources */,
+				812B3D12271689F5000A9648 /* Environment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
