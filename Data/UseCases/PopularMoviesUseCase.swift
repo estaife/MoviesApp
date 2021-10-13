@@ -19,12 +19,14 @@ public final class PopularMoviesUseCase {
 
 extension PopularMoviesUseCase: PopularMoviesUseCaseProtocol {
     public func getAllPopularMovies(page: String, completion: @escaping (Result<MovieResults, DomainError>) -> Void) {
-        requesterHTTP.perform(request: request, type: MovieResults.self) { result in
-            switch result {
-            case .success(let movieResults):
-                completion(.success(movieResults))
-            case .failure(let error):
-                completion(.failure(error))
+        requesterHTTP.perform(request: request, type: MovieResults.self) { [weak self] result in
+            if let _ = self {
+                switch result {
+                case .success(let movieResults):
+                    completion(.success(movieResults))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
             }
         }
     }

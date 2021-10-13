@@ -31,6 +31,12 @@ public struct DomainError: Error {
     }
 }
 
+extension DomainError: Equatable {
+    public static func == (lhs: DomainError, rhs: DomainError) -> Bool {
+        lhs.statusCode == rhs.statusCode
+    }
+}
+
 public extension DomainError {
     enum Internal: Error {
         case unauthorized

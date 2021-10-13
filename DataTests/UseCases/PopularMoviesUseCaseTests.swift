@@ -14,49 +14,49 @@ class PopularMoviesUseCaseTests: XCTestCase {
     func testGetAllPopularMoviesShouldCallHttpClientWithUrlCorrect() {
         
         //Given
-        let (sut, httpGetClientSpy) = createSut(url: url)
+        let (sut, requesterHTTPSpy) = createSut()
         
         //When
         sut.getAllPopularMovies(page: page) { _ in }
-        httpGetClientSpy.completeWith(data: movieResultsSuccess.data!)
+        requesterHTTPSpy.completeWith(data: movieResultsSuccess)
         
         //Then
-        XCTAssertEqual(httpGetClientSpy.url.first, url)
+        XCTAssertEqual(requesterHTTPSpy.url, requesterHTTPSpy.request?.url)
     }
     
     func testGetAllPopularMoviesWithSuccess() {
-        
+
         //Given
-        let (sut, httpGetClientSpy) = createSut(url: url)
+        let (sut, requesterHTTPSpy) = createSut()
         let expectedResult: Result<MovieResults, DomainError> = .success(movieResultsSuccess)
-        
+
         //When
         let expect = expectation(description: "Waiting for popular movies")
         sut.getAllPopularMovies(page: page) { receivedResult in
             switch (expectedResult, receivedResult) {
-            case (.failure(let expectedError), .failure(let receivedError)):
-                XCTAssertEqual(expectedError, receivedError)
             case (.success(let expectedModel), .success(let receivedModel)):
                 XCTAssertEqual(expectedModel, receivedModel)
                 XCTAssertEqual(expectedModel.page, receivedModel.page)
                 XCTAssertEqual(expectedModel.totalPages, receivedModel.totalPages)
                 XCTAssertEqual(expectedModel.results, receivedModel.results)
+            case (.failure(let expectedError), .failure(let receivedError)):
+                XCTAssertEqual(expectedError, receivedError)
             default: XCTFail("Fail, because expected and received not equal")
             }
             expect.fulfill()
         }
-        httpGetClientSpy.completeWith(data: movieResultsSuccess.data!)
-        
+        requesterHTTPSpy.completeWith(data: movieResultsSuccess)
+
         //Then
         wait(for: [expect], timeout: 1)
     }
-    
+
     func testGetAllPopularMoviesWithError() {
-        
+
         //Given
-        let (sut, httpClientSpy) = createSut(url: url)
-        let expectedResult: Result<MovieResults, DomainError> = .failure(.unknown)
-        
+        let (sut, requesterHTTPSpy) = createSut()
+        let expectedResult: Result<MovieResults, DomainError> = .failure(.init(internalError: .unknown))
+
         //When
         let expect = expectation(description: "Wainting for error")
         sut.getAllPopularMovies(page: page) { receivedResult in
@@ -67,24 +67,24 @@ class PopularMoviesUseCaseTests: XCTestCase {
             }
             expect.fulfill()
         }
-        httpClientSpy.completeWith(error: .unknown)
-        
+        requesterHTTPSpy.completeWith(error: .init(internalError: .unknown))
+
         //Then
         wait(for: [expect], timeout: 1)
     }
-    
+//
     func testGetAllPopularMoviesShouldNotSutHasDeallocated() {
-        
+
         //Given
-        let httpGetClientSpy = HTTPGetClientSpy()
-        var sut: PopularMoviesUseCase? = PopularMoviesUseCase(httpGetClient: httpGetClientSpy, url: url)
+        let requesterHTTPSpy = RequesterHTTPSpy()
+        var sut: PopularMoviesUseCase? = PopularMoviesUseCase(requesterHTTP: requesterHTTPSpy)
         var result: Result<MovieResults, DomainError>?
-        
+
         //When
         sut?.getAllPopularMovies(page: page) { result = $0 }
         sut = nil
-        httpGetClientSpy.completeWith(error: .unknown)
-        
+        requesterHTTPSpy.completeWith(data: movieResultsSuccess)
+
         //Then
         XCTAssertNil(result)
     }
@@ -92,25 +92,35 @@ class PopularMoviesUseCaseTests: XCTestCase {
 
 extension PopularMoviesUseCaseTests {
     var movieResultsSuccess: MovieResults {
-        let simpleMovieResponse = SimpleMovieResponse(posterPath: nil, releaseDate: "2021-01-01", identifier: 1, title: "Movie Test", popularity: 0.8)
-        let movieResults = MovieResults(page: 1, results: [simpleMovieResponse], totalPages: 10, totalResults: 1)
+        let simpleMovieResponse = SimpleMovieResponse(
+            posterPath: nil,
+            releaseDate: "2021-01-01",
+            identifier: 1,
+            title: "Movie Test",
+            popularity: 0.8
+        )
+        let movieResults = MovieResults(
+            page: 1,
+            results: [simpleMovieResponse],
+            totalPages: 10,
+            totalResults: 1
+        )
         return movieResults
-    }
-    
-    var url: URL {
-        URL(string: "https://test.com")!
     }
     
     var page: String {
         "0"
     }
     
-    func createSut(url: URL, file: StaticString = #file, line: UInt = #line) -> (sut: PopularMoviesUseCase, httpGetClientSpy: HTTPGetClientSpy) {
-        let httpGetClientSpy = HTTPGetClientSpy()
-        let sut = PopularMoviesUseCase(httpGetClient: httpGetClientSpy, url: url)
+    func createSut(
+        file: StaticString = #file,
+        line: UInt = #line
+    ) -> (sut: PopularMoviesUseCase, requesterHTTPSpy: RequesterHTTPSpy) {
+        let requesterHTTPSpy = RequesterHTTPSpy()
+        let sut = PopularMoviesUseCase(requesterHTTP: requesterHTTPSpy)
         addTeardownBlock { [weak sut] in
             XCTAssertNil(sut, file: file, line: line)
         }
-        return (sut, httpGetClientSpy)
+        return (sut, requesterHTTPSpy)
     }
 }
