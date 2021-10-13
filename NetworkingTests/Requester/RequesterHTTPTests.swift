@@ -1,5 +1,5 @@
 //
-//  NetworkingGetProtocolTests.swift
+//  RequesterHTTPTests.swift
 //  NetworkingTests
 //
 //  Created by Estaife Lima on 07/06/20.
@@ -11,7 +11,7 @@ import Alamofire
 import Data
 @testable import Networking
 
-class NetworkingGetProtocolTests: XCTestCase {
+class RequesterHTTPTests: XCTestCase {
 
     func testGetMakeRequestWithUrlAndMethodCorect() throws {
         
@@ -19,28 +19,28 @@ class NetworkingGetProtocolTests: XCTestCase {
         let configuration = URLSessionConfiguration.default
         configuration.protocolClasses = [URLProtocolStub.self]
         let session = Session(configuration: configuration)
-        let sut = AlamofireAdapter(session: session)
+        let sut = RequesterHTTP(session: session)
         memoryLeakCheckWith(instance: sut)
-        
         
         //When/Then
         expectRequestWith(sut: sut) { (request) in
-            XCTAssertEqual(url, request.url)
+            XCTAssertEqual(url(path: getRequestSpy.path), request.url)
             XCTAssertEqual("GET", request.httpMethod)
             XCTAssertNil(request.httpBodyStream)
         }
     }
 }
 
-extension NetworkingGetProtocolTests {
-    
-    func expectRequestWith(sut: AlamofireAdapter, completion: @escaping (URLRequest) -> Void) {
+extension RequesterHTTPTests {
+    func expectRequestWith(sut: RequesterHTTP, completion: @escaping (URLRequest) -> Void) {
         let expect = expectation(description: "waiting")
-        sut.get(from: url) { _ in expect.fulfill() }
+        let type = GetResponseModel.self
+        sut.perform(request: getRequestSpy, type: type) { _ in
+            expect.fulfill()
+        }
         var request: URLRequest!
         URLProtocolStub.observerRequest { request = $0 }
         wait(for: [expect], timeout: 1)
         completion(request)
     }
-
 }

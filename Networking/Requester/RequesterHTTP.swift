@@ -17,7 +17,7 @@ public final class RequesterHTTP {
         self.session = session
     }
     
-    public func handleSuccessWith<ResponseType: Codable>(
+    private func handleSuccessWith<ResponseType: Codable>(
         statusCode: Int,
         data: Data,
         type: ResponseType.Type

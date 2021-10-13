@@ -48,13 +48,12 @@ var dataEmpty: Data {
     return .init()
 }
 
-
-func createResponseWith(statusCode: Int) -> HTTPURLResponse {
-    return HTTPURLResponse(url: url, statusCode: statusCode, httpVersion: nil, headerFields: nil)!
+var getRequestSpy: GetRequestSpy {
+    .init()
 }
 
-var url: URL {
-    return URL(string: "http://url-mock.com")!
+func url(path: String) -> URL {
+    return URL(string: "https://api.themoviedb.org/3\(getRequestSpy.path)")!
 }
 
 var error: Error {
