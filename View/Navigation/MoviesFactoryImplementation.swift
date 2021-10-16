@@ -16,14 +16,27 @@ public final class MovsFactoryImplementation: MovsFactory {
     public init() { }
     
     // MARK: - MovsFactory
-    public func makeMovsFlowController(from navigationController: UINavigationController) -> MovsFlowController {
-        MovsFlowController(navigationController: navigationController, movsFactory: self)
+    public func makeMovsFlowController(
+        from navigationController: UINavigationController
+    ) -> MovsFlowController {
+        MovsFlowController(
+            navigationController: navigationController,
+            movsFactory: self
+        )
     }
     
     public func makePopularMoviesViewController() -> PopularMoviesViewController {
+        let viewController = PopularMoviesViewController()
         let requester = RequesterHTTP()
-        let useCase = PopularMoviesUseCase(requesterHTTP: requester)
-        let presenter = PopularMoviesPresenter(popularMoviesUseCase: useCase)
-        return PopularMoviesViewController(presenter: presenter)
+        let useCase = PopularMoviesUseCase(
+            requesterHTTP: requester
+        )
+        let presenter = PopularMoviesPresenter(
+            popularMoviesUseCase: useCase,
+            loadingView: viewController,
+            delegate: viewController
+        )
+        viewController.presenter = presenter
+        return viewController
     }
 }

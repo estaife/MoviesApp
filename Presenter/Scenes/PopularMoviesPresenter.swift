@@ -17,11 +17,18 @@ final public class PopularMoviesPresenter {
     
     // MARK: - Properties
     private let popularMoviesUseCase: PopularMoviesUseCaseProtocol
-    public weak var delegate: PopularMoviesPresenterProtocol?
+    private let loadingView: LoadingViewProtocol
+    private let delegate: PopularMoviesPresenterProtocol
     
     // MARK: - Init
-    public init(popularMoviesUseCase: PopularMoviesUseCaseProtocol) {
+    public init(
+        popularMoviesUseCase: PopularMoviesUseCaseProtocol,
+        loadingView: LoadingViewProtocol,
+        delegate: PopularMoviesPresenterProtocol
+    ) {
         self.popularMoviesUseCase = popularMoviesUseCase
+        self.loadingView = loadingView
+        self.delegate = delegate
     }
 
     public func getPopularMovies(page: String) {

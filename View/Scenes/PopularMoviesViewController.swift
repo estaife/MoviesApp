@@ -15,30 +15,21 @@ public protocol PopularMoviesViewControllerDelegate: AnyObject {
 
 public final class PopularMoviesViewController: UIViewController {
     
-    private let presenter: PopularMoviesPresenter
+    public var presenter: PopularMoviesPresenter?
     public weak var delegate: PopularMoviesViewControllerDelegate?
-    
-    init(presenter: PopularMoviesPresenter) {
-        self.presenter = presenter
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     public override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .blue
-        self.presenter.delegate = self
     }
     
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        presenter.getPopularMovies(page: "1")
+        presenter?.getPopularMovies(page: "1")
     }
 }
 
+// MARK: - PopularMoviesPresenterProtocol
 extension PopularMoviesViewController: PopularMoviesPresenterProtocol {
     public func presentError(_ error: DomainError) {
         print(error)
@@ -46,5 +37,20 @@ extension PopularMoviesViewController: PopularMoviesPresenterProtocol {
     
     public func presentPopularMovies(_ movies: [SimpleMovieResponse]) {
         print(movies)
+    }
+}
+
+// MARK: - LoadingViewProtocol
+extension PopularMoviesViewController: LoadingViewProtocol {
+    public var isLoading: Bool {
+        true
+    }
+    
+    public func start() {
+        
+    }
+    
+    public func stop() {
+        
     }
 }
