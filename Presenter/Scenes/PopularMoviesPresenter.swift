@@ -20,9 +20,7 @@ final public class PopularMoviesPresenter {
     public weak var delegate: PopularMoviesPresenterProtocol?
     
     // MARK: - Init
-    public init(
-        popularMoviesUseCase: PopularMoviesUseCaseProtocol
-    ) {
+    public init(popularMoviesUseCase: PopularMoviesUseCaseProtocol) {
         self.popularMoviesUseCase = popularMoviesUseCase
     }
 

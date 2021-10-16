@@ -617,7 +617,7 @@
 			isa = PBXGroup;
 			children = (
 				812CC7172714B8640064AE76 /* SupportingFiles */,
-				812CC6F52714B0990064AE76 /* PopularMoviesPresenter.swift */,
+				818B6C0E271B678D00ED2501 /* Scenes */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -633,9 +633,9 @@
 		812CC6FD2714B1430064AE76 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				814AB4902714C382002CD93D /* Navigation */,
 				812CC7182714B86B0064AE76 /* SupportingFiles */,
-				812CC7112714B1F80064AE76 /* PopularMoviesViewController.swift */,
+				818B6C0D271B678000ED2501 /* Scenes */,
+				814AB4902714C382002CD93D /* Navigation */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -684,6 +684,22 @@
 				814AB4C12714C873002CD93D /* Info.plist */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		818B6C0D271B678000ED2501 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				812CC7112714B1F80064AE76 /* PopularMoviesViewController.swift */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		818B6C0E271B678D00ED2501 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				812CC6F52714B0990064AE76 /* PopularMoviesPresenter.swift */,
+			);
+			path = Scenes;
 			sourceTree = "<group>";
 		};
 		81DB523124FB6E2A0022FBD0 = {
