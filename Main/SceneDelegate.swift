@@ -11,7 +11,7 @@ import View
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
+    var movsFlowController: MovsFlowController?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -21,7 +21,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         window?.rootViewController = UINavigationController()
         window?.makeKeyAndVisible()
-        start()
+        if let navigationController = window?.rootViewController as? UINavigationController {
+            presentPopularMovies(from: navigationController)
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -51,13 +53,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-
-    func start() {
-        if let navigationController = window?.rootViewController as? UINavigationController {
-            let coordinator = Coordinator(navigationController: navigationController)
-            coordinator.start()
-        }
-    }
-    
 }
 
+// MARK: - Present Popular Movies
+extension SceneDelegate {
+    func presentPopularMovies(from navigationController: UINavigationController) {
+        let movsFactory = MovsFactoryImplementation()
+        movsFlowController = movsFactory.makeMovsFlowController(from: navigationController)
+        movsFlowController?.start()
+    }
+}

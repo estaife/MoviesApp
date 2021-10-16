@@ -9,9 +9,14 @@ import UIKit
 import Domain
 import Presenter
 
-class PopularMoviesViewController: UIViewController {
+public protocol PopularMoviesViewControllerDelegate: AnyObject {
+    func openDetail(identifier: String)
+}
+
+public final class PopularMoviesViewController: UIViewController {
     
     private let presenter: PopularMoviesPresenter
+    public weak var delegate: PopularMoviesViewControllerDelegate?
     
     init(presenter: PopularMoviesPresenter) {
         self.presenter = presenter
@@ -22,25 +27,24 @@ class PopularMoviesViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .blue
         self.presenter.delegate = self
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         presenter.getPopularMovies(page: "1")
     }
 }
 
 extension PopularMoviesViewController: PopularMoviesPresenterProtocol {
-    func presentError(_ error: DomainError) {
+    public func presentError(_ error: DomainError) {
         print(error)
     }
     
-    func presentPopularMovies(_ movies: [SimpleMovieResponse]) {
+    public func presentPopularMovies(_ movies: [SimpleMovieResponse]) {
         print(movies)
     }
 }
-
