@@ -68,6 +68,7 @@
 		818B6C02271B37EB00ED2501 /* MovsFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818B6C01271B37EB00ED2501 /* MovsFlowController.swift */; };
 		818B6C04271B380600ED2501 /* MovsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818B6C03271B380600ED2501 /* MovsFactory.swift */; };
 		818B6C06271B387500ED2501 /* MoviesFactoryImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818B6C05271B387500ED2501 /* MoviesFactoryImplementation.swift */; };
+		81A5E010271CDB0800C0EB18 /* LocateUseCaseSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A5E00F271CDB0800C0EB18 /* LocateUseCaseSpy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -309,6 +310,7 @@
 		818B6C01271B37EB00ED2501 /* MovsFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovsFlowController.swift; sourceTree = "<group>"; };
 		818B6C03271B380600ED2501 /* MovsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovsFactory.swift; sourceTree = "<group>"; };
 		818B6C05271B387500ED2501 /* MoviesFactoryImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesFactoryImplementation.swift; sourceTree = "<group>"; };
+		81A5E00F271CDB0800C0EB18 /* LocateUseCaseSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocateUseCaseSpy.swift; sourceTree = "<group>"; };
 		81E160E72714C263002E880B /* Domain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Domain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -488,12 +490,13 @@
 			path = Requester;
 			sourceTree = "<group>";
 		};
-		4357537B25EDD640002312F2 /* RequesterHTTPSpy */ = {
+		4357537B25EDD640002312F2 /* Spys */ = {
 			isa = PBXGroup;
 			children = (
 				4357537C25EDD649002312F2 /* RequesterHTTPSpy.swift */,
+				81A5E00F271CDB0800C0EB18 /* LocateUseCaseSpy.swift */,
 			);
-			path = RequesterHTTPSpy;
+			path = Spys;
 			sourceTree = "<group>";
 		};
 		435753A225EDEF99002312F2 /* UseCases */ = {
@@ -527,7 +530,7 @@
 			isa = PBXGroup;
 			children = (
 				4357533225EDCB00002312F2 /* SupportingFiles */,
-				4357537B25EDD640002312F2 /* RequesterHTTPSpy */,
+				4357537B25EDD640002312F2 /* Spys */,
 				435753A225EDEF99002312F2 /* UseCases */,
 			);
 			path = DataTests;
@@ -1241,6 +1244,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4357537D25EDD649002312F2 /* RequesterHTTPSpy.swift in Sources */,
+				81A5E010271CDB0800C0EB18 /* LocateUseCaseSpy.swift in Sources */,
 				43AA5BAD250F373B002D8517 /* PopularMoviesUseCaseTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

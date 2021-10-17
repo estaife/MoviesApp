@@ -11,10 +11,10 @@ import Domain
 
 class PopularMoviesUseCaseTests: XCTestCase {
     
-    func testGetAllPopularMoviesShouldCallHttpClientWithUrlCorrect() {
+    func testGetAllPopularMoviesShouldCallrequesterHTTPWithCorrectRequest() {
         
         //Given
-        let (sut, requesterHTTPSpy) = createSut()
+        let (sut, requesterHTTPSpy) = createSut(mockResult: "pt-BR")
         
         //When
         sut.getAllPopularMovies(page: page) { _ in }
@@ -22,12 +22,17 @@ class PopularMoviesUseCaseTests: XCTestCase {
         
         //Then
         XCTAssertEqual(requesterHTTPSpy.url, requesterHTTPSpy.request?.url)
+        XCTAssertEqual(requesterHTTPSpy.request?.path, "/movie/popular")
+        XCTAssertEqual(requesterHTTPSpy.request?.method, .get)
+        XCTAssertEqual(requesterHTTPSpy.request?.parameters?.contains { existLanguageValueAndKey(dic: $0) }, true)
+        XCTAssertNil(requesterHTTPSpy.request?.body)
+        XCTAssertNil(requesterHTTPSpy.request?.headers)
     }
     
     func testGetAllPopularMoviesWithSuccess() {
 
         //Given
-        let (sut, requesterHTTPSpy) = createSut()
+        let (sut, requesterHTTPSpy) = createSut(mockResult: "")
         let expectedResult: Result<MovieResults, DomainError> = .success(movieResultsSuccess)
 
         //When
@@ -54,7 +59,7 @@ class PopularMoviesUseCaseTests: XCTestCase {
     func testGetAllPopularMoviesWithError() {
 
         //Given
-        let (sut, requesterHTTPSpy) = createSut()
+        let (sut, requesterHTTPSpy) = createSut(mockResult: "")
         let expectedResult: Result<MovieResults, DomainError> = .failure(.init(internalError: .unknown))
 
         //When
@@ -77,7 +82,11 @@ class PopularMoviesUseCaseTests: XCTestCase {
 
         //Given
         let requesterHTTPSpy = RequesterHTTPSpy()
-        var sut: PopularMoviesUseCase? = PopularMoviesUseCase(requesterHTTP: requesterHTTPSpy)
+        let locateUseCaseSpy = LocateUseCaseSpy(mockResult: "")
+        var sut: PopularMoviesUseCase? = PopularMoviesUseCase(
+            requesterHTTP: requesterHTTPSpy,
+            locate: locateUseCaseSpy
+        )
         var result: Result<MovieResults, DomainError>?
 
         //When
@@ -91,6 +100,11 @@ class PopularMoviesUseCaseTests: XCTestCase {
 }
 
 extension PopularMoviesUseCaseTests {
+    
+    func existLanguageValueAndKey(dic: Dictionary<String, String>.Element) -> Bool {
+        return dic.value == "pt-BR" && dic.key == "language" ? true : false
+    }
+    
     var movieResultsSuccess: MovieResults {
         let simpleMovieResponse = SimpleMovieResponse(
             posterPath: nil,
@@ -99,13 +113,12 @@ extension PopularMoviesUseCaseTests {
             title: "Movie Test",
             popularity: 0.8
         )
-        let movieResults = MovieResults(
+        return MovieResults(
             page: 1,
             results: [simpleMovieResponse],
             totalPages: 10,
             totalResults: 1
         )
-        return movieResults
     }
     
     var page: String {
@@ -113,11 +126,13 @@ extension PopularMoviesUseCaseTests {
     }
     
     func createSut(
+        mockResult: String,
         file: StaticString = #file,
         line: UInt = #line
     ) -> (sut: PopularMoviesUseCase, requesterHTTPSpy: RequesterHTTPSpy) {
         let requesterHTTPSpy = RequesterHTTPSpy()
-        let sut = PopularMoviesUseCase(requesterHTTP: requesterHTTPSpy)
+        let locateUseCaseSpy = LocateUseCaseSpy(mockResult: mockResult)
+        let sut = PopularMoviesUseCase(requesterHTTP: requesterHTTPSpy, locate: locateUseCaseSpy)
         addTeardownBlock { [weak sut] in
             XCTAssertNil(sut, file: file, line: line)
         }
