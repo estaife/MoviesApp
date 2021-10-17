@@ -25,18 +25,20 @@ public final class PopularMoviesViewController: UIViewController {
     
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        presenter?.getPopularMovies(page: "1")
+        presenter?.fetchPopularMovies()
     }
 }
 
 // MARK: - PopularMoviesPresenterProtocol
 extension PopularMoviesViewController: PopularMoviesPresenterProtocol {
-    public func presentError(_ error: DomainError) {
-        print(error)
+    public func presentPopularMovies(_ movies: [SimpleMovieResponse]) {
+        print(movies.map({ r in
+            r.title
+        }))
     }
     
-    public func presentPopularMovies(_ movies: [SimpleMovieResponse]) {
-        print(movies)
+    public func presentError(_ error: DomainError) {
+        print(error)
     }
 }
 

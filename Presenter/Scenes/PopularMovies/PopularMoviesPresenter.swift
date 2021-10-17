@@ -20,6 +20,10 @@ final public class PopularMoviesPresenter {
     private let loadingView: LoadingViewProtocol
     private let delegate: PopularMoviesPresenterProtocol
     
+    // MARK: - Properties Controller
+    private var page: Int = 0
+    private var totalPages: Int = 1
+    
     // MARK: - Init
     public init(
         popularMoviesUseCase: PopularMoviesUseCaseProtocol,
@@ -31,14 +35,32 @@ final public class PopularMoviesPresenter {
         self.delegate = delegate
     }
 
-    public func getPopularMovies(page: String) {
-        popularMoviesUseCase.getAllPopularMovies(page: page) { [weak self] result in
-            if let delegate = self?.delegate {
+    // MARK: - PUBLIC METHODS
+    public func fetchPopularMovies() {
+        loadingView.start()
+        makePageIncrement()
+        let rangeMakeFetch = Range(1...totalPages)
+        if rangeMakeFetch.contains(page) {
+            makeFetchPopularMovies()
+        } else {
+            delegate.presentError(DomainError(internalError: .maximumPagesReached))
+        }
+    }
+    
+    // MARK: - PRIVATE METHODS
+    private func makePageIncrement() {
+        page += 1
+    }
+    
+    private func makeFetchPopularMovies() {
+        popularMoviesUseCase.getAllPopularMovies(page: String(page)) { [weak self] result in
+            if let self = self {
                 switch result {
                 case .success(let movieResults):
-                    delegate.presentPopularMovies(movieResults.results)
+                    self.totalPages = movieResults.totalPages
+                    self.delegate.presentPopularMovies(movieResults.results)
                 case .failure(let error):
-                    delegate.presentError(error)
+                    self.delegate.presentError(error)
                 }
             }
         }

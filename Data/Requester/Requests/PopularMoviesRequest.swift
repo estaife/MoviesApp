@@ -7,18 +7,38 @@
 
 import Foundation
 
-struct PopularMoviesRequest: RequestProtocol {
+struct PopularMoviesRequest {
+    let page: String
+    let language: String
+    
+    init(page: String, language: String  ) {
+        self.page = page
+        self.language = language
+    }
+}
+
+extension PopularMoviesRequest: RequestProtocol {
     var path: String {
         "/movie/popular"
     }
+    
     var method: HTTPMethod {
         .get
     }
-    var body: Data?
     
-    var parameters: [String : String]? {
-        Environment().apiKeyDic
+    var body: Data? {
+        nil
     }
     
-    var headers: [String : String]?
+    var parameters: [String : String]? {
+        [
+            TMDBParameterKey.page.rawValue : page,
+            TMDBParameterKey.apiKey.rawValue : Environment().apiKey,
+            TMDBParameterKey.language.rawValue : language
+        ]
+    }
+    
+    var headers: [String : String]? {
+        nil
+    }
 }

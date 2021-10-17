@@ -25,8 +25,8 @@ final class Environment {
     var baseURLString: String {
         variable(with: .baseURL) + variable(with: .versionAPI)
     }
-    
-    var apiKeyDic: [String : String] {
-        ["api_key": "\(variable(with: .keyAPI))"]
+
+    var apiKey: String {
+        variable(with: .keyAPI)
     }
 }

@@ -28,8 +28,10 @@ public final class MovsFactoryImplementation: MovsFactory {
     public func makePopularMoviesViewController() -> PopularMoviesViewController {
         let viewController = PopularMoviesViewController()
         let requester = RequesterHTTP()
+        let locate = LocateUseCase(locale: Locale.current)
         let useCase = PopularMoviesUseCase(
-            requesterHTTP: requester
+            requesterHTTP: requester,
+            locate: locate
         )
         let presenter = PopularMoviesPresenter(
             popularMoviesUseCase: useCase,

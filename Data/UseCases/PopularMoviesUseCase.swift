@@ -8,18 +8,28 @@
 import Domain
 
 public final class PopularMoviesUseCase {
-    private let request: RequestProtocol
     private let requesterHTTP: RequesterHTTPProtocol
+    private let locate: LocateUseCaseProtocol
     
-    public init(requesterHTTP: RequesterHTTPProtocol) {
+    public init(requesterHTTP: RequesterHTTPProtocol, locate: LocateUseCaseProtocol) {
         self.requesterHTTP = requesterHTTP
-        self.request = PopularMoviesRequest()
+        self.locate = locate
     }
 }
 
+// MARK: - PopularMoviesUseCaseProtocol
 extension PopularMoviesUseCase: PopularMoviesUseCaseProtocol {
-    public func getAllPopularMovies(page: String, completion: @escaping (Result<MovieResults, DomainError>) -> Void) {
-        requesterHTTP.perform(request: request, type: MovieResults.self) { [weak self] result in
+    public func getAllPopularMovies(
+        page: String,
+        completion: @escaping (Result<MovieResults, DomainError>) -> Void
+    ) {
+        requesterHTTP.perform(
+            request: PopularMoviesRequest(
+                page: page,
+                language: locate.getCurrentLocate()
+            ),
+            type: MovieResults.self
+        ) { [weak self] result in
             if let _ = self {
                 switch result {
                 case .success(let movieResults):

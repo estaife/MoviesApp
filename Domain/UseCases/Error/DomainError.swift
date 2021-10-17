@@ -47,6 +47,7 @@ public extension DomainError {
         case unknown
         case noData
         case parseError
+        case maximumPagesReached
 
         public var statusCode: Int {
             switch self {
@@ -58,19 +59,21 @@ public extension DomainError {
             case .badRequest: return 6
             case .serverError: return 7
             case .noConnectivity: return 8
+            case .maximumPagesReached: return 9
             }
         }
         
         public var description: String {
             switch self {
-            case .unknown: return "Holve um erro desconhecido"
-            case .noData: return "Holve um erro na resposta do servidor"
-            case .parseError: return "Holve um erro interno"
-            case .unauthorized: return "Não autorizado"
-            case .forbidden: return "Requisição proibida"
-            case .badRequest: return "Requisição não permitido"
-            case .serverError: return "Holve um erro no servidor"
-            case .noConnectivity: return "Sem Conexão"
+            case .unknown: return "Error unknown"
+            case .noData: return "Server error response"
+            case .parseError: return "Internal error"
+            case .unauthorized: return "Unauthorized request"
+            case .forbidden: return "Forbidden request"
+            case .badRequest: return "Request not allowed"
+            case .serverError: return "Server error"
+            case .noConnectivity: return "No connection"
+            case .maximumPagesReached: return "The maximum number of pages has been reached"
             }
         }
     }
