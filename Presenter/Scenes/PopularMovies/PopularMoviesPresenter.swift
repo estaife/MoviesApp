@@ -55,6 +55,7 @@ final public class PopularMoviesPresenter {
     private func makeFetchPopularMovies() {
         popularMoviesUseCase.getAllPopularMovies(page: String(page)) { [weak self] result in
             if let self = self {
+                self.loadingView.stop()
                 switch result {
                 case .success(let movieResults):
                     self.totalPages = movieResults.totalPages
