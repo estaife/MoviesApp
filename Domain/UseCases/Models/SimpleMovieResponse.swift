@@ -13,11 +13,7 @@ public struct SimpleMovieResponse: BaseModel {
     public let identifier: Int
     public let title: String
     public let popularity: Double
-    
-    public var releaseYear: String {
-        return String(releaseDate.prefix(4))
-    }
-    
+
     private enum CodingKeys: String, CodingKey {
         case posterPath = "poster_path"
         case releaseDate = "release_date"

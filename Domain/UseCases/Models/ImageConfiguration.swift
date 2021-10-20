@@ -6,3 +6,18 @@
 //
 
 import Foundation
+
+public enum QualityImage: String {
+    case original
+    case w500
+}
+
+public enum TypeImage {
+    case poster
+    case backdrop
+}
+
+public struct ImageConfiguration {
+    let quality: QualityImage
+    let type: TypeImage
+}

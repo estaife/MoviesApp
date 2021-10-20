@@ -9,7 +9,7 @@ import Foundation
 import Domain
 
 public protocol PopularMoviesPresenterProtocol: AnyObject {
-    func presentPopularMovies(_ movies: [SimpleMovieResponse])
+    func presentPopularMovies(_ movies: [PopularMoviesViewModel])
     func presentError(_ error: DomainError)
 }
 
@@ -58,12 +58,26 @@ final public class PopularMoviesPresenter {
                 self.loadingView.stop()
                 switch result {
                 case .success(let movieResults):
-                    self.totalPages = movieResults.totalPages
-                    self.delegate.presentPopularMovies(movieResults.results)
+                    self.handleSuccess(movieResults)
                 case .failure(let error):
                     self.delegate.presentError(error)
                 }
             }
         }
+    }
+    
+    private func handleSuccess(_ movieResults: MovieResults) {
+        totalPages = movieResults.totalPages
+        
+        let popularMoviesViewModel = movieResults.results.map { simpleMovieResponse in
+            return PopularMoviesViewModel(
+                identifier: String(simpleMovieResponse.identifier),
+                title: simpleMovieResponse.title,
+                releaseDate: simpleMovieResponse.releaseDate,
+                voteAverage: simpleMovieResponse.popularity,
+                posterPathString: simpleMovieResponse.posterPath
+            )
+        }
+        delegate.presentPopularMovies(popularMoviesViewModel)
     }
 }

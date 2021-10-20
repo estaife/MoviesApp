@@ -12,6 +12,7 @@ final class Environment {
         case baseURL = "TMDB_API_BASE_URL"
         case versionAPI = "TMDB_API_VERSION"
         case keyAPI = "TMDB_API_KEY"
+        case imageURL = "TMDB_API_IMAGE_URL"
     }
     
     private func variable(with key: EnvironmentKey) -> String {
@@ -28,5 +29,9 @@ final class Environment {
 
     var apiKey: String {
         variable(with: .keyAPI)
+    }
+    
+    var baseImageURLString: String {
+        variable(with: .imageURL)
     }
 }
