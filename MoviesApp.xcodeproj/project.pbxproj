@@ -67,7 +67,7 @@
 		814AB4C62714C8AC002CD93D /* View.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 812CC6FC2714B1430064AE76 /* View.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		818B6C02271B37EB00ED2501 /* MovsFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818B6C01271B37EB00ED2501 /* MovsFlowController.swift */; };
 		818B6C04271B380600ED2501 /* MovsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818B6C03271B380600ED2501 /* MovsFactory.swift */; };
-		818B6C06271B387500ED2501 /* MoviesFactoryImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818B6C05271B387500ED2501 /* MoviesFactoryImplementation.swift */; };
+		818B6C06271B387500ED2501 /* MovsFactoryImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818B6C05271B387500ED2501 /* MovsFactoryImplementation.swift */; };
 		81A5E010271CDB0800C0EB18 /* LocateUseCaseSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A5E00F271CDB0800C0EB18 /* LocateUseCaseSpy.swift */; };
 		81A5E013271CEA6900C0EB18 /* PopularMoviesUseCaseSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A5E012271CEA6900C0EB18 /* PopularMoviesUseCaseSpy.swift */; };
 		81F67E30271F9DEC00EE0347 /* LoadingViewSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F67E2F271F9DEC00EE0347 /* LoadingViewSpy.swift */; };
@@ -311,7 +311,7 @@
 		8186ADCB271BB30200B654F9 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "pt-BR"; path = "pt-BR.lproj/LaunchScreen.storyboard"; sourceTree = "<group>"; };
 		818B6C01271B37EB00ED2501 /* MovsFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovsFlowController.swift; sourceTree = "<group>"; };
 		818B6C03271B380600ED2501 /* MovsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovsFactory.swift; sourceTree = "<group>"; };
-		818B6C05271B387500ED2501 /* MoviesFactoryImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesFactoryImplementation.swift; sourceTree = "<group>"; };
+		818B6C05271B387500ED2501 /* MovsFactoryImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovsFactoryImplementation.swift; sourceTree = "<group>"; };
 		81A5E00F271CDB0800C0EB18 /* LocateUseCaseSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocateUseCaseSpy.swift; sourceTree = "<group>"; };
 		81A5E012271CEA6900C0EB18 /* PopularMoviesUseCaseSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularMoviesUseCaseSpy.swift; sourceTree = "<group>"; };
 		81E160E72714C263002E880B /* Domain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Domain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -649,6 +649,7 @@
 		812CC6DE2714AEBC0064AE76 /* PresenterTests */ = {
 			isa = PBXGroup;
 			children = (
+				81F67E31271FC41500EE0347 /* CommonsSpys */,
 				8137C564271B6DB8004BFE95 /* Scenes */,
 			);
 			path = PresenterTests;
@@ -735,7 +736,7 @@
 			children = (
 				818B6C01271B37EB00ED2501 /* MovsFlowController.swift */,
 				818B6C03271B380600ED2501 /* MovsFactory.swift */,
-				818B6C05271B387500ED2501 /* MoviesFactoryImplementation.swift */,
+				818B6C05271B387500ED2501 /* MovsFactoryImplementation.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -773,7 +774,6 @@
 			children = (
 				812CC6DF2714AEBC0064AE76 /* PopularMoviesPresenterTests.swift */,
 				81A5E012271CEA6900C0EB18 /* PopularMoviesUseCaseSpy.swift */,
-				81F67E2F271F9DEC00EE0347 /* LoadingViewSpy.swift */,
 			);
 			path = PopularMovies;
 			sourceTree = "<group>";
@@ -803,6 +803,14 @@
 				81E160E72714C263002E880B /* Domain.framework */,
 				814AB4B12714C871002CD93D /* Main.app */,
 			);
+			sourceTree = "<group>";
+		};
+		81F67E31271FC41500EE0347 /* CommonsSpys */ = {
+			isa = PBXGroup;
+			children = (
+				81F67E2F271F9DEC00EE0347 /* LoadingViewSpy.swift */,
+			);
+			path = CommonsSpys;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1291,7 +1299,7 @@
 				818B6C02271B37EB00ED2501 /* MovsFlowController.swift in Sources */,
 				818B6C04271B380600ED2501 /* MovsFactory.swift in Sources */,
 				812CC7122714B1F80064AE76 /* PopularMoviesViewController.swift in Sources */,
-				818B6C06271B387500ED2501 /* MoviesFactoryImplementation.swift in Sources */,
+				818B6C06271B387500ED2501 /* MovsFactoryImplementation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
