@@ -1,5 +1,5 @@
 //
-//  LoadingSpy.swift
+//  LoadingViewSpy.swift
 //  PresenterTests
 //
 //  Created by Estaife Lima on 19/10/21.
@@ -7,14 +7,21 @@
 
 import Presenter
 
-class LoadingSpy: LoadingViewProtocol {
-    var isLoading: Bool { false }
+class LoadingViewSpy {
+    var mockedIsLoading: Bool = false
+}
+
+extension LoadingViewSpy: LoadingViewProtocol {
     
+    var isLoading: Bool {
+        mockedIsLoading
+    }
+
     func start() {
-        isLoading = true
+        mockedIsLoading = true
     }
     
     func stop() {
-        isLoading = false
+        mockedIsLoading = false
     }
 }
