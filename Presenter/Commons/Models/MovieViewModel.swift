@@ -22,7 +22,7 @@ public struct MovieViewModel {
         String(releaseDate.prefix(4))
     }
     public var voteAverage: Int {
-        Int(voteAverageDouble) * 10
+        Int(voteAverageDouble * 10)
     }
     
     // MARK: - Private Properties
