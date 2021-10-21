@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+public protocol AlertControllerDelegate {
+    func presentAlert(with alertStyle: AlertControllerStyle, and message: String?)
+}

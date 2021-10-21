@@ -41,4 +41,8 @@ public final class MovsFactoryImplementation: MovsFactory {
         viewController.presenter = presenter
         return viewController
     }
+    
+    public func makeAlertController(alertStyle: AlertControllerStyle, message: String?) -> AlertController {
+        .init(alertStyle: alertStyle, message: message)
+    }
 }

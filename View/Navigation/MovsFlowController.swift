@@ -30,14 +30,25 @@ public final class MovsFlowController {
         let popularMoviesViewController = movsFactory.makePopularMoviesViewController()
         popularMoviesViewController.delegate = self
 
-        self.navigationController.pushViewController(popularMoviesViewController, animated: false)
+        navigationController.pushViewController(popularMoviesViewController, animated: false)
     }
 }
 
+// MARK: - MovsFlowControllerDelegate
 extension MovsFlowController: MovsFlowControllerDelegate { }
 
+// MARK: - PopularMoviesViewControllerDelegate
 extension MovsFlowController: PopularMoviesViewControllerDelegate {
     public func openDetail(identifier: String) {
         // TODO: - Implement this
+    }
+}
+
+// MARK: - AlertControllerDelegate
+extension MovsFlowController: AlertControllerDelegate {
+    public func presentAlert(with alertStyle: AlertControllerStyle, and message: String?) {
+        let alertController = movsFactory.makeAlertController(alertStyle: alertStyle, message: message)
+        alertController.modalPresentationStyle = .overCurrentContext
+        navigationController.topViewController?.present(alertController, animated: false)
     }
 }
