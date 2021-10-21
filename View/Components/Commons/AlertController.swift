@@ -10,7 +10,7 @@ import UIKit
 // MARK: - PUBLIC PROPERTIES
 public enum AlertControllerStyle {
     case error
-    case sucsses
+    case success
     case warning
 }
 
@@ -24,8 +24,8 @@ public final class AlertController: CustomViewController {
         switch alertStyle {
         case .error:
             return .error
-        case .sucsses:
-            return .sucsses
+        case .success:
+            return .success
         case .warning:
             return .warning
         }

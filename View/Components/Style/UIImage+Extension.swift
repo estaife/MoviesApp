@@ -31,7 +31,7 @@ extension UIImage {
         .init(systemName: "square.and.arrow.up", withConfiguration: UIImage.mediumConfiguration)
     }
     
-    public class var sucsses: UIImage? {
+    public class var success: UIImage? {
         .init(systemName: "checkmark", withConfiguration: UIImage.lightConfiguration)
     }
     

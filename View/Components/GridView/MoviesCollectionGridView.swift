@@ -136,7 +136,6 @@ extension MoviesCollectionGridView: UICollectionViewDelegateFlowLayout, UICollec
         willDisplay cell: UICollectionViewCell,
         forItemAt indexPath: IndexPath
     ) {
-        print("\(indexPath.row + 1) - \(moviesViewModel.count)")
         if indexPath.row + 1 == moviesViewModel.count {
             delegate?.makeFetchMoreMovies()
         }
