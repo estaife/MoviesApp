@@ -48,7 +48,10 @@
 		812F6CC12720AADE004EFA04 /* ImageConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F6CC02720AADE004EFA04 /* ImageConfiguration.swift */; };
 		812F6CC52720AAF4004EFA04 /* ModelToData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F6CC32720AAF4004EFA04 /* ModelToData.swift */; };
 		812F6CC62720AAF4004EFA04 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F6CC42720AAF4004EFA04 /* String+Extension.swift */; };
-		812F6CC82720AB15004EFA04 /* PopularMoviesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F6CC72720AB15004EFA04 /* PopularMoviesViewModel.swift */; };
+		812F6CC82720AB15004EFA04 /* MovieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F6CC72720AB15004EFA04 /* MovieViewModel.swift */; };
+		812F6CCB2721B5E4004EFA04 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = 812F6CCA2721B5E4004EFA04 /* Nuke */; };
+		812F6CCD2721B7AA004EFA04 /* Data.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43AA5B9F250F373B002D8517 /* Data.framework */; platformFilter = ios; };
+		812F6CCE2721B7AA004EFA04 /* Data.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43AA5B9F250F373B002D8517 /* Data.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8137C569271B75DC004BFE95 /* AlertViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8137C568271B75DC004BFE95 /* AlertViewProtocol.swift */; };
 		8137C56B271B767A004BFE95 /* AlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8137C56A271B767A004BFE95 /* AlertViewModel.swift */; };
 		8137C56D271B79D7004BFE95 /* LoadingViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8137C56C271B79D7004BFE95 /* LoadingViewProtocol.swift */; };
@@ -154,6 +157,13 @@
 			remoteGlobalIDString = 43AA5B9E250F373B002D8517;
 			remoteInfo = Data;
 		};
+		812F6CCF2721B7AA004EFA04 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 81DB523224FB6E2A0022FBD0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 43AA5B9E250F373B002D8517;
+			remoteInfo = Data;
+		};
 		814AB48E2714C2AF002CD93D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 81DB523224FB6E2A0022FBD0 /* Project object */;
@@ -227,6 +237,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				812F6CCE2721B7AA004EFA04 /* Data.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -301,7 +312,7 @@
 		812F6CC02720AADE004EFA04 /* ImageConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageConfiguration.swift; sourceTree = "<group>"; };
 		812F6CC32720AAF4004EFA04 /* ModelToData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelToData.swift; sourceTree = "<group>"; };
 		812F6CC42720AAF4004EFA04 /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
-		812F6CC72720AB15004EFA04 /* PopularMoviesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularMoviesViewModel.swift; sourceTree = "<group>"; };
+		812F6CC72720AB15004EFA04 /* MovieViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieViewModel.swift; sourceTree = "<group>"; };
 		8137C568271B75DC004BFE95 /* AlertViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewProtocol.swift; sourceTree = "<group>"; };
 		8137C56A271B767A004BFE95 /* AlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewModel.swift; sourceTree = "<group>"; };
 		8137C56C271B79D7004BFE95 /* LoadingViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewProtocol.swift; sourceTree = "<group>"; };
@@ -371,6 +382,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				812F6CCD2721B7AA004EFA04 /* Data.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,6 +402,7 @@
 				814AB4932714C3AC002CD93D /* Data.framework in Frameworks */,
 				814AB49A2714C3AC002CD93D /* Networking.framework in Frameworks */,
 				812CC71E2714C22B0064AE76 /* Presenter.framework in Frameworks */,
+				812F6CCB2721B5E4004EFA04 /* Nuke in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -709,6 +722,14 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		812F6CCC2721B737004EFA04 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				812F6CC72720AB15004EFA04 /* MovieViewModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		8137C564271B6DB8004BFE95 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
@@ -737,6 +758,7 @@
 		8137C567271B75BA004BFE95 /* Commons */ = {
 			isa = PBXGroup;
 			children = (
+				812F6CCC2721B737004EFA04 /* Models */,
 				8137C566271B75B7004BFE95 /* AlertView */,
 				8137C565271B7566004BFE95 /* Loading */,
 			);
@@ -746,7 +768,6 @@
 		8137C56E271B95CF004BFE95 /* PopularMovies */ = {
 			isa = PBXGroup;
 			children = (
-				812F6CC72720AB15004EFA04 /* PopularMoviesViewModel.swift */,
 				812CC6F52714B0990064AE76 /* PopularMoviesPresenter.swift */,
 			);
 			path = PopularMovies;
@@ -994,6 +1015,7 @@
 			);
 			dependencies = (
 				812CC6EB2714AEE70064AE76 /* PBXTargetDependency */,
+				812F6CD02721B7AA004EFA04 /* PBXTargetDependency */,
 			);
 			name = Presenter;
 			productName = Presenter;
@@ -1039,6 +1061,9 @@
 				814AB4A02714C3AC002CD93D /* PBXTargetDependency */,
 			);
 			name = View;
+			packageProductDependencies = (
+				812F6CCA2721B5E4004EFA04 /* Nuke */,
+			);
 			productName = View;
 			productReference = 812CC6FC2714B1430064AE76 /* View.framework */;
 			productType = "com.apple.product-type.framework";
@@ -1138,6 +1163,7 @@
 			mainGroup = 81DB523124FB6E2A0022FBD0;
 			packageReferences = (
 				430A93FF25EEDE8F00AC3852 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				812F6CC92721B5E4004EFA04 /* XCRemoteSwiftPackageReference "Nuke" */,
 			);
 			productRefGroup = 81DB523124FB6E2A0022FBD0;
 			projectDirPath = "";
@@ -1300,7 +1326,7 @@
 			files = (
 				8137C56B271B767A004BFE95 /* AlertViewModel.swift in Sources */,
 				812CC6F62714B0990064AE76 /* PopularMoviesPresenter.swift in Sources */,
-				812F6CC82720AB15004EFA04 /* PopularMoviesViewModel.swift in Sources */,
+				812F6CC82720AB15004EFA04 /* MovieViewModel.swift in Sources */,
 				8137C569271B75DC004BFE95 /* AlertViewProtocol.swift in Sources */,
 				8137C56D271B79D7004BFE95 /* LoadingViewProtocol.swift in Sources */,
 			);
@@ -1403,6 +1429,12 @@
 			platformFilter = ios;
 			target = 43AA5B9E250F373B002D8517 /* Data */;
 			targetProxy = 812CC7252714C2460064AE76 /* PBXContainerItemProxy */;
+		};
+		812F6CD02721B7AA004EFA04 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = 43AA5B9E250F373B002D8517 /* Data */;
+			targetProxy = 812F6CCF2721B7AA004EFA04 /* PBXContainerItemProxy */;
 		};
 		814AB48F2714C2AF002CD93D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2241,6 +2273,14 @@
 				minimumVersion = 5.4.1;
 			};
 		};
+		812F6CC92721B5E4004EFA04 /* XCRemoteSwiftPackageReference "Nuke" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/Nuke";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -2248,6 +2288,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 430A93FF25EEDE8F00AC3852 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		812F6CCA2721B5E4004EFA04 /* Nuke */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 812F6CC92721B5E4004EFA04 /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = Nuke;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

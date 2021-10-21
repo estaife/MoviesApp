@@ -31,9 +31,9 @@ public final class PopularMoviesViewController: UIViewController {
 
 // MARK: - PopularMoviesPresenterProtocol
 extension PopularMoviesViewController: PopularMoviesPresenterProtocol {
-    public func presentPopularMovies(_ movies: [PopularMoviesViewModel]) {
+    public func presentPopularMovies(_ movies: [MovieViewModel]) {
         print(movies.map({ r in
-            r.title
+            r.posterPathUrl
         }))
     }
     

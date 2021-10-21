@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import Data
 
-public struct PopularMoviesViewModel {
+public struct MovieViewModel {
     
     // MARK: - Public Properties
     public let identifier: String
@@ -16,12 +17,11 @@ public struct PopularMoviesViewModel {
     
     // MARK: - Properties Computed
     public var posterPathUrl: URL? {
-        nil
+        posterPathString?.makeUrlImage(.w500)
     }
     public var releaseYear: String {
         String(releaseDate.prefix(4))
     }
-    
     
     // MARK: - Private Properties
     private let internalIdentifier: UUID = UUID()
@@ -53,17 +53,17 @@ public struct PopularMoviesViewModel {
 }
 
 // MARK: - Equatable
-extension PopularMoviesViewModel: Equatable {
+extension MovieViewModel: Equatable {
     public static func ==(
-        lhs: PopularMoviesViewModel,
-        rhs: PopularMoviesViewModel
+        lhs: MovieViewModel,
+        rhs: MovieViewModel
     ) -> Bool {
         return lhs.internalIdentifier == rhs.internalIdentifier
     }
 }
 
 // MARK: - Hashable
-extension PopularMoviesViewModel: Hashable {
+extension MovieViewModel: Hashable {
     public func hash(into hasher: inout Hasher) {
         hasher.combine(identifier)
     }

@@ -9,7 +9,7 @@ import Foundation
 import Domain
 
 public protocol PopularMoviesPresenterProtocol: AnyObject {
-    func presentPopularMovies(_ movies: [PopularMoviesViewModel])
+    func presentPopularMovies(_ movies: [MovieViewModel])
     func presentError(_ error: DomainError)
 }
 
@@ -70,7 +70,7 @@ final public class PopularMoviesPresenter {
         totalPages = movieResults.totalPages
         
         let popularMoviesViewModel = movieResults.results.map { simpleMovieResponse in
-            return PopularMoviesViewModel(
+            return MovieViewModel(
                 identifier: String(simpleMovieResponse.identifier),
                 title: simpleMovieResponse.title,
                 releaseDate: simpleMovieResponse.releaseDate,

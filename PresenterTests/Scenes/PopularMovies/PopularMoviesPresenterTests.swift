@@ -92,7 +92,7 @@ class PopularMoviesPresenterTests: XCTestCase {
 }
 
 extension PopularMoviesPresenterTests: PopularMoviesPresenterProtocol {
-    func presentPopularMovies(_ movies: [SimpleMovieResponse]) {
+    func presentPopularMovies(_ movies: [MovieViewModel]) {
         presentPopularMoviesWasCalled.toggle()
         presentPopularMoviesExpectation.fulfill()
     }
