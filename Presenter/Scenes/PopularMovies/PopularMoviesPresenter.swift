@@ -74,7 +74,7 @@ final public class PopularMoviesPresenter {
                 identifier: String(simpleMovieResponse.identifier),
                 title: simpleMovieResponse.title,
                 releaseDate: simpleMovieResponse.releaseDate,
-                voteAverage: simpleMovieResponse.popularity,
+                voteAverage: simpleMovieResponse.voteAverage,
                 posterPathString: simpleMovieResponse.posterPath
             )
         }
