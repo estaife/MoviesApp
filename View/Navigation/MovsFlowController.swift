@@ -21,6 +21,7 @@ public final class MovsFlowController {
     public init(navigationController: UINavigationController, movsFactory: MovsFactory) {
         self.navigationController = navigationController
         self.movsFactory = movsFactory
+        self.styleNavigationController()
     }
     
     // MARK: - PUBLIC API
@@ -31,6 +32,13 @@ public final class MovsFlowController {
         popularMoviesViewController.delegate = self
 
         navigationController.pushViewController(popularMoviesViewController, animated: false)
+    }
+    
+    private func styleNavigationController() {
+        navigationController.navigationBar.setBackgroundImage(nil, for: .default)
+        navigationController.navigationBar.shadowImage = nil
+        navigationController.navigationBar.prefersLargeTitles = true
+        navigationController.navigationItem.largeTitleDisplayMode = .automatic
     }
 }
 

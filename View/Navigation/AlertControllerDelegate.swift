@@ -7,6 +7,6 @@
 
 import Foundation
 
-public protocol AlertControllerDelegate {
+public protocol AlertControllerDelegate: AnyObject {
     func presentAlert(with alertStyle: AlertControllerStyle, and message: String?)
 }
