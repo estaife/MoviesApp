@@ -9,6 +9,6 @@ import UIKit.UIColor
 
 extension UIColor {
     public class var descriptionColor: UIColor {
-        return UIColor(named: "descriptionColor") ?? .label
+        .init(named: "descriptionColor", in: BundleModule.bundle, compatibleWith: nil) ?? .label
     }
 }

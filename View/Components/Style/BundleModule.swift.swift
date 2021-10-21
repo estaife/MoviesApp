@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+public final class BundleModule {
+    public init() { }
+    
+    public static var bundle: Bundle {
+        return Bundle(for: BundleModule.self)
+    }
+}

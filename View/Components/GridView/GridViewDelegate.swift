@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+protocol GridViewDelegate: AnyObject {
+    func makeFetchMoreMovies()
+}
+
+extension GridViewDelegate {
+    func makeFetchMoreMovies() { }
+}

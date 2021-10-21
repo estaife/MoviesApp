@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+enum ViewState {
+    case loading
+    case hasData
+    case error
+}
+
+protocol ViewStateProtocol {
+    func transition(to state: ViewState)
+}
