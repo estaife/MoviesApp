@@ -88,7 +88,8 @@ extension PopularMoviesGridView: PopularMoviesGridViewType {
                 self.viewState = .loading
             case .stopLoading:
                 self.viewState = .hasData
-            default:
+            case .error(_):
+                // TODO: - Implement this
                 break
             }
         }

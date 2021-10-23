@@ -10,7 +10,6 @@ import Presenter
 
 enum PopularMoviesGridViewState {
     case hasData([MovieViewModel])
-    case isEmpty
     case startLoading
     case stopLoading
     case error(String)

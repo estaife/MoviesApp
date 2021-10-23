@@ -721,6 +721,7 @@
 			isa = PBXGroup;
 			children = (
 				812CC7182714B86B0064AE76 /* SupportingFiles */,
+				812F6CE72721BBCD004EFA04 /* Style */,
 				812F6CD12721B816004EFA04 /* Components */,
 				818B6C0D271B678000ED2501 /* Scenes */,
 				814AB4902714C382002CD93D /* Navigation */,
@@ -772,7 +773,6 @@
 		812F6CD12721B816004EFA04 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				812F6CE72721BBCD004EFA04 /* Style */,
 				812F6CD72721B88F004EFA04 /* Commons */,
 				812F6CD22721B828004EFA04 /* GridView */,
 			);
