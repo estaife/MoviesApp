@@ -10,22 +10,26 @@ import Foundation
 public struct DomainError: Error {
     
     public let statusCode: Int
+    public let rawError: Error?
     public let serializedError: SerializedError?
     public var errorInternal: Internal?
     
     public init(statusCode: Int, serializedError: SerializedError?) {
         self.statusCode = statusCode
         self.serializedError = serializedError
+        self.rawError = nil
     }
     
     public init(internalError: DomainError.Internal) {
         statusCode = internalError.statusCode
         errorInternal = internalError
         serializedError = nil
+        rawError = nil
     }
     
     public init(rawError: Error) {
         let nsError = rawError as NSError
+        self.rawError = rawError
         statusCode = nsError.code
         serializedError = nil
     }
@@ -76,6 +80,12 @@ public extension DomainError {
             case .maximumPagesReached: return "The maximum number of pages has been reached"
             }
         }
+    }
+}
+
+extension DomainError: LocalizedError {
+    public var errorDescription: String? {
+        rawError?.localizedDescription ?? serializedError?.statusMessage ?? errorInternal?.localizedDescription ?? ""
     }
 }
 
