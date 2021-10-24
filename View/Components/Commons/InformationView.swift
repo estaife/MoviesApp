@@ -10,12 +10,6 @@ import UIKit
 final class InformationView: CustomView {
     
     // MARK: - PUBLIC PROPERTIES
-    public var title: String = "" {
-        didSet {
-            titleLabel.text = title
-        }
-    }
-    
     public var subtitle: String? = "" {
         didSet {
             subtitleLabel.text = subtitle
@@ -23,6 +17,10 @@ final class InformationView: CustomView {
     }
 
     // MARK: - PRIVATE PROPERTIES
+    
+    private let title: String
+    private let action: UIAction?
+    
     private struct Metrics {
         static let spacing: CGFloat = 10
         static let margin: CGFloat = 52
@@ -33,6 +31,7 @@ final class InformationView: CustomView {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = title
         label.textColor = .label
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 24, weight: .semibold)
@@ -51,16 +50,20 @@ final class InformationView: CustomView {
         return label
     }()
     
-    // MARK: - INITALIZER
-    public init() {
-        super.init(frame: .zero)
-        commonInit()
-    }
+    private lazy var button: UIButton = {
+        let internalButton = UIButton(type: .system, primaryAction: action)
+        internalButton.translatesAutoresizingMaskIntoConstraints = false
+        internalButton.titleLabel?.textAlignment = .center
+        internalButton.titleLabel?.font = .systemFont(ofSize: 22, weight: .regular)
+        return internalButton
+    }()
     
-    public init(title: String, subtitle: String) {
-        super.init(frame: .zero)
+    // MARK: - INITALIZER
+    public init(title: String, subtitle: String? = nil, action: UIAction? = nil) {
         self.title = title
         self.subtitle = subtitle
+        self.action = action
+        super.init(frame: .zero)
         commonInit()
     }
     
@@ -72,6 +75,9 @@ final class InformationView: CustomView {
     public func subviews() {
         addSubview(titleLabel)
         addSubview(subtitleLabel)
+        if action != nil {
+            addSubview(button)
+        }
     }
     
     public func constraints() {
@@ -84,5 +90,14 @@ final class InformationView: CustomView {
             subtitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Metrics.margin),
             subtitleLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Metrics.heightSubtitleMultiplier)
         ])
+        
+        if action != nil {
+            NSLayoutConstraint.activate([
+                button.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: Metrics.spacing),
+                button.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Metrics.margin),
+                button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Metrics.margin),
+                button.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Metrics.heightSubtitleMultiplier)
+            ])
+        }
     }
 }
