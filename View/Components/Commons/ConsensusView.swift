@@ -11,6 +11,7 @@ final class ConsensusView: CustomView {
     
     // MARK: - PRIVATE PROPERTIES
     private struct Metrics {
+        static let viewSize: CGSize = .init(width: 50, height: 50)
         static let lineWidthCircleLayer: CGFloat = 10
         static let lineWidthProgressLayer: CGFloat = 4
         static let durationProgressAnimation: CFTimeInterval = 0.1
@@ -25,11 +26,13 @@ final class ConsensusView: CustomView {
     private var rect: CGRect = .zero
     private var circularPath: (_ rect: CGRect) -> UIBezierPath = { (rect: CGRect)  in
         let arcCenter = CGPoint(x: rect.width / 2.0, y: rect.height / 2.0)
-        return UIBezierPath(arcCenter: arcCenter,
-                            radius: rect.width / 3,
-                            startAngle: -.pi / 2,
-                            endAngle: 3 * .pi / 2,
-                            clockwise: true)
+        return .init(
+                arcCenter: arcCenter,
+                radius: rect.width / 3,
+                startAngle: -.pi / 2,
+                endAngle: 3 * .pi / 2,
+                clockwise: true
+            )
     }
     
     // MARK: - UI
@@ -72,13 +75,23 @@ final class ConsensusView: CustomView {
     private func mutableAttributedString(value: String) -> NSMutableAttributedString {
         let mutableAttributedString = NSMutableAttributedString()
         let percentAttributes = [
-            NSAttributedString.Key.font: UIFont.systemFont(ofSize: Metrics.percentFontSize, weight: .semibold)
+            NSAttributedString.Key.font: UIFont.systemFont(
+                ofSize: Metrics.percentFontSize,
+                weight: .semibold
+            )
         ]
         let valueAttributes = [
-            NSAttributedString.Key.font: UIFont.systemFont(ofSize: Metrics.valueFontSize, weight: .semibold)
+            NSAttributedString.Key.font: UIFont.systemFont(
+                ofSize: Metrics.valueFontSize,
+                weight: .semibold
+            )
         ]
-        mutableAttributedString.append(NSAttributedString(string: value, attributes: valueAttributes))
-        mutableAttributedString.append(NSAttributedString(string: "%", attributes: percentAttributes))
+        mutableAttributedString.append(
+            .init(string: value, attributes: valueAttributes)
+        )
+        mutableAttributedString.append(
+            .init(string: "%", attributes: percentAttributes)
+        )
         return mutableAttributedString
     }
     
@@ -109,13 +122,9 @@ final class ConsensusView: CustomView {
     }
     
     // MARK: - PUBLIC FUNC
-    public override func draw(_ rect: CGRect) {
-        super.draw(rect)
-        self.rect = rect
-        makeCircleBase()
-    }
-    
     public func setValue(_ value: Int) {
+        rect = .init(origin: .zero, size: Metrics.viewSize)
+        makeCircleBase()
         makeCircularProgress(value)
     }
 }
