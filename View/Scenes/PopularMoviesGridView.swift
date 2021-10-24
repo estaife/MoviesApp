@@ -15,8 +15,15 @@ final class PopularMoviesGridView: CustomView {
     }
     
     // MARK: - PRIVATE PROPERTIES
+    private weak var delegate: GridViewDelegate?
+    
     private var viewState: ViewState = .loading {
         didSet { transition(to: viewState) }
+    }
+    
+    private struct Strings {
+        static let informationTitle = "Opss, estamos trabalhando para melhorar"
+        static let informationButtonTitle = "Tentar novamente"
     }
     
     private struct Metrics {
@@ -25,7 +32,22 @@ final class PopularMoviesGridView: CustomView {
     
     // MARK: - UI
     private var bottomAnchorConstraintCollectionView = NSLayoutConstraint()
-
+    
+    private lazy var errorInformationView: InformationView = {
+        let view = InformationView(
+            title: Strings.informationTitle,
+            action: UIAction(
+                title: Strings.informationButtonTitle,
+                handler: { [weak self] _ in
+                    self?.delegate?.makeFetchMoreMovies()
+                }
+            )
+        )
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.isHidden = true
+        return view
+    }()
+    
     private lazy var moviesCollectionGridView: MoviesCollectionGridView = {
         let view = MoviesCollectionGridView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -44,6 +66,7 @@ final class PopularMoviesGridView: CustomView {
     public init(delegate: GridViewDelegate) {
         super.init(frame: .zero)
         self.moviesCollectionGridView.delegate = delegate
+        self.delegate = delegate
         commonInit()
     }
     
@@ -55,6 +78,7 @@ final class PopularMoviesGridView: CustomView {
     public func subviews() {
         addSubview(moviesCollectionGridView)
         addSubview(activityIndicatorView)
+        addSubview(errorInformationView)
     }
     
     public func constraints() {
@@ -67,7 +91,12 @@ final class PopularMoviesGridView: CustomView {
             bottomAnchorConstraintCollectionView,
             
             activityIndicatorView.centerXAnchor.constraint(equalTo: moviesCollectionGridView.centerXAnchor),
-            activityIndicatorView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Metrics.spacing)
+            activityIndicatorView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Metrics.spacing),
+            
+            errorInformationView.topAnchor.constraint(equalTo: topAnchor),
+            errorInformationView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            errorInformationView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            errorInformationView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
     
@@ -88,8 +117,9 @@ extension PopularMoviesGridView: PopularMoviesGridViewType {
                 self.viewState = .loading
             case .stopLoading:
                 self.viewState = .hasData
-            case .error(_):
-                // TODO: - Implement this
+            case .error(let error):
+                self.viewState = .error
+                self.errorInformationView.subtitle = error
                 break
             }
         }
@@ -104,9 +134,13 @@ extension PopularMoviesGridView: ViewStateProtocol {
             activityIndicatorView.startAnimating()
             bottomAnchorConstraintCollectionView.constant = -(activityIndicatorView.bounds.height + Metrics.spacing)
         case .hasData:
+            moviesCollectionGridView.isHidden = false
+            errorInformationView.isHidden = true
             activityIndicatorView.stopAnimating()
             bottomAnchorConstraintCollectionView.constant = 0
-        default: break
+        case .error:
+            moviesCollectionGridView.isHidden = true
+            errorInformationView.isHidden = false
         }
     }
 }

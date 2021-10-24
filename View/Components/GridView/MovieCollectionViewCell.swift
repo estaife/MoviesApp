@@ -17,6 +17,7 @@ public class MovieCollectionViewCell: CustomCollectionViewCell {
     // MARK: - PRIVATE PROPERTIES
     private struct Metrics {
         static let margin: CGFloat = 16
+        static let consensusViewSize: CGSize = .init(width: 50, height: 50)
         static let heightBottomStack: CGFloat = 50
         static let cornerRadius: CGFloat = 12
         static let fadeIn: Double = 0.20
@@ -99,8 +100,8 @@ public class MovieCollectionViewCell: CustomCollectionViewCell {
                 constant: Metrics.margin
             ),
             consensusView.centerYAnchor.constraint(equalTo: logoImageView.bottomAnchor),
-            consensusView.heightAnchor.constraint(equalToConstant: Metrics.heightBottomStack),
-            consensusView.widthAnchor.constraint(equalToConstant: Metrics.heightBottomStack),
+            consensusView.heightAnchor.constraint(equalToConstant: Metrics.consensusViewSize.height),
+            consensusView.widthAnchor.constraint(equalToConstant: Metrics.consensusViewSize.width),
             
             bottomStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
             bottomStackView.leadingAnchor.constraint(equalTo: leadingAnchor),

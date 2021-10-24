@@ -19,11 +19,15 @@ public final class PopularMoviesViewController: UIViewController {
     public var presenter: PopularMoviesPresenter?
     public weak var delegate: PopularMoviesViewControllerDelegate?
     
+    private struct Strings {
+        static let title = "Filmes"
+    }
+    
     // MARK: - Life Cycle
     public override func loadView() {
         super.loadView()
         view = PopularMoviesGridView(delegate: self)
-        title = "Filmes"
+        title = Strings.title
     }
     
     public override func viewWillAppear(_ animated: Bool) {
@@ -39,7 +43,7 @@ extension PopularMoviesViewController: PopularMoviesPresenterProtocol {
     }
     
     public func presentError(_ error: DomainError) {
-        // TODO: - Implement this
+        (view as? PopularMoviesGridView)?.updateView(with: .error(error.localizedDescription))
     }
 }
 
