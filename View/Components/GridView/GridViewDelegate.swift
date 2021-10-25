@@ -8,6 +8,7 @@
 import Foundation
 
 protocol GridViewDelegate: AnyObject {
+    func goToDetailMovieScene(identifier: String)
     func makeFetchMoreMovies()
 }
 

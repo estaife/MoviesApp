@@ -141,8 +141,11 @@ extension MoviesCollectionGridView: UICollectionViewDelegateFlowLayout, UICollec
         }
     }
     
-    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    public func collectionView(
+        _ collectionView: UICollectionView,
+        didSelectItemAt indexPath: IndexPath
+    ) {
         let movieIdentifier = moviesViewModel[indexPath.item].identifier
-        // TODO: - Call details movies
+        delegate?.goToDetailMovieScene(identifier: movieIdentifier)
     }
 }
