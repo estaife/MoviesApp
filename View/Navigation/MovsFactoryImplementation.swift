@@ -45,4 +45,8 @@ public final class MovsFactoryImplementation: MovsFactory {
     public func makeAlertController(alertStyle: AlertControllerStyle, message: String?) -> AlertController {
         .init(alertStyle: alertStyle, message: message)
     }
+    
+    public func makeDetailMoviesViewController(identifier: String) -> DetailsMoviesViewController {
+        .init(nibName: nil, bundle: nil)
+    }
 }

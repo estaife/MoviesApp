@@ -47,10 +47,16 @@ extension MovsFlowController: MovsFlowControllerDelegate { }
 
 // MARK: - PopularMoviesViewControllerDelegate
 extension MovsFlowController: PopularMoviesViewControllerDelegate {
-    public func openDetail(identifier: String) {
-        // TODO: - Implement this
+    public func popularMoviesViewControllerOpenDetailMovie(identifier: String) {
+        let detailMoviesViewController = movsFactory.makeDetailMoviesViewController(identifier: identifier)
+        detailMoviesViewController.delegate = self
+        
+        navigationController.pushViewController(detailMoviesViewController, animated: false)
     }
 }
+
+// MARK: - DetailsMoviesViewControllerDelegate
+extension MovsFlowController: DetailsMoviesViewControllerDelegate { }
 
 // MARK: - AlertControllerDelegate
 extension MovsFlowController: AlertControllerDelegate {
