@@ -10,7 +10,7 @@ import Domain
 import Presenter
 
 public protocol PopularMoviesViewControllerDelegate: AlertControllerDelegate {
-    func openDetail(identifier: String)
+    func popularMoviesViewControllerOpenDetailMovie(identifier: String)
 }
 
 public final class PopularMoviesViewController: UIViewController {
@@ -64,6 +64,10 @@ extension PopularMoviesViewController: LoadingViewProtocol {
 
 // MARK: - GridViewDelegate
 extension PopularMoviesViewController: GridViewDelegate {
+    func goToDetailMovieScene(identifier: String) {
+        delegate?.popularMoviesViewControllerOpenDetailMovie(identifier: identifier)
+    }
+    
     func makeFetchMoreMovies() {
         presenter?.fetchPopularMovies()
     }
