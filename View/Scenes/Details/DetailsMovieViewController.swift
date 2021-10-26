@@ -14,7 +14,7 @@ public protocol DetailsMoviesViewControllerDelegate: AlertControllerDelegate { }
 public final class DetailsMoviesViewController: UIViewController {
     
     // MARK: - Properties
-//    public var presenter: DetailsMoviesPresenter?
+    public var presenter: DetailsMoviesPresenter?
     public weak var delegate: DetailsMoviesViewControllerDelegate?
     
     private struct Strings {
