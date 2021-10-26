@@ -1,5 +1,5 @@
 //
-//  DetailsMoviesGridViewType.swift
+//  DetailsMovieGridViewType.swift
 //  View
 //
 //  Created by Estaife Lima on 24/10/21.
@@ -7,11 +7,11 @@
 
 import UIKit
 
-protocol DetailsMoviesViewType: AnyObject {
+protocol DetailsMovieViewType: AnyObject {
     var content: UIView { get }
-    func updateView(with viewState: DetailsMoviesViewState)
+    func updateView(with viewState: DetailsMovieViewState)
 }
 
-extension DetailsMoviesViewType where Self: UIView {
+extension DetailsMovieViewType where Self: UIView {
     var content: UIView { return self }
 }

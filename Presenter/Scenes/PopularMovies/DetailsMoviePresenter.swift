@@ -1,5 +1,5 @@
 //
-//  DetailsMoviesPresenter.swift
+//  DetailsMoviePresenter.swift
 //  Presenter
 //
 //  Created by Estaife Lima on 25/10/21.
@@ -7,3 +7,4 @@
 
 import Foundation
 
+public final class DetailsMoviePresenter { }

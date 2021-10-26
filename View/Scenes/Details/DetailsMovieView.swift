@@ -1,5 +1,5 @@
 //
-//  DetailsMoviesGridView.swift
+//  DetailsMovieGridView.swift
 //  View
 //
 //  Created by Estaife Lima on 24/10/21.
@@ -7,11 +7,11 @@
 
 import UIKit
 
-protocol DetailsMoviesViewProtocol: AnyObject {
+protocol DetailsMovieViewProtocol: AnyObject {
     func didTappedRetry()
 }
 
-final class DetailsMoviesView: CustomView {
+final class DetailsMovieView: CustomView {
     
     // MARK: - PUBLIC PROPERTIES
     public var isLoading: Bool {
@@ -19,7 +19,7 @@ final class DetailsMoviesView: CustomView {
     }
     
     // MARK: - PRIVATE PROPERTIES
-    private weak var delegate: DetailsMoviesViewProtocol?
+    private weak var delegate: DetailsMovieViewProtocol?
     
     private var viewState: ViewState = .loading {
         didSet { transition(to: viewState) }
@@ -95,8 +95,8 @@ final class DetailsMoviesView: CustomView {
 }
 
 // MARK: - DetailsMoviesViewType
-extension DetailsMoviesView: DetailsMoviesViewType {
-    public func updateView(with viewState: DetailsMoviesViewState) {
+extension DetailsMovieView: DetailsMovieViewType {
+    public func updateView(with viewState: DetailsMovieViewState) {
         DispatchQueue.main.async {
             switch viewState {
             case .hasData(_):
@@ -115,7 +115,7 @@ extension DetailsMoviesView: DetailsMoviesViewType {
 }
 
 // MARK: - ViewStateProtocol
-extension DetailsMoviesView: ViewStateProtocol {
+extension DetailsMovieView: ViewStateProtocol {
     public func transition(to state: ViewState) {
         switch state {
         case .loading:

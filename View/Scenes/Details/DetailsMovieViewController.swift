@@ -1,5 +1,5 @@
 //
-//  DetailsMoviesViewController.swift
+//  DetailsMovieViewController.swift
 //  View
 //
 //  Created by Estaife Lima on 24/10/21.
@@ -9,13 +9,13 @@ import UIKit
 import Domain
 import Presenter
 
-public protocol DetailsMoviesViewControllerDelegate: AlertControllerDelegate { }
+public protocol DetailsMovieViewControllerDelegate: AlertControllerDelegate { }
 
-public final class DetailsMoviesViewController: UIViewController {
+public final class DetailsMovieViewController: UIViewController {
     
     // MARK: - Properties
-    public var presenter: DetailsMoviesPresenter?
-    public weak var delegate: DetailsMoviesViewControllerDelegate?
+    public var presenter: DetailsMoviePresenter?
+    public weak var delegate: DetailsMovieViewControllerDelegate?
     
     private struct Strings {
         static let title = "Details"
@@ -24,7 +24,7 @@ public final class DetailsMoviesViewController: UIViewController {
     // MARK: - Life Cycle
     public override func loadView() {
         super.loadView()
-        view = DetailsMoviesView()
+        view = DetailsMovieView()
         title = Strings.title
     }
     
@@ -34,16 +34,16 @@ public final class DetailsMoviesViewController: UIViewController {
 }
 
 // MARK: - LoadingViewProtocol
-extension DetailsMoviesViewController: LoadingViewProtocol {
+extension DetailsMovieViewController: LoadingViewProtocol {
     public var isLoading: Bool {
-        (view as? DetailsMoviesView)?.isLoading ?? false
+        (view as? DetailsMovieView)?.isLoading ?? false
     }
     
     public func start() {
-        (view as? DetailsMoviesView)?.updateView(with: .startLoading)
+        (view as? DetailsMovieView)?.updateView(with: .startLoading)
     }
     
     public func stop() {
-        (view as? DetailsMoviesView)?.updateView(with: .stopLoading)
+        (view as? DetailsMovieView)?.updateView(with: .stopLoading)
     }
 }

@@ -56,7 +56,7 @@ extension MovsFlowController: PopularMoviesViewControllerDelegate {
 }
 
 // MARK: - DetailsMoviesViewControllerDelegate
-extension MovsFlowController: DetailsMoviesViewControllerDelegate { }
+extension MovsFlowController: DetailsMovieViewControllerDelegate { }
 
 // MARK: - AlertControllerDelegate
 extension MovsFlowController: AlertControllerDelegate {
