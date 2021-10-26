@@ -30,6 +30,7 @@ public final class DetailsMovieViewController: UIViewController {
     
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        presenter?.fetchDetailMovie()
     }
 }
 
@@ -45,5 +46,16 @@ extension DetailsMovieViewController: LoadingViewProtocol {
     
     public func stop() {
         (view as? DetailsMovieView)?.updateView(with: .stopLoading)
+    }
+}
+
+// MARK: - LoadingViewProtocol
+extension DetailsMovieViewController: DetailsMoviePresenterProtocol {
+    public func presentDetailMovie(_ movie: DetailsMovieViewModel) {
+        print(movie)
+    }
+    
+    public func presentError(_ error: DomainError) {
+        print(error)
     }
 }

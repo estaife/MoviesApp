@@ -47,6 +47,20 @@ public final class MovsFactoryImplementation: MovsFactory {
     }
     
     public func makeDetailMoviesViewController(identifier: String) -> DetailsMovieViewController {
-        .init(nibName: nil, bundle: nil)
+        let viewController = DetailsMovieViewController()
+        let requester = RequesterHTTP()
+        let locate = LocateUseCase(locale: Locale.current)
+        let useCase = DetailsMovieUseCase(
+            requesterHTTP: requester,
+            locate: locate
+        )
+        let presenter = DetailsMoviePresenter(
+            identifier: identifier,
+            detailsMovieUseCase: useCase,
+            loadingView: viewController,
+            delegate: viewController
+        )
+        viewController.presenter = presenter
+        return viewController
     }
 }
