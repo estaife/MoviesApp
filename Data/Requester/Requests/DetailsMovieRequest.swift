@@ -32,6 +32,7 @@ extension DetailsMovieRequest: RequestProtocol {
     
     var parameters: [String : String]? {
         [
+            TMDBParameterKey.detailsKey.rawValue: TMDBParameterKey.detailsMediaTypes.rawValue,
             TMDBParameterKey.apiKey.rawValue : Environment().apiKey,
             TMDBParameterKey.language.rawValue : language
         ]
