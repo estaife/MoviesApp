@@ -11,7 +11,9 @@ import Domain
 final class RequesterHTTPSpy: RequesterHTTPProtocol {
     var url: URL?
     var request: RequestProtocol?
-    var completion: ((Result<MovieResults, DomainError>) -> Void)?
+    
+    var success: Codable?
+    var error: DomainError?
     
     func perform<ResponseType: Codable>(
         request: RequestProtocol,
@@ -20,14 +22,13 @@ final class RequesterHTTPSpy: RequesterHTTPProtocol {
     ) {
         self.url = request.url
         self.request = request
-        self.completion = (completion as? (Result<MovieResults, DomainError>) -> Void)
-    }
-    
-    func completeWith(error: DomainError) {
-        completion?(.failure(error))
-    }
-    
-    func completeWith(data: MovieResults) {
-        completion?(.success(data))
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            if let success = self.success {
+                completion(.success(success as! ResponseType))
+            } else if let error = self.error {
+                completion(.failure(error))
+            }
+        }
     }
 }

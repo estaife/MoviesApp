@@ -11,14 +11,14 @@ import Domain
 
 class PopularMoviesUseCaseTests: XCTestCase {
     
-    func testGetAllPopularMoviesShouldCallrequesterHTTPWithCorrectRequest() {
+    func testGetAllPopularMoviesShouldCallRequesterHTTPWithCorrectRequest() {
         
         //Given
         let (sut, requesterHTTPSpy) = createSut(mockResult: "pt-BR")
         
         //When
         sut.getAllPopularMovies(page: page) { _ in }
-        requesterHTTPSpy.completeWith(data: movieResultsSuccess)
+        requesterHTTPSpy.success =  movieResultsSuccess
         
         //Then
         XCTAssertEqual(requesterHTTPSpy.url, requesterHTTPSpy.request?.url)
@@ -50,7 +50,7 @@ class PopularMoviesUseCaseTests: XCTestCase {
             }
             expect.fulfill()
         }
-        requesterHTTPSpy.completeWith(data: movieResultsSuccess)
+        requesterHTTPSpy.success =  movieResultsSuccess
 
         //Then
         wait(for: [expect], timeout: 1)
@@ -72,12 +72,12 @@ class PopularMoviesUseCaseTests: XCTestCase {
             }
             expect.fulfill()
         }
-        requesterHTTPSpy.completeWith(error: .init(internalError: .unknown))
+        requesterHTTPSpy.error = .init(internalError: .unknown)
 
         //Then
         wait(for: [expect], timeout: 1)
     }
-//
+
     func testGetAllPopularMoviesShouldNotSutHasDeallocated() {
 
         //Given
@@ -92,7 +92,7 @@ class PopularMoviesUseCaseTests: XCTestCase {
         //When
         sut?.getAllPopularMovies(page: page) { result = $0 }
         sut = nil
-        requesterHTTPSpy.completeWith(data: movieResultsSuccess)
+        requesterHTTPSpy.success =  movieResultsSuccess
 
         //Then
         XCTAssertNil(result)
@@ -111,7 +111,7 @@ extension PopularMoviesUseCaseTests {
             releaseDate: "2021-01-01",
             identifier: 1,
             title: "Movie Test",
-            popularity: 0.8
+            voteAverage: 0.8
         )
         return MovieResults(
             page: 1,
@@ -132,7 +132,10 @@ extension PopularMoviesUseCaseTests {
     ) -> (sut: PopularMoviesUseCase, requesterHTTPSpy: RequesterHTTPSpy) {
         let requesterHTTPSpy = RequesterHTTPSpy()
         let locateUseCaseSpy = LocateUseCaseSpy(mockResult: mockResult)
-        let sut = PopularMoviesUseCase(requesterHTTP: requesterHTTPSpy, locate: locateUseCaseSpy)
+        let sut = PopularMoviesUseCase(
+            requesterHTTP: requesterHTTPSpy,
+            locate: locateUseCaseSpy
+        )
         addTeardownBlock { [weak sut] in
             XCTAssertNil(sut, file: file, line: line)
         }
