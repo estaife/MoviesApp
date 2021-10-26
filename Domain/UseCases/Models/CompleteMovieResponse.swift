@@ -6,10 +6,9 @@
 //
 
 import Foundation
-import UIKit
 
 // MARK: - CompleteMovieResponse
-public struct CompleteMovieResponse: Codable {
+public struct CompleteMovieResponse: BaseModel {
     public let title: String
     public let identifier: Int
     public let genres: [GenreResponse]
@@ -162,5 +161,11 @@ public struct CompleteMovieResponse: Codable {
             case key, name, site, size
             case typeVideo = "type"
         }
+    }
+}
+
+extension CompleteMovieResponse {
+    public static func == (lhs: CompleteMovieResponse, rhs: CompleteMovieResponse) -> Bool {
+        lhs.identifier == rhs.identifier
     }
 }
