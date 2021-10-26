@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: - SimpleMovieResponse
 public struct SimpleMovieResponse: BaseModel {
     public let posterPath: String?
     public let releaseDate: String
