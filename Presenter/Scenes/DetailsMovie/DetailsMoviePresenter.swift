@@ -11,7 +11,7 @@ import Foundation
 import Domain
 
 public protocol DetailsMoviePresenterProtocol: AnyObject {
-    func presentDetailMovie(_ movie: MovieViewModel)
+    func presentDetailMovie(_ movie: DetailsMovieViewModel)
     func presentError(_ error: DomainError)
 }
 
@@ -25,12 +25,13 @@ final public class DetailsMoviePresenter {
     
     // MARK: - Init
     public init(
-        identifier: String
+        identifier: String,
         detailsMovieUseCase: DetailsMovieUseCaseProtocol,
         loadingView: LoadingViewProtocol,
-        delegate: PopularMoviesPresenterProtocol
+        delegate: DetailsMoviePresenterProtocol
     ) {
-        self.popularMoviesUseCase = popularMoviesUseCase
+        self.identifier = identifier
+        self.detailsMovieUseCase = detailsMovieUseCase
         self.loadingView = loadingView
         self.delegate = delegate
     }
@@ -38,13 +39,13 @@ final public class DetailsMoviePresenter {
     // MARK: - PUBLIC METHODS
     public func fetchDetailMovie() {
         loadingView.start()
-        
+
         detailsMovieUseCase.getDetailsMovie(identifier: identifier) { [weak self] result in
             if let self = self {
                 self.loadingView.stop()
                 switch result {
-                case .success(let movieResults):
-                    self.handleSuccess(movieResults)
+                case .success(let detailsMovie):
+                    self.handleSuccess(detailsMovie)
                 case .failure(let error):
                     self.delegate.presentError(error)
                 }
@@ -53,7 +54,17 @@ final public class DetailsMoviePresenter {
     }
     
     // MARK: - PRIVATE METHODS
-    private func handleSuccess(_ movieResults: MovieResults) {
-        
+    private func handleSuccess(_ completeMovieResponse: CompleteMovieResponse) {
+        let detailsMovieViewModel = DetailsMovieViewModel(
+            identifier: String(completeMovieResponse.identifier),
+            title: completeMovieResponse.title,
+            genres: completeMovieResponse.genres.map { $0.name },
+            overview: completeMovieResponse.overview,
+            tagline: completeMovieResponse.tagline,
+            releaseDate: completeMovieResponse.releaseDate,
+            voteAverage: completeMovieResponse.voteAverage,
+            backdropPathString: completeMovieResponse.backdropPath
+        )
+        delegate.presentDetailMovie(detailsMovieViewModel)
     }
 }
