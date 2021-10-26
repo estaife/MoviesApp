@@ -11,7 +11,7 @@ struct PopularMoviesRequest {
     let page: String
     let language: String
     
-    init(page: String, language: String  ) {
+    init(page: String, language: String) {
         self.page = page
         self.language = language
     }
