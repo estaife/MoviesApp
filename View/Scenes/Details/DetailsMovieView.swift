@@ -40,8 +40,8 @@ final class DetailsMovieView: CustomView {
             title: Strings.informationTitle,
             action: UIAction(
                 title: Strings.informationButtonTitle,
-                handler: { [weak self] _ in
-                    self?.delegate?.didTappedRetry()
+                handler: { [unowned self] _ in
+                    self.delegate?.didTappedRetry()
                 }
             )
         )

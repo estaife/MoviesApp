@@ -38,8 +38,8 @@ final class PopularMoviesGridView: CustomView {
             title: Strings.informationTitle,
             action: UIAction(
                 title: Strings.informationButtonTitle,
-                handler: { [weak self] _ in
-                    self?.delegate?.makeFetchMoreMovies()
+                handler: { [unowned self] _ in
+                    self.delegate?.makeFetchMoreMovies()
                 }
             )
         )
