@@ -8,7 +8,7 @@
 import Foundation
 import Domain
 
-public protocol PopularMoviesPresenterProtocol: AnyObject {
+public protocol PopularMoviesPresenterDelegate: AnyObject {
     func presentPopularMovies(_ movies: [MovieViewModel])
     func presentError(_ error: DomainError)
 }
@@ -18,7 +18,7 @@ final public class PopularMoviesPresenter {
     // MARK: - Properties
     private let popularMoviesUseCase: PopularMoviesUseCaseProtocol
     private let loadingView: LoadingViewProtocol
-    private let delegate: PopularMoviesPresenterProtocol
+    private let delegate: PopularMoviesPresenterDelegate
     
     // MARK: - Properties Controller
     private var page: Int = 0
@@ -28,7 +28,7 @@ final public class PopularMoviesPresenter {
     public init(
         popularMoviesUseCase: PopularMoviesUseCaseProtocol,
         loadingView: LoadingViewProtocol,
-        delegate: PopularMoviesPresenterProtocol
+        delegate: PopularMoviesPresenterDelegate
     ) {
         self.popularMoviesUseCase = popularMoviesUseCase
         self.loadingView = loadingView

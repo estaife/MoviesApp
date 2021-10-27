@@ -10,7 +10,7 @@ import Foundation
 import Foundation
 import Domain
 
-public protocol DetailsMoviePresenterProtocol: AnyObject {
+public protocol DetailsMoviePresenterDelegate: AnyObject {
     func presentDetailMovie(_ movie: DetailsMovieViewModel)
     func presentError(_ error: DomainError)
 }
@@ -21,14 +21,14 @@ final public class DetailsMoviePresenter {
     private let identifier: String
     private let detailsMovieUseCase: DetailsMovieUseCaseProtocol
     private let loadingView: LoadingViewProtocol
-    private let delegate: DetailsMoviePresenterProtocol
+    private let delegate: DetailsMoviePresenterDelegate
     
     // MARK: - Init
     public init(
         identifier: String,
         detailsMovieUseCase: DetailsMovieUseCaseProtocol,
         loadingView: LoadingViewProtocol,
-        delegate: DetailsMoviePresenterProtocol
+        delegate: DetailsMoviePresenterDelegate
     ) {
         self.identifier = identifier
         self.detailsMovieUseCase = detailsMovieUseCase

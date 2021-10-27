@@ -37,7 +37,7 @@ public final class PopularMoviesViewController: UIViewController {
 }
 
 // MARK: - PopularMoviesPresenterProtocol
-extension PopularMoviesViewController: PopularMoviesPresenterProtocol {
+extension PopularMoviesViewController: PopularMoviesPresenterDelegate {
     public func presentPopularMovies(_ movies: [MovieViewModel]) {
         (view as? PopularMoviesGridView)?.updateView(with: .hasData(movies))
     }

@@ -50,7 +50,7 @@ extension DetailsMovieViewController: LoadingViewProtocol {
 }
 
 // MARK: - LoadingViewProtocol
-extension DetailsMovieViewController: DetailsMoviePresenterProtocol {
+extension DetailsMovieViewController: DetailsMoviePresenterDelegate {
     public func presentDetailMovie(_ movie: DetailsMovieViewModel) {
         print(movie)
     }
