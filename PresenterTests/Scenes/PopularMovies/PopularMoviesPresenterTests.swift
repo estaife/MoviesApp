@@ -111,7 +111,7 @@ extension PopularMoviesPresenterTests {
             releaseDate: "2021-01-01",
             identifier: 1,
             title: "Movie Test",
-            popularity: 0.8
+            voteAverage: 0.8
         )
         return MovieResults(
             page: 1,
@@ -127,7 +127,7 @@ extension PopularMoviesPresenterTests {
             releaseDate: "2021-01-01",
             identifier: 1,
             title: "Movie Test",
-            popularity: 0.8
+            voteAverage: 0.8
         )
         return MovieResults(
             page: 1,
