@@ -7,13 +7,13 @@
 
 import UIKit
 
-public typealias CustomView = UIView & CustomViewProtocol
-public typealias CustomViewController = UIViewController & CustomViewProtocol
-public typealias CustomCollectionViewCell = UICollectionViewCell & CustomViewProtocol
-public typealias CustomCollectionView = UICollectionView & CustomViewProtocol
-public typealias CustomCollectionReusableView = UICollectionReusableView & CustomViewProtocol
+internal typealias CustomView = UIView & CustomViewProtocol
+internal typealias CustomViewController = UIViewController & CustomViewProtocol
+internal typealias CustomCollectionViewCell = UICollectionViewCell & CustomViewProtocol
+internal typealias CustomCollectionView = UICollectionView & CustomViewProtocol
+internal typealias CustomCollectionReusableView = UICollectionReusableView & CustomViewProtocol
 
-public protocol CustomViewProtocol {
+internal protocol CustomViewProtocol {
     func subviews()
     func constraints()
     func style()
@@ -27,5 +27,5 @@ extension CustomViewProtocol {
         style()
     }
     
-    public func style() { }
+    internal func style() { }
 }

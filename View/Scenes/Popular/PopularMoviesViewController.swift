@@ -9,28 +9,28 @@ import UIKit
 import Domain
 import Presenter
 
-public protocol PopularMoviesViewControllerDelegate: AlertControllerDelegate {
+internal protocol PopularMoviesViewControllerDelegate: AlertControllerDelegate {
     func popularMoviesViewControllerOpenDetailMovie(identifier: String)
 }
 
-public final class PopularMoviesViewController: UIViewController {
+internal final class PopularMoviesViewController: UIViewController {
     
     // MARK: - Properties
-    public var presenter: PopularMoviesPresenter?
-    public weak var delegate: PopularMoviesViewControllerDelegate?
+    internal var presenter: PopularMoviesPresenter?
+    internal weak var delegate: PopularMoviesViewControllerDelegate?
     
     private struct Strings {
         static let title = "Filmes"
     }
     
     // MARK: - Life Cycle
-    public override func loadView() {
+    internal override func loadView() {
         super.loadView()
         view = PopularMoviesGridView(delegate: self)
         title = Strings.title
     }
     
-    public override func viewWillAppear(_ animated: Bool) {
+    internal override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         presenter?.fetchPopularMovies()
     }
@@ -38,26 +38,26 @@ public final class PopularMoviesViewController: UIViewController {
 
 // MARK: - PopularMoviesPresenterProtocol
 extension PopularMoviesViewController: PopularMoviesPresenterDelegate {
-    public func presentPopularMovies(_ movies: [MovieViewModel]) {
+    internal func presentPopularMovies(_ movies: [MovieViewModel]) {
         (view as? PopularMoviesGridView)?.updateView(with: .hasData(movies))
     }
     
-    public func presentError(_ error: DomainError) {
+    internal func presentError(_ error: DomainError) {
         (view as? PopularMoviesGridView)?.updateView(with: .error(error.localizedDescription))
     }
 }
 
 // MARK: - LoadingViewProtocol
 extension PopularMoviesViewController: LoadingViewProtocol {
-    public var isLoading: Bool {
+    internal var isLoading: Bool {
         (view as? PopularMoviesGridView)?.isLoading ?? false
     }
     
-    public func start() {
+    internal func start() {
         (view as? PopularMoviesGridView)?.updateView(with: .startLoading)
     }
     
-    public func stop() {
+    internal func stop() {
         (view as? PopularMoviesGridView)?.updateView(with: .stopLoading)
     }
 }

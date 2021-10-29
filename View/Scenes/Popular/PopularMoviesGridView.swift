@@ -9,8 +9,8 @@ import UIKit
 
 final class PopularMoviesGridView: CustomView {
     
-    // MARK: - PUBLIC PROPERTIES
-    public var isLoading: Bool {
+    // MARK: - INTERNAL PROPERTIES
+    internal var isLoading: Bool {
         activityIndicatorView.isAnimating
     }
     
@@ -63,7 +63,7 @@ final class PopularMoviesGridView: CustomView {
     }()
     
     // MARK: - INITALIZER
-    public init(delegate: GridViewDelegate) {
+    internal init(delegate: GridViewDelegate) {
         super.init(frame: .zero)
         self.moviesCollectionGridView.delegate = delegate
         self.delegate = delegate
@@ -75,13 +75,13 @@ final class PopularMoviesGridView: CustomView {
     }
     
     // MARK: - VIEW HIERARCHY
-    public func subviews() {
+    internal func subviews() {
         addSubview(moviesCollectionGridView)
         addSubview(activityIndicatorView)
         addSubview(errorInformationView)
     }
     
-    public func constraints() {
+    internal func constraints() {
         bottomAnchorConstraintCollectionView = moviesCollectionGridView.bottomAnchor.constraint(equalTo: bottomAnchor)
         
         NSLayoutConstraint.activate([
@@ -100,14 +100,14 @@ final class PopularMoviesGridView: CustomView {
         ])
     }
     
-    public func style() {
+    internal func style() {
         backgroundColor = .systemBackground
     }
 }
 
 // MARK: - PopularMoviesGridViewType
 extension PopularMoviesGridView: PopularMoviesGridViewType {
-    public func updateView(with viewState: PopularMoviesGridViewState) {
+    internal func updateView(with viewState: PopularMoviesGridViewState) {
         DispatchQueue.main.async {
             switch viewState {
             case .hasData(let movies):
@@ -128,7 +128,7 @@ extension PopularMoviesGridView: PopularMoviesGridViewType {
 
 // MARK: - ViewStateProtocol
 extension PopularMoviesGridView: ViewStateProtocol {
-    public func transition(to state: ViewState) {
+    internal func transition(to state: ViewState) {
         switch state {
         case .loading:
             activityIndicatorView.startAnimating()

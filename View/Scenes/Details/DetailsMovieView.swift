@@ -13,8 +13,8 @@ protocol DetailsMovieViewProtocol: AnyObject {
 
 final class DetailsMovieView: CustomView {
     
-    // MARK: - PUBLIC PROPERTIES
-    public var isLoading: Bool {
+    // MARK: - INTERNAL PROPERTIES
+    internal var isLoading: Bool {
         activityIndicatorView.isAnimating
     }
     
@@ -59,7 +59,7 @@ final class DetailsMovieView: CustomView {
     }()
     
     // MARK: - INITALIZER
-    public init() {
+    internal init() {
         super.init(frame: .zero)
         commonInit()
     }
@@ -69,12 +69,12 @@ final class DetailsMovieView: CustomView {
     }
     
     // MARK: - VIEW HIERARCHY
-    public func subviews() {
+    internal func subviews() {
         addSubview(activityIndicatorView)
         addSubview(errorInformationView)
     }
     
-    public func constraints() {
+    internal func constraints() {
         NSLayoutConstraint.activate([
             activityIndicatorView.centerXAnchor.constraint(equalTo: centerXAnchor),
             activityIndicatorView.bottomAnchor.constraint(
@@ -89,14 +89,14 @@ final class DetailsMovieView: CustomView {
         ])
     }
     
-    public func style() {
+    internal func style() {
         backgroundColor = .systemBackground
     }
 }
 
 // MARK: - DetailsMoviesViewType
 extension DetailsMovieView: DetailsMovieViewType {
-    public func updateView(with viewState: DetailsMovieViewState) {
+    internal func updateView(with viewState: DetailsMovieViewState) {
         DispatchQueue.main.async {
             switch viewState {
             case .hasData(_):
@@ -116,7 +116,7 @@ extension DetailsMovieView: DetailsMovieViewType {
 
 // MARK: - ViewStateProtocol
 extension DetailsMovieView: ViewStateProtocol {
-    public func transition(to state: ViewState) {
+    internal func transition(to state: ViewState) {
         switch state {
         case .loading:
             activityIndicatorView.startAnimating()

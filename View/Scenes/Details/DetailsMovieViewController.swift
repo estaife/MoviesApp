@@ -9,26 +9,26 @@ import UIKit
 import Domain
 import Presenter
 
-public protocol DetailsMovieViewControllerDelegate: AlertControllerDelegate { }
+internal protocol DetailsMovieViewControllerDelegate: AlertControllerDelegate { }
 
-public final class DetailsMovieViewController: UIViewController {
+internal final class DetailsMovieViewController: UIViewController {
     
     // MARK: - Properties
-    public var presenter: DetailsMoviePresenter?
-    public weak var delegate: DetailsMovieViewControllerDelegate?
+    internal var presenter: DetailsMoviePresenter?
+    internal weak var delegate: DetailsMovieViewControllerDelegate?
     
     private struct Strings {
         static let title = "Details"
     }
     
     // MARK: - Life Cycle
-    public override func loadView() {
+    internal override func loadView() {
         super.loadView()
         view = DetailsMovieView()
         title = Strings.title
     }
     
-    public override func viewWillAppear(_ animated: Bool) {
+    internal override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         presenter?.fetchDetailMovie()
     }
@@ -36,26 +36,26 @@ public final class DetailsMovieViewController: UIViewController {
 
 // MARK: - LoadingViewProtocol
 extension DetailsMovieViewController: LoadingViewProtocol {
-    public var isLoading: Bool {
+    internal var isLoading: Bool {
         (view as? DetailsMovieView)?.isLoading ?? false
     }
     
-    public func start() {
+    internal func start() {
         (view as? DetailsMovieView)?.updateView(with: .startLoading)
     }
     
-    public func stop() {
+    internal func stop() {
         (view as? DetailsMovieView)?.updateView(with: .stopLoading)
     }
 }
 
 // MARK: - LoadingViewProtocol
 extension DetailsMovieViewController: DetailsMoviePresenterDelegate {
-    public func presentDetailMovie(_ movie: DetailsMovieViewModel) {
+    internal func presentDetailMovie(_ movie: DetailsMovieViewModel) {
         print(movie)
     }
     
-    public func presentError(_ error: DomainError) {
+    internal func presentError(_ error: DomainError) {
         print(error)
     }
 }

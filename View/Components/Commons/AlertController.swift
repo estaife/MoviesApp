@@ -14,7 +14,7 @@ public enum AlertControllerStyle {
     case warning
 }
 
-public final class AlertController: CustomViewController {
+internal final class AlertController: CustomViewController {
     
     // MARK: - Properties
     private let alertStyle: AlertControllerStyle
@@ -77,7 +77,7 @@ public final class AlertController: CustomViewController {
     }()
     
     // MARK: - INITIALIZERS
-    public init(alertStyle: AlertControllerStyle, message: String? = nil) {
+    internal init(alertStyle: AlertControllerStyle, message: String? = nil) {
         self.alertStyle = alertStyle
         super.init(nibName: nil, bundle: nil)
         self.message = message
@@ -88,21 +88,21 @@ public final class AlertController: CustomViewController {
     }
     
     // MARK: - Life Cycle
-    public override func viewDidLoad() {
+    internal override func viewDidLoad() {
         super.viewDidLoad()
         commonInit()
         dismiss()
     }
     
     // MARK: - VIEW HIERARCHY
-    public func subviews() {
+    internal func subviews() {
         view.addSubview(contentView)
         contentView.addSubview(blurView)
         contentView.addSubview(imageView)
         contentView.addSubview(messageLabel)
     }
     
-    public func constraints() {
+    internal func constraints() {
         NSLayoutConstraint.activate([
             blurView.topAnchor.constraint(equalTo: contentView.topAnchor),
             blurView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
@@ -124,7 +124,7 @@ public final class AlertController: CustomViewController {
         }
     }
     
-    public func style() {
+    internal func style() {
         view.backgroundColor = .clear
         imageView.image = image
         messageLabel.text = message

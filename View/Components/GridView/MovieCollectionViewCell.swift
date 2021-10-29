@@ -9,9 +9,9 @@ import UIKit
 import Nuke
 import Presenter
 
-public class MovieCollectionViewCell: CustomCollectionViewCell {
+internal class MovieCollectionViewCell: CustomCollectionViewCell {
     
-    // MARK: - PUBLIC PROPERTIES
+    // MARK: - INTERNAL PROPERTIES
     static let reuseIdentifier = String(describing: MovieCollectionViewCell.self)
     
     // MARK: - PRIVATE PROPERTIES
@@ -67,7 +67,7 @@ public class MovieCollectionViewCell: CustomCollectionViewCell {
     }()
     
     // MARK: - INITALIZER
-    public override init(frame: CGRect) {
+    internal override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
     }
@@ -77,7 +77,7 @@ public class MovieCollectionViewCell: CustomCollectionViewCell {
     }
     
     // MARK: - VIEW HIERARCHY
-    public func subviews() {
+    internal func subviews() {
         addSubview(logoImageView)
         addSubview(bottomStackView)
         addSubview(consensusView)
@@ -85,7 +85,7 @@ public class MovieCollectionViewCell: CustomCollectionViewCell {
         bottomStackView.addArrangedSubview(releaseDateLabel)
     }
     
-    public func constraints() {
+    internal func constraints() {
         NSLayoutConstraint.activate([
             logoImageView.topAnchor.constraint(equalTo: topAnchor),
             logoImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -110,15 +110,15 @@ public class MovieCollectionViewCell: CustomCollectionViewCell {
         ])
     }
     
-    public override func prepareForReuse() {
+    internal override func prepareForReuse() {
         super.prepareForReuse()
         logoImageView.image = nil
         titleLabel.text = nil
         releaseDateLabel.text = nil
     }
     
-    // MARK: - PUBLIC FUNC
-    public func updateView(with viewModel: MovieViewModel) {
+    // MARK: - INTERNAL FUNC
+    internal func updateView(with viewModel: MovieViewModel) {
         DispatchQueue.main.async {
             self.titleLabel.text = viewModel.title
             self.releaseDateLabel.text = viewModel.releaseYear
