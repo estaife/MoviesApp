@@ -970,9 +970,7 @@
 			isa = PBXGroup;
 			children = (
 				43AA5B93250F36B6002D8517 /* Domain */,
-				43AA5B9F250F373B002D8517 /* Data.framework */,
 				43AA5BA0250F373B002D8517 /* Data */,
-				43AA5BA7250F373B002D8517 /* DataTests.xctest */,
 				43AA5BAB250F373B002D8517 /* DataTests */,
 				4357533925EDCDC2002312F2 /* Networking */,
 				4357534425EDCDC2002312F2 /* NetworkingTests */,
@@ -982,13 +980,15 @@
 				812CC7072714B1430064AE76 /* ViewTests */,
 				814AB4B22714C871002CD93D /* Main */,
 				4357532A25EDCA75002312F2 /* Frameworks */,
+				81E160E72714C263002E880B /* Domain.framework */,
+				43AA5B9F250F373B002D8517 /* Data.framework */,
+				43AA5BA7250F373B002D8517 /* DataTests.xctest */,
 				4357533825EDCDC1002312F2 /* Networking.framework */,
 				4357534025EDCDC2002312F2 /* NetworkingTests.xctest */,
 				812CC6D32714AEBC0064AE76 /* Presenter.framework */,
 				812CC6DA2714AEBC0064AE76 /* PresenterTests.xctest */,
 				812CC6FC2714B1430064AE76 /* View.framework */,
 				812CC7032714B1430064AE76 /* ViewTests.xctest */,
-				81E160E72714C263002E880B /* Domain.framework */,
 				814AB4B12714C871002CD93D /* Main.app */,
 			);
 			sourceTree = "<group>";
@@ -2166,6 +2166,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 39FPYG3XUV;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Main/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Movs;
@@ -2179,7 +2180,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = lima.estaife.Main;
+				PRODUCT_BUNDLE_IDENTIFIER = lima.estaife.com.Main;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -2195,6 +2196,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 39FPYG3XUV;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Main/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Movs;
@@ -2208,7 +2210,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = lima.estaife.Main;
+				PRODUCT_BUNDLE_IDENTIFIER = lima.estaife.com.Main;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
