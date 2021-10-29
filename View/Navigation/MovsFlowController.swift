@@ -28,10 +28,11 @@ public final class MovsFlowController {
     public let navigationController: UINavigationController
     
     public func start() {
-        let popularMoviesViewController = movsFactory.makePopularMoviesViewController()
-        popularMoviesViewController.delegate = self
+        if let popularMoviesViewController = movsFactory.makePopularMoviesViewController() as? PopularMoviesViewController {
+            popularMoviesViewController.delegate = self
 
-        navigationController.pushViewController(popularMoviesViewController, animated: false)
+            navigationController.pushViewController(popularMoviesViewController, animated: false)
+        }
     }
     
     private func styleNavigationController() {
@@ -48,10 +49,11 @@ extension MovsFlowController: MovsFlowControllerDelegate { }
 // MARK: - PopularMoviesViewControllerDelegate
 extension MovsFlowController: PopularMoviesViewControllerDelegate {
     public func popularMoviesViewControllerOpenDetailMovie(identifier: String) {
-        let detailMoviesViewController = movsFactory.makeDetailMoviesViewController(identifier: identifier)
-        detailMoviesViewController.delegate = self
-        
-        navigationController.pushViewController(detailMoviesViewController, animated: false)
+        if let detailMoviesViewController = movsFactory.makeDetailsMovieViewController(identifier: identifier) as? DetailsMovieViewController {
+            detailMoviesViewController.delegate = self
+            
+            navigationController.pushViewController(detailMoviesViewController, animated: false)
+        }
     }
 }
 

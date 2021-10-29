@@ -25,7 +25,7 @@ public final class MovsFactoryImplementation: MovsFactory {
         )
     }
     
-    public func makePopularMoviesViewController() -> PopularMoviesViewController {
+    public func makePopularMoviesViewController() -> UIViewController {
         let viewController = PopularMoviesViewController()
         let requester = RequesterHTTP()
         let locate = LocateUseCase(locale: Locale.current)
@@ -42,11 +42,11 @@ public final class MovsFactoryImplementation: MovsFactory {
         return viewController
     }
     
-    public func makeAlertController(alertStyle: AlertControllerStyle, message: String?) -> AlertController {
-        .init(alertStyle: alertStyle, message: message)
+    public func makeAlertController(alertStyle: AlertControllerStyle, message: String?) -> UIViewController {
+        AlertController(alertStyle: alertStyle, message: message)
     }
     
-    public func makeDetailMoviesViewController(identifier: String) -> DetailsMovieViewController {
+    public func makeDetailsMovieViewController(identifier: String) -> UIViewController {
         let viewController = DetailsMovieViewController()
         let requester = RequesterHTTP()
         let locate = LocateUseCase(locale: Locale.current)

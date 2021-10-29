@@ -9,7 +9,7 @@ import UIKit
 
 public protocol MovsFactory {
     func makeMovsFlowController(from navigationController: UINavigationController) -> MovsFlowController
-    func makeAlertController(alertStyle: AlertControllerStyle, message: String?) -> AlertController
-    func makePopularMoviesViewController() -> PopularMoviesViewController
-    func makeDetailMoviesViewController(identifier: String) -> DetailsMovieViewController
+    func makeAlertController(alertStyle: AlertControllerStyle, message: String?) -> UIViewController
+    func makePopularMoviesViewController() -> UIViewController
+    func makeDetailsMovieViewController(identifier: String) -> UIViewController
 }
