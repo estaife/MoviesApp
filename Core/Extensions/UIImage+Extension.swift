@@ -5,7 +5,7 @@
 //  Created by Estaife Lima on 21/10/21.
 //
 
-import UIKit
+import UIKit.UIImage
 
 extension UIImage {
     static let mediumConfiguration = UIImage.SymbolConfiguration(weight: .medium)

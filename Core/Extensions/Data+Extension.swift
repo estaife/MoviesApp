@@ -1,5 +1,5 @@
 //
-//  ModelToData.swift
+//  Data+Extension.swift
 //  Data
 //
 //  Created by Estaife Lima on 01/03/21.

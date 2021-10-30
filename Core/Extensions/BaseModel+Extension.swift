@@ -1,5 +1,5 @@
 //
-//  BaseModel.swift
+//  BaseModel+Extension.swift
 //  Domain
 //
 //  Created by Estaife Lima on 01/03/21.

@@ -7,7 +7,10 @@
 
 import Foundation
 
-final class Environment {
+final public class Environment {
+    
+    public init() { }
+    
     private enum EnvironmentKey: String {
         case baseURL = "TMDB_API_BASE_URL"
         case versionAPI = "TMDB_API_VERSION"
@@ -16,22 +19,22 @@ final class Environment {
     }
     
     private func variable(with key: EnvironmentKey) -> String {
-        if let infoDictionary = Bundle(for: type(of: self)).infoDictionary,
+        if let infoDictionary = BundleModule.bundle.infoDictionary,
             let value = infoDictionary[key.rawValue] as? String {
             return value
         }
         return ""
     }
     
-    var baseURLString: String {
+    public var baseURLString: String {
         variable(with: .baseURL) + variable(with: .versionAPI)
     }
 
-    var apiKey: String {
+    public var apiKey: String {
         variable(with: .keyAPI)
     }
     
-    var baseImageURLString: String {
+    public var baseImageURLString: String {
         variable(with: .imageURL)
     }
 }

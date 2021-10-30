@@ -5,7 +5,7 @@
 //  Created by Estaife Lima on 20/10/21.
 //
 
-import Domain
+import Foundation
 
 public extension String {
     func dateFormated(format: DateFormatter.Style) -> String {
@@ -16,9 +16,7 @@ public extension String {
         dateFormatterString.dateStyle = format
         return dateFormatterString.string(from: date)
     }
-}
 
-public extension String {
     func makeUrlImage(_ quality: QualityImage) -> URL? {
         let urlString = "\(Environment().baseImageURLString)\(quality.rawValue)\(self)"
         if let url = URL(string: urlString) {

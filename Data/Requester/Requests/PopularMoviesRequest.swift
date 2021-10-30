@@ -5,7 +5,7 @@
 //  Created by Estaife Lima on 13/10/21.
 //
 
-import Foundation
+import Core
 
 struct PopularMoviesRequest {
     let page: String

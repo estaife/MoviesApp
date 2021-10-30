@@ -5,7 +5,7 @@
 //  Created by Estaife Lima on 12/10/21.
 //
 
-import Foundation
+import Core
 
 public protocol RequestProtocol {
     var path: String { get }
@@ -26,8 +26,7 @@ public enum HTTPMethod: String {
 
 public extension RequestProtocol {
     var url: URL? {
-        let environment = Environment()
-        guard let url = URL(string: environment.baseURLString + path) else {
+        guard let url = URL(string: Environment().baseURLString + path) else {
             debugPrint("Fails to create a valid URL")
             return nil
         }

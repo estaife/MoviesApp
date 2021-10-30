@@ -5,7 +5,7 @@
 //  Created by Estaife Lima on 14/09/20.
 //
 
-import Foundation
+import Core
 
 public struct MovieResults: BaseModel {
     public let page: Int

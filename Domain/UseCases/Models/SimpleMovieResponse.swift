@@ -5,7 +5,7 @@
 //  Created by Estaife Lima on 14/09/20.
 //
 
-import Foundation
+import Core
 
 // MARK: - SimpleMovieResponse
 public struct SimpleMovieResponse: BaseModel {
