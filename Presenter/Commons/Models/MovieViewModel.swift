@@ -31,15 +31,7 @@ public struct MovieViewModel {
     private let releaseDate: String
     private let voteAverageDouble: Double
     
-    // MARK: - Initializer
-    public init() {
-        self.identifier = ""
-        self.title = ""
-        self.releaseDate = ""
-        self.voteAverageDouble = -1
-        self.posterPathString = nil
-    }
-    
+    // MARK: - Initializer    
     public init(
         identifier: String,
         title: String,

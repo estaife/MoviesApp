@@ -50,13 +50,18 @@ public final class MovsFactoryImplementation: MovsFactory {
         let viewController = DetailsMovieViewController()
         let requester = RequesterHTTP()
         let locate = LocateUseCase(locale: Locale.current)
-        let useCase = DetailsMovieUseCase(
+        let detailsMovieUseCase = DetailsMovieUseCase(
+            requesterHTTP: requester,
+            locate: locate
+        )
+        let similarMoviesUseCase = SimilarMoviesUseCase(
             requesterHTTP: requester,
             locate: locate
         )
         let presenter = DetailsMoviePresenter(
             identifier: identifier,
-            detailsMovieUseCase: useCase,
+            detailsMovieUseCase: detailsMovieUseCase,
+            similarMovieUseCase: similarMoviesUseCase,
             loadingView: viewController,
             delegate: viewController
         )

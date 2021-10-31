@@ -10,7 +10,7 @@ import Foundation
 public struct DetailsMovieViewModel {
     public let headerDetailsMovieViewModel: HeaderDetailsMovieViewModel
     public let trailersMovieViewModel: [TrailerMovieViewModel]
-    public let similarMoviesViewModel: [MovieViewModel] // TODO: - Added layer of service
+    public let similarMoviesViewModel: [MovieViewModel]
     
     public init(
         headerDetailsMovieViewModel: HeaderDetailsMovieViewModel,

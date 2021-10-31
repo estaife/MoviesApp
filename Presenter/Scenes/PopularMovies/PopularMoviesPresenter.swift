@@ -70,7 +70,7 @@ final public class PopularMoviesPresenter {
         totalPages = movieResults.totalPages
         
         let popularMoviesViewModel = movieResults.results.map { simpleMovieResponse in
-            return MovieViewModel(
+            MovieViewModel(
                 identifier: String(simpleMovieResponse.identifier),
                 title: simpleMovieResponse.title,
                 releaseDate: simpleMovieResponse.releaseDate,

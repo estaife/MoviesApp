@@ -48,17 +48,6 @@ public struct HeaderDetailsMovieViewModel {
     private let voteAverageDouble: Double
     
     // MARK: - Initializer
-    public init() {
-        self.identifier = ""
-        self.title = ""
-        self.releaseDate = ""
-        self.genres = []
-        self.overview = ""
-        self.tagline = ""
-        self.voteAverageDouble = 0
-        self.backdropPathString = nil
-    }
-    
     public init(
         identifier: String,
         title: String,

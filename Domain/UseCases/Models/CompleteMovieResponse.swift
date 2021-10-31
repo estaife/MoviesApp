@@ -61,6 +61,25 @@ public struct CompleteMovieResponse: BaseModel {
         self.images = images
     }
     
+    public init() {
+        self.title = ""
+        self.identifier = -1
+        self.genres = []
+        self.overview = ""
+        self.posterPath = ""
+        self.backdropPath = ""
+        self.releaseDate = ""
+        self.tagline = ""
+        self.voteAverage = 0.0
+        self.videos = .init(
+            results: []
+        )
+        self.images = .init(
+            backdrops: [],
+            posters: []
+        )
+    }
+    
     // MARK: - GenreResponse
     public struct GenreResponse: Codable {
         public let identifier: Int
