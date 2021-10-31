@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import UIKit.UIColor
+import Core
 
 public struct DetailsMovieViewModel {
     // MARK: - Public Properties
@@ -20,9 +22,23 @@ public struct DetailsMovieViewModel {
     public var backdropPathUrl: URL? {
         backdropPathString?.makeUrlImage(.original)
     }
-    public var releaseYear: String {
-        String(releaseDate.prefix(4))
+    
+    public var releaseYearAttributedString: NSAttributedString {
+        attributedStringGeneric(
+            description: "Lançamento ",
+            contentGenres: String(releaseDate.prefix(4)).dateFormated(format: .medium)
+        )
     }
+    
+    public var genresAttributedString: NSAttributedString {
+        var contentGenres = genres.reduce("", { $0 + $1 + ", " })
+        contentGenres.removeLast(2)
+        return attributedStringGeneric(
+            description: "Gêneros ",
+            contentGenres: contentGenres
+        )
+    }
+    
     public var voteAverage: Int {
         Int(voteAverageDouble * 10)
     }
@@ -62,5 +78,29 @@ public struct DetailsMovieViewModel {
         self.tagline = tagline
         self.voteAverageDouble = voteAverage
         self.backdropPathString = backdropPathString
+    }
+    
+    private func attributedStringGeneric(
+        description: String,
+        contentGenres: String
+    ) -> NSAttributedString {
+        let mutableAttributedString = NSMutableAttributedString()
+        let descriptionAttributes = [
+            NSAttributedString.Key.foregroundColor: UIColor.descriptionColor
+        ]
+        let contentAttributes = [
+            NSAttributedString.Key.foregroundColor: UIColor.white
+        ]
+        mutableAttributedString.append(
+            .init(string: description,
+                  attributes: descriptionAttributes
+                 )
+        )
+        mutableAttributedString.append(
+            .init(string: contentGenres,
+                  attributes: contentAttributes
+                 )
+        )
+        return mutableAttributedString
     }
 }
