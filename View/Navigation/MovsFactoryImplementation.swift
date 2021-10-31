@@ -63,4 +63,8 @@ public final class MovsFactoryImplementation: MovsFactory {
         viewController.presenter = presenter
         return viewController
     }
+    
+    public func makeEmbedYoutubeVideoViewController(url: URL) -> UIViewController {
+        EmbedYoutubeVideoViewController(url: url)
+    }
 }

@@ -18,9 +18,6 @@ final internal class TrailersCollectionViewCell: CustomCollectionViewCell {
     private var trailerEntities = [TrailerMovieViewModel]()
     
     private struct Metrics {
-        static let cornerRadius: CGFloat = 12
-        static let fadeIn: Double = 0.20
-        
         static let sizeCell: CGSize = .init(width: 300, height: 190)
         static let spacing: CGFloat = 10
         static let sideMargin: CGFloat = 32

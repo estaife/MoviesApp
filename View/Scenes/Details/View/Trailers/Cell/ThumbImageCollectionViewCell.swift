@@ -60,19 +60,17 @@ final internal class ThumbImageCollectionViewCell: CustomCollectionViewCell {
     
     // MARK: - INTERNAL FUNC
     internal func updateView(with imageURL: URL?) {
-        DispatchQueue.main.async {
-            if let imageURL = imageURL {
-                let request = ImageRequest(url: imageURL)
-                let options = ImageLoadingOptions(
-                    placeholder: .trailerPoster,
-                    transition: .fadeIn(duration: Metrics.fadeIn)
-                )
-                Nuke.loadImage(
-                    with: request,
-                    options: options,
-                    into: self.bannerImageView
-                )
-            }
+        if let urlImage = imageURL {
+            let request = ImageRequest(url: urlImage)
+            let options = ImageLoadingOptions(
+                placeholder: .trailerPoster,
+                transition: .fadeIn(duration: Metrics.fadeIn)
+            )
+            Nuke.loadImage(
+                with: request,
+                options: options,
+                into: bannerImageView
+            )
         }
     }
 }

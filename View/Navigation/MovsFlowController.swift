@@ -60,7 +60,9 @@ extension MovsFlowController: PopularMoviesViewControllerDelegate {
 // MARK: - DetailsMoviesViewControllerDelegate
 extension MovsFlowController: DetailsMovieViewControllerDelegate {
     func detailsMovieViewControllerPrensetVideo(with url: URL) {
-        // TODO: - Implement this
+        let embedYoutubeVideoViewController = movsFactory.makeEmbedYoutubeVideoViewController(url: url)
+        embedYoutubeVideoViewController.modalPresentationStyle = .overCurrentContext
+        navigationController.present(embedYoutubeVideoViewController, animated: false)
     }
 }
 

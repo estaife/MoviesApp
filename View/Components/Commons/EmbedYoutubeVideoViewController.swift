@@ -42,19 +42,17 @@ final class EmbedYoutubeVideoViewController: CustomViewController {
         button.cornerRadius = Metrics.sizeButton / 5
         button.image = .dismiss
         button.textColor = .systemGray
-        button.onTouchUpInside = {
-            self.dismiss(animated: true)
+        button.onTouchUpInside = { [unowned self] in
             self.webView.stopLoading()
+            self.dismiss(animated: true)
         }
         return button
     }()
     
     // MARK: - INITIALIZERS
-    
-    public init(url: URL) {
+    internal init(url: URL) {
         self.url = url
         super.init(nibName: nil, bundle: nil)
-        style()
     }
     
     required init?(coder: NSCoder) {
@@ -62,28 +60,31 @@ final class EmbedYoutubeVideoViewController: CustomViewController {
     }
     
     // MARK: - Life Cycle
-    
-    override public func viewDidLoad() {
+    override internal func viewDidLoad() {
         super.viewDidLoad()
         commonInit()
     }
     
     // MARK: - VIEW HIERARCHY
-    
-    public func subviews() {
+    internal func subviews() {
         view = webView
         webView.addSubview(dismissButton)
     }
     
-    public func constraints() {
+    internal func constraints() {
         NSLayoutConstraint.activate([
-            dismissButton.topAnchor.constraint(equalTo: webView.topAnchor, constant: Metrics.margin * 4),
-            dismissButton.leadingAnchor.constraint(equalTo: webView.leadingAnchor, constant: Metrics.margin)
+            dismissButton.topAnchor.constraint(
+                equalTo: webView.topAnchor,
+                constant: Metrics.margin * 4
+            ),
+            dismissButton.leadingAnchor.constraint(
+                equalTo: webView.leadingAnchor,
+                constant: Metrics.margin
+            )
         ])
     }
     
-    public func style() {
+    internal func style() {
         view.backgroundColor = .black
     }
 }
-

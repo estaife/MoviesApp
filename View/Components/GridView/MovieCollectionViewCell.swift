@@ -135,7 +135,11 @@ internal class MovieCollectionViewCell: CustomCollectionViewCell {
                 placeholder: .moviePoster,
                 transition: .fadeIn(duration: Metrics.fadeIn)
             )
-            Nuke.loadImage(with: request, options: options, into: logoImageView)
+            Nuke.loadImage(
+                with: request,
+                options: options,
+                into: logoImageView
+            )
         }
     }
 }

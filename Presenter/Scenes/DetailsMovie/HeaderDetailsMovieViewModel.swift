@@ -25,7 +25,7 @@ public struct HeaderDetailsMovieViewModel {
     public var releaseYearAttributedString: NSAttributedString {
         attributedStringGeneric(
             description: "Lançamento ",
-            contentGenres: String(releaseDate.prefix(4)).dateFormated(format: .medium)
+            contentGenres: releaseDate.dateFormated(format: .medium)
         )
     }
     

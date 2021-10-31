@@ -12,4 +12,5 @@ public protocol MovsFactory {
     func makeAlertController(alertStyle: AlertControllerStyle, message: String?) -> UIViewController
     func makePopularMoviesViewController() -> UIViewController
     func makeDetailsMovieViewController(identifier: String) -> UIViewController
+    func makeEmbedYoutubeVideoViewController(url: URL) -> UIViewController
 }
