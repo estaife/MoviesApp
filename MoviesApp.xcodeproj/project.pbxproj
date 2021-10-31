@@ -94,6 +94,10 @@
 		814AB4C52714C8AC002CD93D /* View.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 812CC6FC2714B1430064AE76 /* View.framework */; platformFilter = ios; };
 		814AB4C62714C8AC002CD93D /* View.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 812CC6FC2714B1430064AE76 /* View.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		815E57142728B58200259F99 /* DetailsMovieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E57132728B58200259F99 /* DetailsMovieViewModel.swift */; };
+		8178C9E8272F1E8A00BBD445 /* SimilarMoviesUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8178C9E7272F1E8A00BBD445 /* SimilarMoviesUseCaseProtocol.swift */; };
+		8178C9EA272F2B2A00BBD445 /* SimilarMoviesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8178C9E9272F2B2A00BBD445 /* SimilarMoviesUseCase.swift */; };
+		8178C9EC272F2BBE00BBD445 /* SimilarMoviesUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8178C9EB272F2BBE00BBD445 /* SimilarMoviesUseCaseTests.swift */; };
+		8178C9EE272F2C6E00BBD445 /* SimilarMoviesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8178C9ED272F2C6E00BBD445 /* SimilarMoviesRequest.swift */; };
 		818B48EA27263D4100CE491D /* DetailsMovieGridViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818B48E627263D4100CE491D /* DetailsMovieGridViewType.swift */; };
 		818B48EB27263D4100CE491D /* DetailsMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818B48E727263D4100CE491D /* DetailsMovieViewController.swift */; };
 		818B48EC27263D4100CE491D /* DetailsMovieViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818B48E827263D4100CE491D /* DetailsMovieViewState.swift */; };
@@ -468,6 +472,10 @@
 		814F21782720A9C000C0B4AD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		814F217A2720A9D000C0B4AD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		815E57132728B58200259F99 /* DetailsMovieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsMovieViewModel.swift; sourceTree = "<group>"; };
+		8178C9E7272F1E8A00BBD445 /* SimilarMoviesUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarMoviesUseCaseProtocol.swift; sourceTree = "<group>"; };
+		8178C9E9272F2B2A00BBD445 /* SimilarMoviesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarMoviesUseCase.swift; sourceTree = "<group>"; };
+		8178C9EB272F2BBE00BBD445 /* SimilarMoviesUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarMoviesUseCaseTests.swift; sourceTree = "<group>"; };
+		8178C9ED272F2C6E00BBD445 /* SimilarMoviesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarMoviesRequest.swift; sourceTree = "<group>"; };
 		8186ADCA271BB2EB00B654F9 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		8186ADCB271BB30200B654F9 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "pt-BR"; path = "pt-BR.lproj/LaunchScreen.storyboard"; sourceTree = "<group>"; };
 		818B48E627263D4100CE491D /* DetailsMovieGridViewType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsMovieGridViewType.swift; sourceTree = "<group>"; };
@@ -705,6 +713,7 @@
 			children = (
 				43AA5BAC250F373B002D8517 /* PopularMoviesUseCaseTests.swift */,
 				81C227CB2728925600204E82 /* DetailsMovieUseCaseTests.swift */,
+				8178C9EB272F2BBE00BBD445 /* SimilarMoviesUseCaseTests.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -754,6 +763,7 @@
 				43AA5BB9250F377A002D8517 /* PopularMoviesUseCaseProtocol.swift */,
 				818B48F0272734E800CE491D /* DetailsMovieUseCaseProtocol.swift */,
 				8137C572271BAC45004BFE95 /* LocateUseCaseProtocol.swift */,
+				8178C9E7272F1E8A00BBD445 /* SimilarMoviesUseCaseProtocol.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -799,6 +809,7 @@
 			children = (
 				43AA5BCA250F3FEC002D8517 /* PopularMoviesUseCase.swift */,
 				81C227C72728588B00204E82 /* DetailsMovieUseCase.swift */,
+				8178C9E9272F2B2A00BBD445 /* SimilarMoviesUseCase.swift */,
 				8137C574271BAC99004BFE95 /* LocateUseCase.swift */,
 			);
 			path = UseCases;
@@ -881,6 +892,7 @@
 			isa = PBXGroup;
 			children = (
 				812B3D14271694BD000A9648 /* PopularMoviesRequest.swift */,
+				8178C9ED272F2C6E00BBD445 /* SimilarMoviesRequest.swift */,
 				81C227C927285B3300204E82 /* DetailsMovieRequest.swift */,
 			);
 			path = Requests;
@@ -1702,6 +1714,7 @@
 				43AA5BBA250F377A002D8517 /* PopularMoviesUseCaseProtocol.swift in Sources */,
 				43AA5BC4250F3C31002D8517 /* DomainError.swift in Sources */,
 				43AA5BBE250F3A66002D8517 /* MovieResults.swift in Sources */,
+				8178C9E8272F1E8A00BBD445 /* SimilarMoviesUseCaseProtocol.swift in Sources */,
 				818B48F1272734E800CE491D /* DetailsMovieUseCaseProtocol.swift in Sources */,
 				81C227C62728472700204E82 /* CompleteMovieResponse.swift in Sources */,
 				8137C573271BAC45004BFE95 /* LocateUseCaseProtocol.swift in Sources */,
@@ -1718,7 +1731,9 @@
 				43AA5BCB250F3FEC002D8517 /* PopularMoviesUseCase.swift in Sources */,
 				812B3D0927167F59000A9648 /* RequestProtocol.swift in Sources */,
 				81C227C82728588B00204E82 /* DetailsMovieUseCase.swift in Sources */,
+				8178C9EA272F2B2A00BBD445 /* SimilarMoviesUseCase.swift in Sources */,
 				8137C575271BAC99004BFE95 /* LocateUseCase.swift in Sources */,
+				8178C9EE272F2C6E00BBD445 /* SimilarMoviesRequest.swift in Sources */,
 				81C227CA27285B3300204E82 /* DetailsMovieRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1727,6 +1742,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8178C9EC272F2BBE00BBD445 /* SimilarMoviesUseCaseTests.swift in Sources */,
 				4357537D25EDD649002312F2 /* RequesterHTTPSpy.swift in Sources */,
 				81A5E010271CDB0800C0EB18 /* LocateUseCaseSpy.swift in Sources */,
 				43AA5BAD250F373B002D8517 /* PopularMoviesUseCaseTests.swift in Sources */,
@@ -2068,6 +2084,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.lima.estaife.NetworkingTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -2088,6 +2105,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.lima.estaife.NetworkingTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -2230,6 +2248,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = lima.estaife.DataTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -2250,6 +2269,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = lima.estaife.DataTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -2342,6 +2362,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = lima.estaife.PresenterTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 			};
@@ -2366,6 +2387,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = lima.estaife.PresenterTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 			};
@@ -2395,7 +2417,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = lima.estaife.View;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "macosx iphonesimulator iphoneos";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2430,7 +2452,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = lima.estaife.View;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "macosx iphonesimulator iphoneos";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

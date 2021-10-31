@@ -144,13 +144,17 @@ public struct CompleteMovieResponse: BaseModel {
         }
     }
 
+    public enum Site: String, Codable {
+        case youtube = "YouTube"
+    }
+    
     // MARK: - ResultResponse
     public struct ResultResponse: Codable {
         public let identifier: String
         public let iso6391: String
         public let iso31661: String
         public let key, name: String
-        public let site: String
+        public let site: Site
         public let size: Int
         public let typeVideo: String
         
