@@ -65,13 +65,19 @@ final public class DetailsMoviePresenter {
             voteAverage: completeMovieResponse.voteAverage,
             backdropPathString: completeMovieResponse.backdropPath
         )
-        let trailersMovieViewModel = completeMovieResponse.videos.results.map {
+    
+        let completeMovieResponseVideosResults = completeMovieResponse.videos.results.filter {
+            return $0.site == .youtube ? true : false
+        }
+        
+        let trailersMovieViewModel = completeMovieResponseVideosResults.map {
             TrailerMovieViewModel(
                 trailerID: $0.identifier,
                 thumbURL: $0.key.thumbImageURL,
                 videoURL: $0.key.trailerVideoURL
             )
         }
+        
         let detailsMovieViewModel = DetailsMovieViewModel(
             headerDetailsMovieViewModel: headerDetailsMovieViewModel,
             trailersMovieViewModel: trailersMovieViewModel,
