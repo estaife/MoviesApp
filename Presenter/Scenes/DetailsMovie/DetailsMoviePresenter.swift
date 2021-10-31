@@ -11,7 +11,7 @@ import Foundation
 import Domain
 
 public protocol DetailsMoviePresenterDelegate: AnyObject {
-    func presentDetailMovie(_ movie: DetailsMovieViewModel)
+    func presentDetailsMovie(_ movie: DetailsMovieViewModel)
     func presentError(_ error: DomainError)
 }
 
@@ -55,7 +55,7 @@ final public class DetailsMoviePresenter {
     
     // MARK: - PRIVATE METHODS
     private func handleSuccess(_ completeMovieResponse: CompleteMovieResponse) {
-        let detailsMovieViewModel = DetailsMovieViewModel(
+        let headerDetailsMovieViewModel = HeaderDetailsMovieViewModel(
             identifier: String(completeMovieResponse.identifier),
             title: completeMovieResponse.title,
             genres: completeMovieResponse.genres.map { $0.name },
@@ -65,6 +65,18 @@ final public class DetailsMoviePresenter {
             voteAverage: completeMovieResponse.voteAverage,
             backdropPathString: completeMovieResponse.backdropPath
         )
-        delegate.presentDetailMovie(detailsMovieViewModel)
+        let trailersMovieViewModel = completeMovieResponse.videos.results.map {
+            TrailerMovieViewModel(
+                trailerID: $0.identifier,
+                thumbURL: $0.key.thumbImageURL,
+                videoURL: $0.key.trailerVideoURL
+            )
+        }
+        let detailsMovieViewModel = DetailsMovieViewModel(
+            headerDetailsMovieViewModel: headerDetailsMovieViewModel,
+            trailersMovieViewModel: trailersMovieViewModel,
+            similarMoviesViewModel: []
+        )
+        delegate.presentDetailsMovie(detailsMovieViewModel)
     }
 }

@@ -9,8 +9,8 @@ import Foundation
 import Presenter
 
 enum DetailsMovieViewState {
-    case hasData(MovieViewModel)
-    case startLoading
+    case hasData(DetailsMovieViewModel)
+    case loading
     case stopLoading
     case error(String)
 }

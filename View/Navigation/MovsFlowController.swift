@@ -58,11 +58,15 @@ extension MovsFlowController: PopularMoviesViewControllerDelegate {
 }
 
 // MARK: - DetailsMoviesViewControllerDelegate
-extension MovsFlowController: DetailsMovieViewControllerDelegate { }
+extension MovsFlowController: DetailsMovieViewControllerDelegate {
+    func detailsMovieViewControllerPrensetVideo(with url: URL) {
+        // TODO: - Implement this
+    }
+}
 
 // MARK: - AlertControllerDelegate
 extension MovsFlowController: AlertControllerDelegate {
-    public func presentAlert(with alertStyle: AlertControllerStyle, and message: String?) {
+    public func alertControllerPresentAlert(with alertStyle: AlertControllerStyle, and message: String?) {
         let alertController = movsFactory.makeAlertController(alertStyle: alertStyle, message: message)
         alertController.modalPresentationStyle = .overCurrentContext
         navigationController.topViewController?.present(alertController, animated: false)

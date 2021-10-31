@@ -8,5 +8,5 @@
 import Foundation
 
 public protocol AlertControllerDelegate: AnyObject {
-    func presentAlert(with alertStyle: AlertControllerStyle, and message: String?)
+    func alertControllerPresentAlert(with alertStyle: AlertControllerStyle, and message: String?)
 }

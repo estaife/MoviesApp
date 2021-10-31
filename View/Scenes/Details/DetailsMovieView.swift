@@ -1,66 +1,81 @@
 //
-//  DetailsMovieGridView.swift
+//  DetailsMovieView.swift
 //  View
 //
-//  Created by Estaife Lima on 24/10/21.
+//  Created by Estaife Lima on 30/10/21.
 //
 
 import UIKit
 
-protocol DetailsMovieViewProtocol: AnyObject {
-    func didTappedRetry()
-}
-
-final class DetailsMovieView: CustomView {
+final internal class DetailsMovieView: CustomView {
     
     // MARK: - INTERNAL PROPERTIES
     internal var isLoading: Bool {
         activityIndicatorView.isAnimating
     }
     
-    // MARK: - PRIVATE PROPERTIES
-    private weak var delegate: DetailsMovieViewProtocol?
+    internal weak var delegate: TrailersCollectionViewCellDelegate?
     
+    // MARK: - PRIVATE PROPERTIES
     private var viewState: ViewState = .loading {
         didSet { transition(to: viewState) }
     }
     
-    private struct Strings {
-        static let informationTitle = "Opss, estamos trabalhando para melhorar"
-        static let informationButtonTitle = "Tentar novamente"
-    }
-    
     private struct Metrics {
-        static let spacing: CGFloat = 20
+        static var sizeCell: CGSize {
+            let width = UIScreen.main.bounds.width
+            return .init(width: width, height: 280)
+        }
+        static let numberOfItemsInSection = 1
     }
     
     // MARK: - UI
-    private lazy var errorInformationView: InformationView = {
-        let view = InformationView(
-            title: Strings.informationTitle,
-            action: UIAction(
-                title: Strings.informationButtonTitle,
-                handler: { [unowned self] _ in
-                    self.delegate?.didTappedRetry()
-                }
-            )
-        )
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.isHidden = true
-        return view
-    }()
+    private var imageHeaderView: ImageHeaderView? {
+        didSet {
+            if viewState == .loading {
+                imageHeaderView?.updateView(with: .loading)
+            }
+        }
+    }
+    
+    private var trailersCollectionViewCell: TrailersCollectionViewCell? {
+        didSet {
+            trailersCollectionViewCell?.delegate = delegate
+        }
+    }
     
     private lazy var activityIndicatorView: UIActivityIndicatorView = {
-        let indicatorView = UIActivityIndicatorView(style: .medium)
+        let indicatorView = UIActivityIndicatorView(style: .large)
         indicatorView.translatesAutoresizingMaskIntoConstraints = false
         indicatorView.color = .systemGray
-        indicatorView.startAnimating()
+        indicatorView.backgroundColor = .clear
         return indicatorView
     }()
     
+    private lazy var collectionViewContent: UICollectionView = {
+        let layout = DetailsMovieLayout()
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.contentInsetAdjustmentBehavior = .never
+        collectionView.backgroundColor = .systemBackground
+        collectionView.register(
+            ImageHeaderView.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: ImageHeaderView.identifier
+        )
+        collectionView.register(
+            TrailersCollectionViewCell.self,
+            forCellWithReuseIdentifier: TrailersCollectionViewCell.identifier
+        )
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        return collectionView
+    }()
+    
     // MARK: - INITALIZER
-    internal init() {
+    internal init(delegate: TrailersCollectionViewCellDelegate) {
         super.init(frame: .zero)
+        self.delegate = delegate
         commonInit()
     }
     
@@ -70,47 +85,115 @@ final class DetailsMovieView: CustomView {
     
     // MARK: - VIEW HIERARCHY
     internal func subviews() {
+        addSubview(collectionViewContent)
         addSubview(activityIndicatorView)
-        addSubview(errorInformationView)
     }
     
     internal func constraints() {
         NSLayoutConstraint.activate([
-            activityIndicatorView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            activityIndicatorView.bottomAnchor.constraint(
-                equalTo: bottomAnchor,
-                constant: -Metrics.spacing
-            ),
+            collectionViewContent.topAnchor.constraint(equalTo: topAnchor),
+            collectionViewContent.leadingAnchor.constraint(equalTo: leadingAnchor),
+            collectionViewContent.trailingAnchor.constraint(equalTo: trailingAnchor),
+            collectionViewContent.bottomAnchor.constraint(equalTo: bottomAnchor),
             
-            errorInformationView.topAnchor.constraint(equalTo: topAnchor),
-            errorInformationView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            errorInformationView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            errorInformationView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            activityIndicatorView.topAnchor.constraint(equalTo: topAnchor),
+            activityIndicatorView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            activityIndicatorView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            activityIndicatorView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
     
     internal func style() {
-        backgroundColor = .systemBackground
+        backgroundColor = .white
+    }
+    
+    // MARK: - PRIVATE FUNC
+    private func showAlertError(message: String) {
+        delegate?.trailersCollectionViewCellPrensetAlert(with: message)
     }
 }
 
-// MARK: - DetailsMoviesViewType
+// MARK: - DetailsMovieViewType
 extension DetailsMovieView: DetailsMovieViewType {
+    internal func updateViewOrientation() {
+        collectionViewContent.collectionViewLayout.invalidateLayout()
+    }
+    
     internal func updateView(with viewState: DetailsMovieViewState) {
         DispatchQueue.main.async {
             switch viewState {
-            case .hasData(_):
+            case .hasData(let viewEntity):
                 self.viewState = .hasData
-            case .startLoading:
+                self.imageHeaderView?.updateView(
+                    with: .hasData(viewEntity.headerDetailsMovieViewModel)
+                )
+                self.trailersCollectionViewCell?.updateView(
+                    with: viewEntity.trailersMovieViewModel
+                )
+            case .loading:
                 self.viewState = .loading
             case .stopLoading:
                 self.viewState = .hasData
-            case .error(let error):
+            case .error(let message):
                 self.viewState = .error
-                self.errorInformationView.subtitle = error
-                break
+                self.showAlertError(message: message)
+                self.imageHeaderView?.updateView(with: .error)
+                
             }
         }
+    }
+}
+
+// MARK: - UICollectionViewDelegate && UICollectionViewDelegateFlowLayout
+extension DetailsMovieView: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    internal func collectionView(
+        _ collectionView: UICollectionView,
+        viewForSupplementaryElementOfKind kind: String,
+        at indexPath: IndexPath
+    ) -> UICollectionReusableView {
+        imageHeaderView = collectionView.dequeueReusableSupplementaryView(
+            ofKind: kind,
+            withReuseIdentifier: ImageHeaderView.identifier,
+            for: indexPath
+        ) as? ImageHeaderView
+        guard let supplementaryView = imageHeaderView else {
+            return .init()
+        }
+        return supplementaryView
+    }
+    
+    internal func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
+        Metrics.sizeCell
+    }
+}
+
+// MARK: - UICollectionViewDataSource
+extension DetailsMovieView: UICollectionViewDataSource {
+    
+    internal func collectionView(
+        _ collectionView: UICollectionView,
+        numberOfItemsInSection section: Int
+    ) -> Int {
+        Metrics.numberOfItemsInSection
+    }
+    
+    internal func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
+        let cellOptional = collectionView.dequeueReusableCell(
+            withReuseIdentifier: TrailersCollectionViewCell.identifier,
+            for: indexPath
+        ) as? TrailersCollectionViewCell
+        guard let cell = cellOptional else {
+            return .init()
+        }
+        trailersCollectionViewCell = cell
+        return cell
     }
 }
 
@@ -119,12 +202,13 @@ extension DetailsMovieView: ViewStateProtocol {
     internal func transition(to state: ViewState) {
         switch state {
         case .loading:
-            activityIndicatorView.startAnimating()
+            self.collectionViewContent.isScrollEnabled = false
+            self.activityIndicatorView.startAnimating()
         case .hasData:
-            errorInformationView.isHidden = true
-            activityIndicatorView.stopAnimating()
+            self.collectionViewContent.isScrollEnabled = true
+            self.activityIndicatorView.stopAnimating()
         case .error:
-            errorInformationView.isHidden = false
+            self.activityIndicatorView.stopAnimating()
         }
     }
 }

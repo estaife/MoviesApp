@@ -9,7 +9,9 @@ import UIKit
 import Domain
 import Presenter
 
-internal protocol DetailsMovieViewControllerDelegate: AlertControllerDelegate { }
+internal protocol DetailsMovieViewControllerDelegate: AlertControllerDelegate {
+    func detailsMovieViewControllerPrensetVideo(with url: URL)
+}
 
 internal final class DetailsMovieViewController: UIViewController {
     
@@ -24,7 +26,7 @@ internal final class DetailsMovieViewController: UIViewController {
     // MARK: - Life Cycle
     internal override func loadView() {
         super.loadView()
-        view = DetailsMovieView()
+        view = DetailsMovieView(delegate: self)
         title = Strings.title
     }
     
@@ -41,7 +43,7 @@ extension DetailsMovieViewController: LoadingViewProtocol {
     }
     
     internal func start() {
-        (view as? DetailsMovieView)?.updateView(with: .startLoading)
+        (view as? DetailsMovieView)?.updateView(with: .loading)
     }
     
     internal func stop() {
@@ -51,11 +53,22 @@ extension DetailsMovieViewController: LoadingViewProtocol {
 
 // MARK: - LoadingViewProtocol
 extension DetailsMovieViewController: DetailsMoviePresenterDelegate {
-    internal func presentDetailMovie(_ movie: DetailsMovieViewModel) {
-        print(movie)
+    internal func presentDetailsMovie(_ movie: DetailsMovieViewModel) {
+        (view as? DetailsMovieView)?.updateView(with: .hasData(movie))
     }
     
     internal func presentError(_ error: DomainError) {
-        print(error)
+        (view as? DetailsMovieView)?.updateView(with: .error(error.localizedDescription))
+    }
+}
+
+// MARK: - TrailersCollectionViewCellDelegate
+extension DetailsMovieViewController: TrailersCollectionViewCellDelegate {
+    func trailersCollectionViewCellPrensetAlert(with message: String) {
+        delegate?.alertControllerPresentAlert(with: .error, and: message)
+    }
+    
+    func trailersCollectionViewCellPrensetVideo(with url: URL) {
+        delegate?.detailsMovieViewControllerPrensetVideo(with: url)
     }
 }
