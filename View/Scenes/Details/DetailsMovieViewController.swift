@@ -18,11 +18,20 @@ internal final class DetailsMovieViewController: UIViewController {
     // MARK: - Properties
     internal var presenter: DetailsMoviePresenter?
     internal weak var delegate: DetailsMovieViewControllerDelegate?
+    
+    // MARK: - UI
+    private lazy var contentView: DetailsMovieViewType = {
+        let conteView = DetailsMovieView(
+            trailersCollectionViewCellDelegate: self,
+            gridViewDelegate: self
+        )
+        return conteView
+    }()
 
     // MARK: - Life Cycle
     internal override func loadView() {
         super.loadView()
-        view = DetailsMovieView(delegate: self)
+        view = contentView.content
     }
     
     internal override func viewWillAppear(_ animated: Bool) {
@@ -34,26 +43,26 @@ internal final class DetailsMovieViewController: UIViewController {
 // MARK: - LoadingViewProtocol
 extension DetailsMovieViewController: LoadingViewProtocol {
     internal var isLoading: Bool {
-        (view as? DetailsMovieView)?.isLoading ?? false
+        (contentView.content as? DetailsMovieView)?.isLoading ?? false
     }
     
     internal func start() {
-        (view as? DetailsMovieView)?.updateView(with: .loading)
+        contentView.updateView(with: .loading)
     }
     
     internal func stop() {
-        (view as? DetailsMovieView)?.updateView(with: .stopLoading)
+        contentView.updateView(with: .stopLoading)
     }
 }
 
 // MARK: - LoadingViewProtocol
 extension DetailsMovieViewController: DetailsMoviePresenterDelegate {
     internal func presentDetailsMovie(_ movie: DetailsMovieViewModel) {
-        (view as? DetailsMovieView)?.updateView(with: .hasData(movie))
+        contentView.updateView(with: .hasData(movie))
     }
     
     internal func presentError(_ error: DomainError) {
-        (view as? DetailsMovieView)?.updateView(with: .error(error.localizedDescription))
+        contentView.updateView(with: .error(error.localizedDescription))
     }
 }
 
@@ -65,5 +74,12 @@ extension DetailsMovieViewController: TrailersCollectionViewCellDelegate {
     
     func trailersCollectionViewCellPrensetVideo(with url: URL) {
         delegate?.detailsMovieViewControllerPrensetVideo(with: url)
+    }
+}
+
+// MARK: - GridViewDelegate
+extension DetailsMovieViewController: GridViewDelegate {
+    func goToDetailMovieScene(identifier: String) {
+        
     }
 }

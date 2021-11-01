@@ -21,6 +21,7 @@ final internal class TrailersCollectionViewCell: CustomCollectionViewCell {
         static let sizeCell: CGSize = .init(width: 300, height: 190)
         static let spacing: CGFloat = 10
         static let sideMargin: CGFloat = 32
+        static let edgeInsets = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 24)
     }
     
     private struct Strings {
@@ -51,9 +52,11 @@ final internal class TrailersCollectionViewCell: CustomCollectionViewCell {
             frame: bounds,
             collectionViewLayout: collectionViewLayout
         )
+        collectionView.contentInset = Metrics.edgeInsets
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         collectionView.backgroundColor = .systemBackground
+        collectionView.showsVerticalScrollIndicator = false
         collectionView.delegate = self
         collectionView.register(
             ThumbImageCollectionViewCell.self,
@@ -94,12 +97,10 @@ final internal class TrailersCollectionViewCell: CustomCollectionViewCell {
                 equalTo: titleLabel.bottomAnchor
             ),
             trailersCollectionView.leadingAnchor.constraint(
-                equalTo: leadingAnchor,
-                constant: Metrics.sideMargin
+                equalTo: leadingAnchor
             ),
             trailersCollectionView.trailingAnchor.constraint(
-                equalTo: trailingAnchor,
-                constant: -Metrics.sideMargin
+                equalTo: trailingAnchor
             ),
             trailersCollectionView.bottomAnchor.constraint(
                 equalTo: bottomAnchor,

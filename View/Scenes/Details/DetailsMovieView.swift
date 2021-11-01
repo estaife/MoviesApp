@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Presenter
 
 final internal class DetailsMovieView: CustomView {
     
@@ -14,7 +15,10 @@ final internal class DetailsMovieView: CustomView {
         activityIndicatorView.isAnimating
     }
     
-    internal weak var delegate: TrailersCollectionViewCellDelegate?
+    internal weak var trailersCollectionViewCellDelegate: TrailersCollectionViewCellDelegate?
+    internal weak var gridViewDelegate: GridViewDelegate?
+    
+    private var similarMovieViewModel: [MovieViewModel]?
     
     // MARK: - PRIVATE PROPERTIES
     private var viewState: ViewState = .loading {
@@ -22,11 +26,15 @@ final internal class DetailsMovieView: CustomView {
     }
     
     private struct Metrics {
-        static var sizeCell: CGSize {
+        static var trailerSizeCell: CGSize {
             let width = UIScreen.main.bounds.width
             return .init(width: width, height: 280)
         }
-        static let numberOfItemsInSection = 1
+        static var movieSizeCell: CGSize {
+            let width = UIScreen.main.bounds.width
+            return .init(width: width, height: 475)
+        }
+        static let numberOfItemsInSection = 2
     }
     
     // MARK: - UI
@@ -40,7 +48,13 @@ final internal class DetailsMovieView: CustomView {
     
     private var trailersCollectionViewCell: TrailersCollectionViewCell? {
         didSet {
-            trailersCollectionViewCell?.delegate = delegate
+            trailersCollectionViewCell?.delegate = trailersCollectionViewCellDelegate
+        }
+    }
+    
+    private var similarMoviesCollectionViewCell: SimilarMoviesCollectionViewCell? {
+        didSet {
+            similarMoviesCollectionViewCell?.delegate = gridViewDelegate
         }
     }
     
@@ -77,10 +91,14 @@ final internal class DetailsMovieView: CustomView {
     }()
     
     // MARK: - INITALIZER
-    internal init(delegate: TrailersCollectionViewCellDelegate) {
+    internal init(
+        trailersCollectionViewCellDelegate: TrailersCollectionViewCellDelegate,
+        gridViewDelegate: GridViewDelegate
+    ) {
         super.init(frame: .zero)
-        self.delegate = delegate
-        commonInit()
+        self.trailersCollectionViewCellDelegate = trailersCollectionViewCellDelegate
+        self.gridViewDelegate = gridViewDelegate
+        self.commonInit()
     }
     
     required init?(coder: NSCoder) {
@@ -113,7 +131,7 @@ final internal class DetailsMovieView: CustomView {
     
     // MARK: - PRIVATE FUNC
     private func showAlertError(message: String) {
-        delegate?.trailersCollectionViewCellPrensetAlert(with: message)
+        trailersCollectionViewCellDelegate?.trailersCollectionViewCellPrensetAlert(with: message)
     }
 }
 
@@ -134,6 +152,7 @@ extension DetailsMovieView: DetailsMovieViewType {
                 self.trailersCollectionViewCell?.updateView(
                     with: viewEntity.trailersMovieViewModel
                 )
+                self.similarMovieViewModel = viewEntity.similarMoviesViewModel
             case .loading:
                 self.viewState = .loading
             case .stopLoading:
@@ -142,7 +161,6 @@ extension DetailsMovieView: DetailsMovieViewType {
                 self.viewState = .error
                 self.showAlertError(message: message)
                 self.imageHeaderView?.updateView(with: .error)
-                
             }
         }
     }
@@ -171,7 +189,13 @@ extension DetailsMovieView: UICollectionViewDelegate, UICollectionViewDelegateFl
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
-        Metrics.sizeCell
+        switch indexPath.row {
+        case 0:
+            return Metrics.trailerSizeCell
+        case 1:
+            return Metrics.movieSizeCell
+        default: return .zero
+        }
     }
 }
 
@@ -189,15 +213,28 @@ extension DetailsMovieView: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
-        let cellOptional = collectionView.dequeueReusableCell(
-            withReuseIdentifier: TrailersCollectionViewCell.identifier,
-            for: indexPath
-        ) as? TrailersCollectionViewCell
-        guard let cell = cellOptional else {
+        switch indexPath.row {
+        case 0:
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: TrailersCollectionViewCell.identifier,
+                for: indexPath
+            ) as? TrailersCollectionViewCell else {
+                return .init()
+            }
+            trailersCollectionViewCell = cell
+            return cell
+        case 1:
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: SimilarMoviesCollectionViewCell.identifier,
+                for: indexPath
+            ) as? SimilarMoviesCollectionViewCell else {
+                return .init()
+            }
+            cell.updateView(with: .hasData(similarMovieViewModel ?? []))
+            return cell
+        default:
             return .init()
         }
-        trailersCollectionViewCell = cell
-        return cell
     }
 }
 

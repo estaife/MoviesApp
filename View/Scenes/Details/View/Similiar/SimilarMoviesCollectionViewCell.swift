@@ -28,7 +28,7 @@ final class SimilarMoviesCollectionViewCell: CustomCollectionViewCell {
     // MARK: - Metrics
     private struct Metrics {
         static let sizeCell: CGSize = .init(width: 200, height: 375)
-        static let edgeInsets = UIEdgeInsets(top: 10, left: 24, bottom: 10, right: 24)
+        static let edgeInsets = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 24)
         static let spacing: CGFloat = 10
         static let sideMargin: CGFloat = 32
     }
@@ -44,7 +44,6 @@ final class SimilarMoviesCollectionViewCell: CustomCollectionViewCell {
     private var dataSource: DataSource! = nil
     
     // MARK: - UI
-    
     private var trailingAnchorConstraintCollectionView = NSLayoutConstraint()
     
     private lazy var titleLabel: UILabel = {
@@ -70,13 +69,15 @@ final class SimilarMoviesCollectionViewCell: CustomCollectionViewCell {
             frame: bounds,
             collectionViewLayout: collectionViewLayout
         )
+        collectionView.contentInset = Metrics.edgeInsets
+        collectionView.showsVerticalScrollIndicator = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         collectionView.backgroundColor = .systemBackground
         collectionView.delegate = self
         collectionView.register(
-            ThumbImageCollectionViewCell.self,
-            forCellWithReuseIdentifier: ThumbImageCollectionViewCell.reuseIdentifier
+            MovieCollectionViewCell.self,
+            forCellWithReuseIdentifier: MovieCollectionViewCell.reuseIdentifier
         )
         return collectionView
     }()
@@ -94,6 +95,7 @@ final class SimilarMoviesCollectionViewCell: CustomCollectionViewCell {
         super.init(frame: frame)
         commonInit()
         setupDataSource()
+        viewState = .loading
     }
     
     required init?(coder: NSCoder) {
@@ -104,10 +106,13 @@ final class SimilarMoviesCollectionViewCell: CustomCollectionViewCell {
     internal func subviews() {
         addSubview(titleLabel)
         addSubview(similarMoviesCollectionView)
+        addSubview(activityIndicatorView)
     }
     
     internal func constraints() {
-        trailingAnchorConstraintCollectionView = similarMoviesCollectionView.trailingAnchor.constraint(equalTo: leadingAnchor)
+        trailingAnchorConstraintCollectionView = similarMoviesCollectionView.trailingAnchor.constraint(
+            equalTo: trailingAnchor
+        )
         
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(
@@ -123,17 +128,21 @@ final class SimilarMoviesCollectionViewCell: CustomCollectionViewCell {
                 equalTo: titleLabel.bottomAnchor
             ),
             similarMoviesCollectionView.leadingAnchor.constraint(
-                equalTo: leadingAnchor,
-                constant: Metrics.sideMargin
+                equalTo: leadingAnchor
             ),
+            trailingAnchorConstraintCollectionView,
             similarMoviesCollectionView.bottomAnchor.constraint(
                 equalTo: bottomAnchor,
                 constant: -Metrics.sideMargin
             ),
-            trailingAnchorConstraintCollectionView,
-            
-            activityIndicatorView.centerYAnchor.constraint(equalTo: similarMoviesCollectionView.centerYAnchor),
-            activityIndicatorView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Metrics.spacing),
+
+            activityIndicatorView.centerYAnchor.constraint(
+                equalTo: similarMoviesCollectionView.centerYAnchor
+            ),
+            activityIndicatorView.trailingAnchor.constraint(
+                equalTo: trailingAnchor,
+                constant: -Metrics.spacing
+            ),
         ])
     }
     
@@ -176,7 +185,6 @@ final class SimilarMoviesCollectionViewCell: CustomCollectionViewCell {
     }
 }
 
-
 // MARK: - UICollectionViewDelegateFlowLayout & UICollectionViewDelegate
 extension SimilarMoviesCollectionViewCell: UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
     public func collectionView(
@@ -210,16 +218,14 @@ extension SimilarMoviesCollectionViewCell: UICollectionViewDelegateFlowLayout, U
 // MARK: - PopularMoviesGridViewType
 extension SimilarMoviesCollectionViewCell: SimilarMoviesCollectionViewCellType {
     func updateView(with viewState: SimilarMoviesCollectionViewCellViewState) {
-        DispatchQueue.main.async {
-            switch viewState {
-            case .hasData(let movies):
-                self.applySnapshot(movies: movies)
-                self.viewState = .hasData
-            case .loading:
-                self.viewState = .loading
-            case .stopLoading:
-                self.viewState = .hasData
-            }
+        switch viewState {
+        case .hasData(let movies):
+            self.applySnapshot(movies: movies)
+            self.viewState = .hasData
+        case .loading:
+            self.viewState = .loading
+        case .stopLoading:
+            self.viewState = .hasData
         }
     }
 }

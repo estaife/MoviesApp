@@ -824,10 +824,10 @@
 		8117E325272EF8DC0064F906 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8178C9EF27301EC900BBD445 /* Similiar */,
 				8117E345272F01820064F906 /* UICollectionViewFlowLayout */,
 				8117E326272EF8F50064F906 /* Header */,
 				8117E32E272EF8F50064F906 /* Trailers */,
+				8178C9EF27301EC900BBD445 /* Similiar */,
 			);
 			path = View;
 			sourceTree = "<group>";
