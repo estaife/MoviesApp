@@ -26,7 +26,6 @@ public struct MovieViewModel {
     }
     
     // MARK: - Private Properties
-    private let internalIdentifier: UUID = UUID()
     private var posterPathString: String?
     private let releaseDate: String
     private let voteAverageDouble: Double
@@ -53,13 +52,13 @@ extension MovieViewModel: Equatable {
         lhs: MovieViewModel,
         rhs: MovieViewModel
     ) -> Bool {
-        return lhs.internalIdentifier == rhs.internalIdentifier
+        return lhs.identifier == rhs.identifier
     }
 }
 
 // MARK: - Hashable
 extension MovieViewModel: Hashable {
     public func hash(into hasher: inout Hasher) {
-        hasher.combine(internalIdentifier)
+        hasher.combine(identifier)
     }
 }

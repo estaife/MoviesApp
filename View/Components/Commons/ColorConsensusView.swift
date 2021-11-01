@@ -6,6 +6,7 @@
 //
 
 import UIKit.UIColor
+import UIKit
 
 typealias Style = ColorConsensusView.StyleStroke
 
@@ -22,16 +23,16 @@ struct ColorConsensusView {
         case high
         case none
         
-        var color: CGColor {
+        var color: UIColor {
             switch self {
             case .low:
-                return UIColor.systemRed.cgColor
+                return UIColor.systemRed
             case .medium:
-                return UIColor.systemYellow.cgColor
+                return UIColor.systemYellow
             case .high:
-                return UIColor.green.cgColor
+                return UIColor.green
             case .none:
-                return UIColor.clear.cgColor
+                return UIColor.clear
             }
         }
     }

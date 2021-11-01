@@ -24,8 +24,7 @@ internal final class DetailsMovieViewController: UIViewController {
     private lazy var contentView: DetailsMovieViewType = {
         let conteView = DetailsMovieView(
             trailersCollectionViewCellDelegate: self,
-            gridViewNavigationDelegate: self,
-            gridViewPaginationDelegate: self
+            gridViewNavigationDelegate: self
         )
         return conteView
     }()
@@ -39,6 +38,11 @@ internal final class DetailsMovieViewController: UIViewController {
     internal override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         presenter?.fetchDetailMovie()
+    }
+    
+    // MARK: - PRIVATE FUNC
+    private func navigationBarStyle(voteAverage: Int) {
+        navigationController?.navigationBar.tintColor = ColorConsensusView.getStyleStroke(value: voteAverage).color
     }
 }
 
@@ -59,11 +63,8 @@ extension DetailsMovieViewController: LoadingViewProtocol {
 
 // MARK: - LoadingViewProtocol
 extension DetailsMovieViewController: DetailsMoviePresenterDelegate {
-    func presentMoreSimilarMovies(_ movies: [MovieViewModel]) {
-        // TODO: Implement this
-    }
-    
     internal func presentDetailsMovie(_ movie: DetailsMovieViewModel) {
+        navigationBarStyle(voteAverage: movie.headerDetailsMovieViewModel.voteAverage)
         contentView.updateView(with: .hasData(movie))
     }
     
@@ -83,12 +84,8 @@ extension DetailsMovieViewController: TrailersCollectionViewCellDelegate {
     }
 }
 
-// MARK: - GridViewDelegate
-extension DetailsMovieViewController: GridViewDelegate {
-    func makeFetchMoreMovies() {
-        // TODO: Implement this presenter?.fetchSimilarMoviesMovies()
-    }
-    
+// MARK: - GridViewNavigationDelegate
+extension DetailsMovieViewController: GridViewNavigationDelegate {
     func goToDetailMovieScene(identifier: String) {
         delegate?.detailsMovieViewControllerOpenDetailMovie(identifier: identifier)
     }

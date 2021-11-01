@@ -102,7 +102,7 @@ final class ConsensusView: CustomView {
         circularBasicAnimation.fillMode = .forwards
         circularBasicAnimation.isRemovedOnCompletion = false
         progressLayer.add(circularBasicAnimation, forKey: "circularBasicAnimation")
-        progressLayer.strokeColor = ColorConsensusView.getStyleStroke(value: value).color
+        progressLayer.strokeColor = ColorConsensusView.getStyleStroke(value: value).color.cgColor
         percentLabel.attributedText = mutableAttributedString(value: String(value))
     }
     

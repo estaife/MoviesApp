@@ -31,7 +31,9 @@ public struct HeaderDetailsMovieViewModel {
     
     public var genresAttributedString: NSAttributedString {
         var contentGenres = genres.reduce("", { $0 + $1 + ", " })
-        contentGenres.removeLast(2)
+        if !contentGenres.isEmpty {
+            contentGenres.removeLast(2)
+        }
         return attributedStringGeneric(
             description: "Gêneros ",
             contentGenres: contentGenres

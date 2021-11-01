@@ -17,7 +17,6 @@ final internal class DetailsMovieView: CustomView {
     
     internal weak var trailersCollectionViewCellDelegate: TrailersCollectionViewCellDelegate?
     weak var gridViewNavigationDelegate: GridViewNavigationDelegate?
-    weak var gridViewPaginationDelegate: GridViewPaginationDelegate?
     
     private var similarMoviesViewModel: [MovieViewModel]?
     
@@ -56,7 +55,6 @@ final internal class DetailsMovieView: CustomView {
     private var similarMoviesCollectionViewCell: SimilarMoviesCollectionViewCell? {
         didSet {
             similarMoviesCollectionViewCell?.gridViewNavigationDelegate = gridViewNavigationDelegate
-            similarMoviesCollectionViewCell?.gridViewPaginationDelegate = gridViewPaginationDelegate
         }
     }
     
@@ -95,13 +93,11 @@ final internal class DetailsMovieView: CustomView {
     // MARK: - INITALIZER
     internal init(
         trailersCollectionViewCellDelegate: TrailersCollectionViewCellDelegate,
-        gridViewNavigationDelegate: GridViewNavigationDelegate,
-        gridViewPaginationDelegate: GridViewPaginationDelegate
+        gridViewNavigationDelegate: GridViewNavigationDelegate
     ) {
         super.init(frame: .zero)
         self.trailersCollectionViewCellDelegate = trailersCollectionViewCellDelegate
         self.gridViewNavigationDelegate = gridViewNavigationDelegate
-        self.gridViewPaginationDelegate = gridViewPaginationDelegate
         self.commonInit()
     }
     
@@ -205,7 +201,6 @@ extension DetailsMovieView: UICollectionViewDelegate, UICollectionViewDelegateFl
 
 // MARK: - UICollectionViewDataSource
 extension DetailsMovieView: UICollectionViewDataSource {
-    
     internal func collectionView(
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
@@ -235,7 +230,7 @@ extension DetailsMovieView: UICollectionViewDataSource {
                 return .init()
             }
             similarMoviesCollectionViewCell = cell
-            cell.updateView(with: .hasData(similarMoviesViewModel ?? []))
+            cell.applySnapshot(movies: similarMoviesViewModel ?? [])
             return cell
         default:
             return .init()

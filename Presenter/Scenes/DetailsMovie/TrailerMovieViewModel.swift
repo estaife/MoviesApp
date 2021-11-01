@@ -13,9 +13,6 @@ public struct TrailerMovieViewModel {
     public let trailerID: String
     public let thumbURL: URL?
     public let videoURL: URL?
-    
-    // MARK: - Internal Properties
-    let identifier: UUID = UUID()
 
     // MARK: - Initializer
     public init(trailerID: String, thumbURL: URL?, videoURL: URL?) {
@@ -28,13 +25,13 @@ public struct TrailerMovieViewModel {
 // MARK: - Equatable
 extension TrailerMovieViewModel: Equatable {
     public static func ==(lhs: TrailerMovieViewModel, rhs: TrailerMovieViewModel) -> Bool {
-        return lhs.identifier == rhs.identifier
+        return lhs.trailerID == rhs.trailerID
     }
 }
 
 // MARK: - Hashable
 extension TrailerMovieViewModel: Hashable {
     public func hash(into hasher: inout Hasher) {
-        hasher.combine(identifier)
+        hasher.combine(trailerID)
     }
 }

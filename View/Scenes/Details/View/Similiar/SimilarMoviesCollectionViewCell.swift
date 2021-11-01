@@ -12,15 +12,10 @@ final class SimilarMoviesCollectionViewCell: CustomCollectionViewCell {
     
     // MARK: - INTERNAL PROPERTIES
     weak var gridViewNavigationDelegate: GridViewNavigationDelegate?
-    weak var gridViewPaginationDelegate: GridViewPaginationDelegate?
     static let identifier = String(describing: SimilarMoviesCollectionViewCell.self)
     
     // MARK: - PRIVATE PROPERTIES
     private var moviesViewModel = [MovieViewModel]()
-    
-    private var viewState: ViewState = .loading {
-        didSet { transition(to: viewState) }
-    }
     
     private struct Strings {
         static let title = "Similares"
@@ -83,20 +78,11 @@ final class SimilarMoviesCollectionViewCell: CustomCollectionViewCell {
         return collectionView
     }()
     
-    private lazy var activityIndicatorView: UIActivityIndicatorView = {
-        let indicatorView = UIActivityIndicatorView(style: .medium)
-        indicatorView.translatesAutoresizingMaskIntoConstraints = false
-        indicatorView.color = .systemGray
-        indicatorView.startAnimating()
-        return indicatorView
-    }()
-    
     // MARK: - INITALIZER
     public override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
         setupDataSource()
-        viewState = .loading
     }
     
     required init?(coder: NSCoder) {
@@ -107,14 +93,9 @@ final class SimilarMoviesCollectionViewCell: CustomCollectionViewCell {
     internal func subviews() {
         addSubview(titleLabel)
         addSubview(similarMoviesCollectionView)
-        addSubview(activityIndicatorView)
     }
     
     internal func constraints() {
-        trailingAnchorConstraintCollectionView = similarMoviesCollectionView.trailingAnchor.constraint(
-            equalTo: trailingAnchor
-        )
-        
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(
                 equalTo: topAnchor,
@@ -131,19 +112,13 @@ final class SimilarMoviesCollectionViewCell: CustomCollectionViewCell {
             similarMoviesCollectionView.leadingAnchor.constraint(
                 equalTo: leadingAnchor
             ),
-            trailingAnchorConstraintCollectionView,
+            similarMoviesCollectionView.trailingAnchor.constraint(
+                equalTo: trailingAnchor
+            ),
             similarMoviesCollectionView.bottomAnchor.constraint(
                 equalTo: bottomAnchor,
                 constant: -Metrics.sideMargin
-            ),
-
-            activityIndicatorView.centerYAnchor.constraint(
-                equalTo: similarMoviesCollectionView.centerYAnchor
-            ),
-            activityIndicatorView.trailingAnchor.constraint(
-                equalTo: trailingAnchor,
-                constant: -Metrics.spacing
-            ),
+            )
         ])
     }
     
@@ -172,8 +147,8 @@ final class SimilarMoviesCollectionViewCell: CustomCollectionViewCell {
         }
     }
     
-    // MARK: - PRIVATE FUNC
-    private func applySnapshot(movies: [MovieViewModel], isAppending: Bool = true) {
+    // MARK: - INTERNAL FUNC
+    internal func applySnapshot(movies: [MovieViewModel], isAppending: Bool = true) {
         if isAppending {
             moviesViewModel.append(contentsOf: movies)
         } else {
@@ -198,49 +173,9 @@ extension SimilarMoviesCollectionViewCell: UICollectionViewDelegateFlowLayout, U
     
     public func collectionView(
         _ collectionView: UICollectionView,
-        willDisplay cell: UICollectionViewCell,
-        forItemAt indexPath: IndexPath
-    ) {
-        if indexPath.row + 1 == moviesViewModel.count {
-            gridViewPaginationDelegate?.makeFetchMoreMovies()
-        }
-    }
-    
-    public func collectionView(
-        _ collectionView: UICollectionView,
         didSelectItemAt indexPath: IndexPath
     ) {
         let movieIdentifier = moviesViewModel[indexPath.item].identifier
         gridViewNavigationDelegate?.goToDetailMovieScene(identifier: movieIdentifier)
-    }
-}
-
-// MARK: - PopularMoviesGridViewType
-extension SimilarMoviesCollectionViewCell: SimilarMoviesCollectionViewCellType {
-    func updateView(with viewState: SimilarMoviesCollectionViewCellViewState) {
-        switch viewState {
-        case .hasData(let movies):
-            self.applySnapshot(movies: movies)
-            self.viewState = .hasData
-        case .loading:
-            self.viewState = .loading
-        case .stopLoading:
-            self.viewState = .hasData
-        }
-    }
-}
-
-// MARK: - ViewStateProtocol
-extension SimilarMoviesCollectionViewCell: ViewStateProtocol {
-    internal func transition(to state: ViewState) {
-        switch state {
-        case .loading:
-            activityIndicatorView.startAnimating()
-            trailingAnchorConstraintCollectionView.constant = -(activityIndicatorView.bounds.width + Metrics.spacing)
-        case .hasData:
-            activityIndicatorView.stopAnimating()
-            trailingAnchorConstraintCollectionView.constant = 0
-        case .error: break
-        }
     }
 }
