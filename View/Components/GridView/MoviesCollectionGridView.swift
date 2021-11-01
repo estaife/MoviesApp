@@ -43,8 +43,10 @@ final class MoviesCollectionGridView: CustomView {
     }()
     
     private lazy var moviesCollectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: bounds,
-                                              collectionViewLayout: collectionViewLayout)
+        let collectionView = UICollectionView(
+            frame: bounds,
+            collectionViewLayout: collectionViewLayout
+        )
         collectionView.contentInset = Metrics.edgeInsets
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
