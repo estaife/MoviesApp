@@ -11,6 +11,7 @@ import Presenter
 
 internal protocol DetailsMovieViewControllerDelegate: AlertControllerDelegate {
     func detailsMovieViewControllerPrensetVideo(with url: URL)
+    func detailsMovieViewControllerOpenDetailMovie(identifier: String)
 }
 
 internal final class DetailsMovieViewController: UIViewController {
@@ -58,6 +59,10 @@ extension DetailsMovieViewController: LoadingViewProtocol {
 
 // MARK: - LoadingViewProtocol
 extension DetailsMovieViewController: DetailsMoviePresenterDelegate {
+    func presentMoreSimilarMovies(_ movies: [MovieViewModel]) {
+        // TODO: Implement this
+    }
+    
     internal func presentDetailsMovie(_ movie: DetailsMovieViewModel) {
         contentView.updateView(with: .hasData(movie))
     }
@@ -81,10 +86,10 @@ extension DetailsMovieViewController: TrailersCollectionViewCellDelegate {
 // MARK: - GridViewDelegate
 extension DetailsMovieViewController: GridViewDelegate {
     func makeFetchMoreMovies() {
-        
+        // TODO: Implement this presenter?.fetchSimilarMoviesMovies()
     }
     
     func goToDetailMovieScene(identifier: String) {
-        
+        delegate?.detailsMovieViewControllerOpenDetailMovie(identifier: identifier)
     }
 }

@@ -41,6 +41,15 @@ public final class MovsFlowController {
         navigationController.navigationBar.prefersLargeTitles = true
         navigationController.navigationItem.largeTitleDisplayMode = .automatic
     }
+    
+    private func getDeatailMovieScene(identifier: String) -> UIViewController {
+        if let detailMoviesViewController = movsFactory.makeDetailsMovieViewController(identifier: identifier) as? DetailsMovieViewController {
+            detailMoviesViewController.delegate = self
+            
+            return detailMoviesViewController
+        }
+        return .init()
+    }
 }
 
 // MARK: - MovsFlowControllerDelegate
@@ -49,16 +58,16 @@ extension MovsFlowController: MovsFlowControllerDelegate { }
 // MARK: - PopularMoviesViewControllerDelegate
 extension MovsFlowController: PopularMoviesViewControllerDelegate {
     public func popularMoviesViewControllerOpenDetailMovie(identifier: String) {
-        if let detailMoviesViewController = movsFactory.makeDetailsMovieViewController(identifier: identifier) as? DetailsMovieViewController {
-            detailMoviesViewController.delegate = self
-            
-            navigationController.pushViewController(detailMoviesViewController, animated: false)
-        }
+        navigationController.pushViewController(getDeatailMovieScene(identifier: identifier), animated: true)
     }
 }
 
 // MARK: - DetailsMoviesViewControllerDelegate
 extension MovsFlowController: DetailsMovieViewControllerDelegate {
+    func detailsMovieViewControllerOpenDetailMovie(identifier: String) {
+        navigationController.pushViewController(getDeatailMovieScene(identifier: identifier), animated: true)
+    }
+    
     func detailsMovieViewControllerPrensetVideo(with url: URL) {
         let embedYoutubeVideoViewController = movsFactory.makeEmbedYoutubeVideoViewController(url: url)
         embedYoutubeVideoViewController.modalPresentationStyle = .overCurrentContext

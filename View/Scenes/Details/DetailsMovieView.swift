@@ -19,7 +19,7 @@ final internal class DetailsMovieView: CustomView {
     weak var gridViewNavigationDelegate: GridViewNavigationDelegate?
     weak var gridViewPaginationDelegate: GridViewPaginationDelegate?
     
-    private var similarMovieViewModel: [MovieViewModel]?
+    private var similarMoviesViewModel: [MovieViewModel]?
     
     // MARK: - PRIVATE PROPERTIES
     private var viewState: ViewState = .loading {
@@ -156,7 +156,7 @@ extension DetailsMovieView: DetailsMovieViewType {
                 self.trailersCollectionViewCell?.updateView(
                     with: viewEntity.trailersMovieViewModel
                 )
-                self.similarMovieViewModel = viewEntity.similarMoviesViewModel
+                self.similarMoviesViewModel = viewEntity.similarMoviesViewModel
             case .loading:
                 self.viewState = .loading
             case .stopLoading:
@@ -235,7 +235,7 @@ extension DetailsMovieView: UICollectionViewDataSource {
                 return .init()
             }
             similarMoviesCollectionViewCell = cell
-            cell.updateView(with: .hasData(similarMovieViewModel ?? []))
+            cell.updateView(with: .hasData(similarMoviesViewModel ?? []))
             return cell
         default:
             return .init()
