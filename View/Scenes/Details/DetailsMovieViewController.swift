@@ -18,16 +18,11 @@ internal final class DetailsMovieViewController: UIViewController {
     // MARK: - Properties
     internal var presenter: DetailsMoviePresenter?
     internal weak var delegate: DetailsMovieViewControllerDelegate?
-    
-    private struct Strings {
-        static let title = "Details"
-    }
-    
+
     // MARK: - Life Cycle
     internal override func loadView() {
         super.loadView()
         view = DetailsMovieView(delegate: self)
-        title = Strings.title
     }
     
     internal override func viewWillAppear(_ animated: Bool) {

@@ -838,20 +838,12 @@
 		8117E32E272EF8F50064F906 /* Trailers */ = {
 			isa = PBXGroup;
 			children = (
-				8117E332272EF8F50064F906 /* Cell */,
+				8117E333272EF8F50064F906 /* ThumbImageCollectionViewCell.swift */,
 				8117E32F272EF8F50064F906 /* TrailersCollectionViewCellType.swift */,
 				8117E330272EF8F50064F906 /* TrailersCollectionViewCellDelegate.swift */,
 				8117E331272EF8F50064F906 /* TrailersCollectionViewCell.swift */,
 			);
 			path = Trailers;
-			sourceTree = "<group>";
-		};
-		8117E332272EF8F50064F906 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				8117E333272EF8F50064F906 /* ThumbImageCollectionViewCell.swift */,
-			);
-			path = Cell;
 			sourceTree = "<group>";
 		};
 		8117E345272F01820064F906 /* UICollectionViewFlowLayout */ = {
