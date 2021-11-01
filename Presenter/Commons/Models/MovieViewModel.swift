@@ -60,6 +60,6 @@ extension MovieViewModel: Equatable {
 // MARK: - Hashable
 extension MovieViewModel: Hashable {
     public func hash(into hasher: inout Hasher) {
-        hasher.combine(identifier)
+        hasher.combine(internalIdentifier)
     }
 }

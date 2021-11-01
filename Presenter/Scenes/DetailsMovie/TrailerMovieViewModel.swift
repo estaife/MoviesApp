@@ -28,7 +28,7 @@ public struct TrailerMovieViewModel {
 // MARK: - Equatable
 extension TrailerMovieViewModel: Equatable {
     public static func ==(lhs: TrailerMovieViewModel, rhs: TrailerMovieViewModel) -> Bool {
-        return lhs.trailerID == rhs.trailerID
+        return lhs.identifier == rhs.identifier
     }
 }
 
