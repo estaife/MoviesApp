@@ -67,6 +67,10 @@ final internal class DetailsMovieView: CustomView {
             TrailersCollectionViewCell.self,
             forCellWithReuseIdentifier: TrailersCollectionViewCell.identifier
         )
+        collectionView.register(
+            SimilarMoviesCollectionViewCell.self,
+            forCellWithReuseIdentifier: SimilarMoviesCollectionViewCell.identifier
+        )
         collectionView.dataSource = self
         collectionView.delegate = self
         return collectionView
