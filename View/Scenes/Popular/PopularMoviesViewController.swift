@@ -23,10 +23,18 @@ internal final class PopularMoviesViewController: UIViewController {
         static let title = "Filmes"
     }
     
+    // MARK: - UI
+    private lazy var contentView: PopularMoviesGridViewType = {
+        let conteView = PopularMoviesGridView(
+            delegate: self
+        )
+        return conteView
+    }()
+    
     // MARK: - Life Cycle
     internal override func loadView() {
         super.loadView()
-        view = PopularMoviesGridView(delegate: self)
+        view = contentView.content
         title = Strings.title
     }
     
@@ -39,26 +47,26 @@ internal final class PopularMoviesViewController: UIViewController {
 // MARK: - PopularMoviesPresenterProtocol
 extension PopularMoviesViewController: PopularMoviesPresenterDelegate {
     internal func presentPopularMovies(_ movies: [MovieViewModel]) {
-        (view as? PopularMoviesGridView)?.updateView(with: .hasData(movies))
+        contentView.updateView(with: .hasData(movies))
     }
     
     internal func presentError(_ error: DomainError) {
-        (view as? PopularMoviesGridView)?.updateView(with: .error(error.localizedDescription))
+        contentView.updateView(with: .error(error.localizedDescription))
     }
 }
 
 // MARK: - LoadingViewProtocol
 extension PopularMoviesViewController: LoadingViewProtocol {
     internal var isLoading: Bool {
-        (view as? PopularMoviesGridView)?.isLoading ?? false
+        (contentView.content as? PopularMoviesGridView)?.isLoading ?? false
     }
     
     internal func start() {
-        (view as? PopularMoviesGridView)?.updateView(with: .startLoading)
+        contentView.updateView(with: .startLoading)
     }
     
     internal func stop() {
-        (view as? PopularMoviesGridView)?.updateView(with: .stopLoading)
+        contentView.updateView(with: .stopLoading)
     }
 }
 
