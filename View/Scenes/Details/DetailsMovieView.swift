@@ -16,7 +16,8 @@ final internal class DetailsMovieView: CustomView {
     }
     
     internal weak var trailersCollectionViewCellDelegate: TrailersCollectionViewCellDelegate?
-    internal weak var gridViewDelegate: GridViewDelegate?
+    weak var gridViewNavigationDelegate: GridViewNavigationDelegate?
+    weak var gridViewPaginationDelegate: GridViewPaginationDelegate?
     
     private var similarMovieViewModel: [MovieViewModel]?
     
@@ -54,7 +55,8 @@ final internal class DetailsMovieView: CustomView {
     
     private var similarMoviesCollectionViewCell: SimilarMoviesCollectionViewCell? {
         didSet {
-            similarMoviesCollectionViewCell?.delegate = gridViewDelegate
+            similarMoviesCollectionViewCell?.gridViewNavigationDelegate = gridViewNavigationDelegate
+            similarMoviesCollectionViewCell?.gridViewPaginationDelegate = gridViewPaginationDelegate
         }
     }
     
@@ -93,11 +95,13 @@ final internal class DetailsMovieView: CustomView {
     // MARK: - INITALIZER
     internal init(
         trailersCollectionViewCellDelegate: TrailersCollectionViewCellDelegate,
-        gridViewDelegate: GridViewDelegate
+        gridViewNavigationDelegate: GridViewNavigationDelegate,
+        gridViewPaginationDelegate: GridViewPaginationDelegate
     ) {
         super.init(frame: .zero)
         self.trailersCollectionViewCellDelegate = trailersCollectionViewCellDelegate
-        self.gridViewDelegate = gridViewDelegate
+        self.gridViewNavigationDelegate = gridViewNavigationDelegate
+        self.gridViewPaginationDelegate = gridViewPaginationDelegate
         self.commonInit()
     }
     

@@ -26,7 +26,8 @@ internal final class PopularMoviesViewController: UIViewController {
     // MARK: - UI
     private lazy var contentView: PopularMoviesGridViewType = {
         let conteView = PopularMoviesGridView(
-            delegate: self
+            gridViewNavigationDelegate: self,
+            gridViewPaginationDelegate: self
         )
         return conteView
     }()

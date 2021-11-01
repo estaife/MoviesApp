@@ -15,7 +15,7 @@ final class PopularMoviesGridView: CustomView {
     }
     
     // MARK: - PRIVATE PROPERTIES
-    private weak var delegate: GridViewDelegate?
+    private weak var gridViewPaginationDelegate: GridViewPaginationDelegate?
     
     private var viewState: ViewState = .loading {
         didSet { transition(to: viewState) }
@@ -39,7 +39,7 @@ final class PopularMoviesGridView: CustomView {
             action: UIAction(
                 title: Strings.informationButtonTitle,
                 handler: { [unowned self] _ in
-                    self.delegate?.makeFetchMoreMovies()
+                    self.gridViewPaginationDelegate?.makeFetchMoreMovies()
                 }
             )
         )
@@ -63,10 +63,14 @@ final class PopularMoviesGridView: CustomView {
     }()
     
     // MARK: - INITALIZER
-    internal init(delegate: GridViewDelegate) {
+    internal init(
+        gridViewNavigationDelegate: GridViewNavigationDelegate,
+        gridViewPaginationDelegate: GridViewPaginationDelegate
+    ) {
         super.init(frame: .zero)
-        self.moviesCollectionGridView.delegate = delegate
-        self.delegate = delegate
+        self.moviesCollectionGridView.gridViewNavigationDelegate = gridViewNavigationDelegate
+        self.moviesCollectionGridView.gridViewPaginationDelegate = gridViewPaginationDelegate
+        self.gridViewPaginationDelegate = gridViewPaginationDelegate
         commonInit()
     }
     

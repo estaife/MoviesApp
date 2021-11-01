@@ -11,7 +11,8 @@ import Presenter
 final class MoviesCollectionGridView: CustomView {
     
     // MARK: - PUBLIC PROPERTIES
-    weak var delegate: GridViewDelegate?
+    weak var gridViewNavigationDelegate: GridViewNavigationDelegate?
+    weak var gridViewPaginationDelegate: GridViewPaginationDelegate?
     
     // MARK: - PRIVATE PROPERTIES
     private var moviesViewModel = [MovieViewModel]()
@@ -139,7 +140,7 @@ extension MoviesCollectionGridView: UICollectionViewDelegateFlowLayout, UICollec
         forItemAt indexPath: IndexPath
     ) {
         if indexPath.row + 1 == moviesViewModel.count {
-            delegate?.makeFetchMoreMovies()
+            gridViewPaginationDelegate?.makeFetchMoreMovies()
         }
     }
     
@@ -148,6 +149,6 @@ extension MoviesCollectionGridView: UICollectionViewDelegateFlowLayout, UICollec
         didSelectItemAt indexPath: IndexPath
     ) {
         let movieIdentifier = moviesViewModel[indexPath.item].identifier
-        delegate?.goToDetailMovieScene(identifier: movieIdentifier)
+        gridViewNavigationDelegate?.goToDetailMovieScene(identifier: movieIdentifier)
     }
 }

@@ -11,7 +11,8 @@ import Presenter
 final class SimilarMoviesCollectionViewCell: CustomCollectionViewCell {
     
     // MARK: - INTERNAL PROPERTIES
-    weak var delegate: GridViewDelegate?
+    weak var gridViewNavigationDelegate: GridViewNavigationDelegate?
+    weak var gridViewPaginationDelegate: GridViewPaginationDelegate?
     static let identifier = String(describing: SimilarMoviesCollectionViewCell.self)
     
     // MARK: - PRIVATE PROPERTIES
@@ -201,7 +202,7 @@ extension SimilarMoviesCollectionViewCell: UICollectionViewDelegateFlowLayout, U
         forItemAt indexPath: IndexPath
     ) {
         if indexPath.row + 1 == moviesViewModel.count {
-            delegate?.makeFetchMoreMovies()
+            gridViewPaginationDelegate?.makeFetchMoreMovies()
         }
     }
     
@@ -210,7 +211,7 @@ extension SimilarMoviesCollectionViewCell: UICollectionViewDelegateFlowLayout, U
         didSelectItemAt indexPath: IndexPath
     ) {
         let movieIdentifier = moviesViewModel[indexPath.item].identifier
-        delegate?.goToDetailMovieScene(identifier: movieIdentifier)
+        gridViewNavigationDelegate?.goToDetailMovieScene(identifier: movieIdentifier)
     }
 }
 

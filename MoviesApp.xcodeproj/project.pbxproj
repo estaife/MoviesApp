@@ -69,7 +69,7 @@
 		812F6CE32721BABF004EFA04 /* EmbedYoutubeVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F6CE22721BABF004EFA04 /* EmbedYoutubeVideoViewController.swift */; };
 		812F6CE62721BB3D004EFA04 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F6CE52721BB3D004EFA04 /* AlertController.swift */; };
 		812F6CF12721C02A004EFA04 /* MoviesCollectionGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F6CF02721C02A004EFA04 /* MoviesCollectionGridView.swift */; };
-		812F6CF32721C1C9004EFA04 /* GridViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F6CF22721C1C9004EFA04 /* GridViewDelegate.swift */; };
+		812F6CF32721C1C9004EFA04 /* GridViewNavigationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F6CF22721C1C9004EFA04 /* GridViewNavigationDelegate.swift */; };
 		812F6CF52721C2C6004EFA04 /* PopularMoviesGridViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F6CF42721C2C6004EFA04 /* PopularMoviesGridViewState.swift */; };
 		812F6CF72721C2F7004EFA04 /* PopularMoviesGridViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F6CF62721C2F7004EFA04 /* PopularMoviesGridViewType.swift */; };
 		812F6CFB2721C394004EFA04 /* ViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F6CFA2721C394004EFA04 /* ViewState.swift */; };
@@ -109,6 +109,7 @@
 		818B6C02271B37EB00ED2501 /* MovsFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818B6C01271B37EB00ED2501 /* MovsFlowController.swift */; };
 		818B6C04271B380600ED2501 /* MovsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818B6C03271B380600ED2501 /* MovsFactory.swift */; };
 		818B6C06271B387500ED2501 /* MovsFactoryImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818B6C05271B387500ED2501 /* MovsFactoryImplementation.swift */; };
+		81A32521273064BC0013E4A9 /* GridViewPaginationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A32520273064BC0013E4A9 /* GridViewPaginationDelegate.swift */; };
 		81A5E010271CDB0800C0EB18 /* LocateUseCaseSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A5E00F271CDB0800C0EB18 /* LocateUseCaseSpy.swift */; };
 		81A5E013271CEA6900C0EB18 /* PopularMoviesUseCaseSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A5E012271CEA6900C0EB18 /* PopularMoviesUseCaseSpy.swift */; };
 		81B1680E272CC8A1007B50A7 /* Core.docc in Sources */ = {isa = PBXBuildFile; fileRef = 81B1680D272CC8A1007B50A7 /* Core.docc */; };
@@ -456,7 +457,7 @@
 		812F6CEC2721BE6B004EFA04 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		812F6CEE2721BF04004EFA04 /* BundleModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleModule.swift; sourceTree = "<group>"; };
 		812F6CF02721C02A004EFA04 /* MoviesCollectionGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesCollectionGridView.swift; sourceTree = "<group>"; };
-		812F6CF22721C1C9004EFA04 /* GridViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewDelegate.swift; sourceTree = "<group>"; };
+		812F6CF22721C1C9004EFA04 /* GridViewNavigationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewNavigationDelegate.swift; sourceTree = "<group>"; };
 		812F6CF42721C2C6004EFA04 /* PopularMoviesGridViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularMoviesGridViewState.swift; sourceTree = "<group>"; };
 		812F6CF62721C2F7004EFA04 /* PopularMoviesGridViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularMoviesGridViewType.swift; sourceTree = "<group>"; };
 		812F6CFA2721C394004EFA04 /* ViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewState.swift; sourceTree = "<group>"; };
@@ -492,6 +493,7 @@
 		818B6C01271B37EB00ED2501 /* MovsFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovsFlowController.swift; sourceTree = "<group>"; };
 		818B6C03271B380600ED2501 /* MovsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovsFactory.swift; sourceTree = "<group>"; };
 		818B6C05271B387500ED2501 /* MovsFactoryImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovsFactoryImplementation.swift; sourceTree = "<group>"; };
+		81A32520273064BC0013E4A9 /* GridViewPaginationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewPaginationDelegate.swift; sourceTree = "<group>"; };
 		81A5E00F271CDB0800C0EB18 /* LocateUseCaseSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocateUseCaseSpy.swift; sourceTree = "<group>"; };
 		81A5E012271CEA6900C0EB18 /* PopularMoviesUseCaseSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularMoviesUseCaseSpy.swift; sourceTree = "<group>"; };
 		81B1680A272CC8A1007B50A7 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -985,7 +987,8 @@
 			children = (
 				812F6CD52721B857004EFA04 /* MovieCollectionViewCell.swift */,
 				812F6CF02721C02A004EFA04 /* MoviesCollectionGridView.swift */,
-				812F6CF22721C1C9004EFA04 /* GridViewDelegate.swift */,
+				812F6CF22721C1C9004EFA04 /* GridViewNavigationDelegate.swift */,
+				81A32520273064BC0013E4A9 /* GridViewPaginationDelegate.swift */,
 			);
 			path = GridView;
 			sourceTree = "<group>";
@@ -1173,7 +1176,6 @@
 		81B1682F272CCC11007B50A7 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
-				81A3251E27305E990013E4A9 /* Info.plist */,
 				81B1680C272CC8A1007B50A7 /* Core.h */,
 			);
 			path = SupportingFiles;
@@ -1681,7 +1683,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81A3251F27305E990013E4A9 /* Info.plist in Resources */,
 				81B16823272CC980007B50A7 /* Media.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1795,6 +1796,7 @@
 				8178C9F327301EF100BBD445 /* SimilarMoviesCollectionViewCellType.swift in Sources */,
 				8117E33B272EF8F50064F906 /* TrailersCollectionViewCellType.swift in Sources */,
 				818B6C02271B37EB00ED2501 /* MovsFlowController.swift in Sources */,
+				81A32521273064BC0013E4A9 /* GridViewPaginationDelegate.swift in Sources */,
 				818B6C04271B380600ED2501 /* MovsFactory.swift in Sources */,
 				8117E335272EF8F50064F906 /* ImageHeaderViewState.swift in Sources */,
 				8117E33D272EF8F50064F906 /* TrailersCollectionViewCell.swift in Sources */,
@@ -1805,7 +1807,7 @@
 				8117E33C272EF8F50064F906 /* TrailersCollectionViewCellDelegate.swift in Sources */,
 				8178C9F127301EE300BBD445 /* SimilarMoviesCollectionViewCell.swift in Sources */,
 				812F6CFB2721C394004EFA04 /* ViewState.swift in Sources */,
-				812F6CF32721C1C9004EFA04 /* GridViewDelegate.swift in Sources */,
+				812F6CF32721C1C9004EFA04 /* GridViewNavigationDelegate.swift in Sources */,
 				8117E33E272EF8F50064F906 /* ThumbImageCollectionViewCell.swift in Sources */,
 				818B48EA27263D4100CE491D /* DetailsMovieGridViewType.swift in Sources */,
 				812F6CE62721BB3D004EFA04 /* AlertController.swift in Sources */,

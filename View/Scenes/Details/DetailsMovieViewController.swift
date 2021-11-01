@@ -23,7 +23,8 @@ internal final class DetailsMovieViewController: UIViewController {
     private lazy var contentView: DetailsMovieViewType = {
         let conteView = DetailsMovieView(
             trailersCollectionViewCellDelegate: self,
-            gridViewDelegate: self
+            gridViewNavigationDelegate: self,
+            gridViewPaginationDelegate: self
         )
         return conteView
     }()
@@ -79,6 +80,10 @@ extension DetailsMovieViewController: TrailersCollectionViewCellDelegate {
 
 // MARK: - GridViewDelegate
 extension DetailsMovieViewController: GridViewDelegate {
+    func makeFetchMoreMovies() {
+        
+    }
+    
     func goToDetailMovieScene(identifier: String) {
         
     }
