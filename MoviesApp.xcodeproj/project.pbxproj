@@ -1173,6 +1173,7 @@
 		81B1682F272CCC11007B50A7 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				81A3251E27305E990013E4A9 /* Info.plist */,
 				81B1680C272CC8A1007B50A7 /* Core.h */,
 			);
 			path = SupportingFiles;
@@ -1680,6 +1681,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81A3251F27305E990013E4A9 /* Info.plist in Resources */,
 				81B16823272CC980007B50A7 /* Media.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
