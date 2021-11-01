@@ -70,7 +70,7 @@ final class SimilarMoviesCollectionViewCell: CustomCollectionViewCell {
             collectionViewLayout: collectionViewLayout
         )
         collectionView.contentInset = Metrics.edgeInsets
-        collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         collectionView.backgroundColor = .systemBackground
@@ -200,7 +200,6 @@ extension SimilarMoviesCollectionViewCell: UICollectionViewDelegateFlowLayout, U
         willDisplay cell: UICollectionViewCell,
         forItemAt indexPath: IndexPath
     ) {
-        print(indexPath)
         if indexPath.row + 1 == moviesViewModel.count {
             delegate?.makeFetchMoreMovies()
         }

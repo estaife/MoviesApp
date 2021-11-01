@@ -56,7 +56,7 @@ final internal class TrailersCollectionViewCell: CustomCollectionViewCell {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         collectionView.backgroundColor = .systemBackground
-        collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = false
         collectionView.delegate = self
         collectionView.register(
             ThumbImageCollectionViewCell.self,

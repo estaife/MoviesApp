@@ -230,6 +230,7 @@ extension DetailsMovieView: UICollectionViewDataSource {
             ) as? SimilarMoviesCollectionViewCell else {
                 return .init()
             }
+            similarMoviesCollectionViewCell = cell
             cell.updateView(with: .hasData(similarMovieViewModel ?? []))
             return cell
         default:
