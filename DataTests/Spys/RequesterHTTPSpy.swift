@@ -12,10 +12,10 @@ final class RequesterHTTPSpy: RequesterHTTPProtocol {
     var url: URL?
     var request: RequestProtocol?
     
-    var success: Codable?
+    var success: Decodable?
     var error: DomainError?
     
-    func perform<ResponseType: Codable>(
+    func perform<ResponseType: Decodable>(
         request: RequestProtocol,
         type: ResponseType.Type,
         completion: @escaping (Result<ResponseType, DomainError>) -> Void

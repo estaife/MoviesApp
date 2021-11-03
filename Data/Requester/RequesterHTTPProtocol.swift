@@ -8,7 +8,7 @@
 import Domain
 
 public protocol RequesterHTTPProtocol {
-    func perform<ResponseType: Codable>(
+    func perform<ResponseType: Decodable>(
         request: RequestProtocol,
         type: ResponseType.Type,
         completion: @escaping (Result<ResponseType, DomainError>) -> Void

@@ -17,7 +17,7 @@ public final class RequesterHTTP {
         self.session = session
     }
     
-    private func handleSuccessWith<ResponseType: Codable>(
+    private func handleSuccessWith<ResponseType: Decodable>(
         statusCode: Int,
         data: Data,
         type: ResponseType.Type
@@ -52,7 +52,7 @@ public final class RequesterHTTP {
 }
 
 extension RequesterHTTP: RequesterHTTPProtocol {
-    public func perform<ResponseType: Codable>(
+    public func perform<ResponseType: Decodable>(
         request: RequestProtocol,
         type: ResponseType.Type,
         completion: @escaping (Result<ResponseType, DomainError>) -> Void
