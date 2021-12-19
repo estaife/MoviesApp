@@ -8,26 +8,11 @@
 import XCTest
 @testable import Core
 
-class CoreTests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+class EnvironmentTests: XCTestCase {
+    
+    func testEnvironmentVariables() {
+        XCTAssertEqual(Environment().baseImageURLString, "https://image.tmdb.org/t/p/")
+        XCTAssertEqual(Environment().apiKey, "8b743bf189292c45c19e1645ad0b4be7") // TODO: - Overshadow
+        XCTAssertEqual(Environment().baseURLString, "https://api.themoviedb.org/3")
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
 }
