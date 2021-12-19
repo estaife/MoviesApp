@@ -21,10 +21,3 @@ public extension BaseModel {
         return json
     }
 }
-
-public extension Data {
-    var json: [String: Any]? {
-        let json = try? JSONSerialization.jsonObject(with: self, options: .allowFragments)
-        return json as? [String: Any]
-    }
-}
