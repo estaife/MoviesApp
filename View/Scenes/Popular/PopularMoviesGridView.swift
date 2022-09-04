@@ -70,7 +70,6 @@ final class PopularMoviesGridView: CustomView {
         super.init(frame: .zero)
         self.moviesCollectionGridView.gridViewNavigationDelegate = gridViewNavigationDelegate
         self.moviesCollectionGridView.gridViewPaginationDelegate = gridViewPaginationDelegate
-        self.gridViewPaginationDelegate = gridViewPaginationDelegate
         commonInit()
     }
     
